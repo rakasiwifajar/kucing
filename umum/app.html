@@ -446,7 +446,7 @@
   #picker.show .box,.panel.show .card{animation:popIn .32s ease-out}
   #picker .pgrid button,#pcats button{animation:tileIn .35s ease-out backwards}
   #picker .pgrid button:nth-child(2n){animation-delay:.04s}#picker .pgrid button:nth-child(3n){animation-delay:.08s}
-  #learn button:active,#picker button:active{transform:scale(.94)}
+  #learn button:active,#picker button:active{scale:.94}
   /* 2. picker islands */
   #pcats{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:6px 2px 8px}
   #pcats button{border:none;border-radius:28px;color:#fff;padding:16px 8px 14px;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 7px 0 rgba(0,0,0,.18);background-image:linear-gradient(rgba(255,255,255,.35),rgba(255,255,255,0) 55%)!important;position:relative;overflow:hidden}
@@ -657,6 +657,47 @@
   .stabs{position:absolute;left:10px;right:10px;top:74px;display:flex;gap:6px}
   .stabs button{flex:1;border:none;border-radius:16px;padding:10px 2px;font:inherit;font-weight:800;font-size:clamp(12px,3.6vw,16px);background:#fff;box-shadow:0 4px 0 #ecd9c4;color:#4a3428}
   .stabs button.on{background:#e8a33d;color:#fff;box-shadow:0 4px 0 #c9821a}
+
+  /* ===== v16 ===== */
+  .jroute{position:absolute;left:8px;right:8px;top:66px;display:flex;gap:4px;overflow-x:auto;padding:4px 2px 8px}
+  .jroute span{flex:none;width:52px;height:56px;border-radius:14px;background:#fff;opacity:.55;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:24px;box-shadow:0 3px 0 #ecd9c4}
+  .jroute span small{font-size:8px;font-weight:800;line-height:1;text-align:center}
+  .jroute span.ok{opacity:1;background:#e3f8ea}.jroute span.cur{opacity:1;box-shadow:0 0 0 3px #9b7be0}
+  .imap{position:absolute;left:6px;right:6px;top:64px;bottom:8px;border-radius:26px;overflow:hidden;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.35),transparent 30%),repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.08) 0 10px,transparent 10px 24px),linear-gradient(#5cc2f5,#2a7fc4)}
+  .iroute{position:absolute;inset:0;width:100%;height:100%}
+  .isl{position:absolute;transform:translate(-50%,-50%);border:none;width:clamp(120px,36vw,170px);padding:10px 6px 8px;border-radius:50% 50% 46% 54%/60% 56% 44% 40%;background:radial-gradient(ellipse at 50% 35%,#fff3c4,#f5d68a 60%,#8bd36a 61%,#5cb83a);box-shadow:0 8px 0 rgba(0,0,0,.15);color:#4a3428;display:flex;flex-direction:column;align-items:center;font:inherit}
+  .isl b{font-size:40px;line-height:1.1}.isl span{font-weight:900;font-size:14px}.isl i{font-style:normal;font-size:12px;font-weight:800}
+  .isl.lock{filter:grayscale(.7) brightness(.9)}.isl.nope{animation:wiggle .4s 2}
+  .igames{position:absolute;left:12px;right:12px;top:70px;bottom:70px;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px;align-content:start}
+  .igames button{position:relative;border:none;border-radius:24px;aspect-ratio:1;background:linear-gradient(160deg,#c3a8ff,#9b7be0);color:#fff;font-size:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 0 rgba(0,0,0,.15)}
+  .igames button small{font-size:14px;font-weight:800}.igames button em{position:absolute;top:6px;right:8px;font-style:normal;font-size:18px;background:#22a06b;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center}
+  .rapor{position:absolute;left:10px;right:10px;top:66px;bottom:10px;overflow:auto}
+  .rhead{text-align:center;font-weight:900;font-size:22px;margin:4px 0 10px}
+  .rgrid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px}
+  .rgrid2 div{position:relative;background:#fff;border-radius:20px;padding:10px 6px;text-align:center;box-shadow:0 5px 0 #ecd9c4;opacity:.6}
+  .rgrid2 div.ok{opacity:1;background:linear-gradient(#fffbe8,#fff1c4);box-shadow:0 5px 0 #f0d9a4}
+  .rgrid2 b{display:block;font-size:40px;line-height:1.1}.rgrid2 span{font-size:13px;font-weight:800}.rgrid2 em{position:absolute;top:4px;right:8px;font-style:normal;color:#22a06b;font-weight:900}
+  .hfl{position:absolute;left:12px;right:12px;top:70px;bottom:12px;display:flex;flex-direction:column;gap:12px}
+  .hsteps{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.hsteps span{width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;opacity:.5}.hsteps span.ok{opacity:1;background:#d9f5e6}.hsteps span.cur{opacity:1;box-shadow:0 0 0 3px #22a06b}
+  .hcard{background:#fff;border-radius:24px;padding:16px;box-shadow:0 6px 0 #ecd9c4;text-align:center}.hlt{font-size:clamp(20px,6vw,28px);font-weight:900;color:#2a6b4f;margin-top:6px}
+  .hbtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.hbtns .pbtn{font-size:17px}
+  .moodrow{display:flex;gap:6px;justify-content:center;margin-top:12px;flex-wrap:wrap}.moodrow button{border:none;background:#fff3c4;border-radius:18px;font-size:42px;padding:6px 8px;box-shadow:0 4px 0 #f0d9a4;line-height:1.1}.moodrow small{display:block;font-size:12px;font-weight:800}
+  .mwk{display:flex;gap:4px;background:#fffaf2;border-radius:14px;padding:8px}.mwk div{flex:1;text-align:center}.mwk b{display:block;font-size:24px}.mwk span{font-size:11px}
+  #calmPick{display:none}
+  body.calmmode #picker #pcats,body.calmmode #picker #sugg,body.calmmode #picker .sec,body.calmmode #picker .pgrid{display:none!important}
+  #calmPick .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(76px,22vw,104px),1fr));gap:10px}#calmPick .cgrid button{width:100%!important;height:auto!important;aspect-ratio:1/1;min-height:76px}
+  body.calmmode #picker #calmPick{display:block}body.calmmode #picker #pBack{display:none!important}
+  .cpmsg{background:#eef0ff;border-radius:16px;padding:10px 12px;font-weight:800;margin-bottom:10px;color:#3a4690}
+  body.calmmode #room{filter:brightness(.9) saturate(.85)}
+  .cal{position:absolute;left:10px;right:10px;top:66px;bottom:10px;overflow:auto;display:flex;flex-direction:column;gap:10px}
+  .cdate{background:linear-gradient(#ff8f8f,#f06b6b);color:#fff;border-radius:24px;text-align:center;padding:10px;box-shadow:0 6px 0 #c94c4c}
+  .cday{font-weight:900;font-size:22px}.cnum{font-size:64px;font-weight:900;line-height:1}.cmon{font-weight:800;font-size:18px}.chij{font-size:14px;opacity:.9;margin-top:4px}
+  .calbox{background:#fff;border-radius:20px;padding:10px 12px;box-shadow:0 5px 0 #ecd9c4}.ch{font-weight:900;margin-bottom:6px}
+  .prow{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.prow div{text-align:center;border-radius:14px;padding:6px 2px;background:#f7f3ec}.prow div.nx{background:#d9f5e6;box-shadow:0 0 0 3px #22a06b}
+  .prow b{display:block;font-size:24px}.prow span{display:block;font-size:12px;font-weight:800}.prow i{font-style:normal;font-weight:900;font-size:15px}
+  .cev{display:flex;align-items:center;gap:10px;font-weight:800;padding:4px 0}.cev b{font-size:28px}
+  .srec{position:absolute;right:10px;bottom:10px;width:44px;height:44px;border-radius:50%;border:none;background:#fff;box-shadow:0 3px 0 #ecd9c4;font-size:20px;opacity:.75}
+  .srec.on{background:#ef4444;opacity:1}.srecst{position:absolute;right:8px;bottom:60px;background:#fff;border-radius:10px;padding:2px 8px;font-size:12px;font-weight:800;opacity:.7}
 </style>
 </head>
 <body>
@@ -803,6 +844,7 @@
   <div id="picker"><div class="box">
     <div class="phead"><b>Mau main apa?</b><button class="x" id="pickX" aria-label="Tutup">✕</button></div>
     <div class="sec">🎉 Main</div><div class="pgrid">
+      <button data-game="map" style="background:var(--fun)">🗺️<small>Peta Petualangan</small></button>
       <button data-game="ball" style="background:var(--fun)">⚽<small>Bola</small></button>
       <button data-game="yarn" style="background:#e8a33d">🧶<small>Benang</small></button>
       <button data-game="bubble" style="background:var(--water)">🫧<small>Gelembung</small></button>
@@ -820,6 +862,7 @@
       <button data-game="tricks" style="background:#9b7be0">✨<small>Trik Kucing</small></button>
     </div>
     <div class="sec">📚 Belajar</div><div class="pgrid">
+      <button data-game="rapor" style="background:#3b82f6">🏅<small>Rapor Bintang</small></button>
       <button data-game="color" style="background:#ef6b6b">🎨<small>Warna</small></button>
       <button data-game="shape" style="background:#7c6fe0">🔺<small>Bentuk</small></button>
       <button data-game="count" style="background:#58c39a">🔢<small>Hitung</small></button>
@@ -852,12 +895,14 @@
       <button data-game="family" style="background:#e8a33d">👨‍👩‍👧<small>Siapa Ini?</small></button>
       <button data-game="story" style="background:#4f6fd1">📖<small>Cerita</small></button>
       <button data-game="adv" style="background:#22a06b">🗺️<small>Cerita Pilihan</small></button>
+      <button data-game="calendar" style="background:#e8a33d">📅<small>Hari Ini</small></button>
       <button data-game="doa" style="background:#22a06b">🤲<small>Doa Harian</small></button>
       <button data-game="quran" style="background:#1f8a5c">📗<small>Mengaji</small></button>
       <button data-game="post" style="background:#f06b8f">📮<small>Kotak Pos</small></button>
       <button data-game="meet" style="background:#9b7be0">👯<small>Ketemu @@KBN@@</small></button>
     </div>
     <div class="sec">🗺️ Jalan-jalan</div><div class="pgrid">
+      <button data-game="journey" style="background:#9b7be0">⛵<small>Jelajah Sulawesi</small></button>
       <button data-game="cook" style="background:#ef6b6b">🍳<small>Dapur</small></button>
       <button data-game="market" style="background:#e8a33d">🧺<small>Pasar</small></button>
       <button data-game="garden" style="background:#4caf50">🌱<small>Kebun Mini</small></button>
@@ -1546,6 +1591,7 @@
     else if(g==='talk') startTalk(); else if(g==='doa') startDoa(); else if(g==='trace') startTrace(); else if(g==='coloring') startColoring();
     else if(g==='post') startPost(); else if(g==='meet') startMeet(); else if(g==='potty') startPotty(); else if(g==='safe') startSafe(); else if(g==='prep') startPrep(); else if(g==='pattern') startPattern();
     else if(g==='sort') startSort(); else if(g==='share') startShare(); else if(g==='calm') startCalm(); else if(g==='quran') startQuran(); else if(g==='move') startMove(); else if(g==='garden') startGarden();
+    else if(g==='map') startMap(); else if(g==='rapor') startRapor(); else if(g==='journey') startJourney(); else if(g==='calendar') startCalendar();
     else if(g==='duo') startDuo(); else if(g==='tricks') startTricks(); else if(g==='speak') startSpeak(); else if(g==='adv') startAdv(); else if(g==='cook') startCook(); else if(g==='market') startMarket();
     else if(g==='decor') openDecor(); else if(g==='abc') startAbc(); else if(g==='seq') startSeq(); else if(g==='items') startItems();
   }));
@@ -1597,6 +1643,7 @@
     state.fun=Math.min(100,state.fun+40); state.sleep=Math.max(5,state.sleep-5);
     const st=Math.max(1,L.earned); for(let i=0;i<st;i++) setTimeout(addStar,i*350);
     happy(); sfx.meow(); emitAt('⭐',3); save(); render();
+    try{ if(curGame&&L.earned>0&&!state.done[curGame]){ state.done[curGame]=1; save(); } }catch(e){}
     try{ offlineChallenge(curGame); }catch(e){}
   }
   document.getElementById('learnX').addEventListener('click',()=>{ sfx.click(); closeLearn(); });
@@ -2301,14 +2348,15 @@
     GR.forEach(([g,n])=>{ const b=document.createElement('button'); b.dataset.g=g; b.textContent=n; b.onclick=()=>{ sfx.click(); showG(g); say({kucing:'Cerita kucing',rakyat:'Cerita rakyat',islami:'Kisah islami',lucu:'Cerita lucu'}[g]); }; tabs.appendChild(b); });
     showG('kucing');
     function read(st){
-      let i=0; larea.innerHTML=`<div class="story"><div class="pic" id="spic"></div><div class="txt" id="stxt"></div><div class="nav"><button id="sprev">◀</button><button id="sagain">🔁</button><button id="snext">▶</button></div></div>`;
+      let i=0; const RU={}; larea.innerHTML=`<div class="story"><div class="pic" id="spic"></div><div class="txt" id="stxt"></div><div class="nav"><button id="sprev">◀</button><button id="sagain">🔁</button><button id="snext">▶</button></div><button id="srec" class="srec" title="Rekam suara @@DAD@@/@@MOM@@ untuk halaman ini">🎙️</button><div class="srecst" id="srecst"></div></div>`;
       lhead.textContent=st.t; const pic=document.getElementById('spic'), txt=document.getElementById('stxt');
       function show(){ const [pi,tx]=st.p[i]; pic.textContent=pi; txt.textContent=tx; pic.animate([{opacity:0,transform:'scale(.8)'},{opacity:1,transform:'scale(1)'}],{duration:500});
-        say(tx); document.getElementById('snext').textContent= i===st.p.length-1 ? 'Tamat ⭐' : '▶'; }
+        const rs=document.getElementById('srecst'); if(rs) rs.textContent=RU[i]?'🎙️ suara @@DAD@@/@@MOM@@':''; if(RU[i]) playURL(RU[i]); else say(tx); document.getElementById('snext').textContent= i===st.p.length-1 ? 'Tamat ⭐' : '▶'; }
       document.getElementById('sprev').onclick=()=>{ if(i>0){ i--; show(); } };
       document.getElementById('sagain').onclick=()=>show();
-      document.getElementById('snext').onclick=()=>{ if(i<st.p.length-1){ i++; show(); } else { L.earned++; finishLearn(st.end||('Tamat. Selamat tidur, '+CHILD+'!')); } };
-      show();
+      document.getElementById('snext').onclick=()=>{ if(i<st.p.length-1){ i++; show(); } else { if(L._sd) return; L._sd=1; L.earned++; state.sr[st.t]=1; save(); finishLearn(st.end||('Tamat. Selamat tidur, '+CHILD+'!')); } };
+      const srb=document.getElementById('srec'); if(canRec()) recButton(srb,document.getElementById('srecst'),45000,async b=>{ const k=srKey(st.t,i); await IDB.set(k,b); if(RU[i]) URL.revokeObjectURL(RU[i]); RU[i]=URL.createObjectURL(b); sfx.star(); const se=document.getElementById('srecst'); if(se) se.textContent='✅ Tersimpan untuk halaman ini'; },['🎙️','⏹️']); else srb.style.display='none'; L.onClose=()=>{ try{ if(srb._r) srb._r.stop(); }catch(e){} };
+      Promise.all(st.p.map((_,k)=>IDB.get(srKey(st.t,k)).then(b=>{ if(b) RU[k]=URL.createObjectURL(b); }).catch(()=>{}))).then(()=>{ if(L.alive) show(); });
     }
   }
 
@@ -2771,9 +2819,9 @@
   function startQuran(){
     openLearn(); lhead.textContent='Mengaji 📗';
     let tab='huruf';
-    function shell(){ larea.innerHTML=`<div class="qtabs"><button data-t="huruf">ا ب ت Huruf</button><button data-t="tebak">❓ Tebak</button><button data-t="surat">📖 Surat</button></div><div id="qb"></div>`;
+    function shell(){ larea.innerHTML=`<div class="qtabs"><button data-t="huruf">ا ب ت Huruf</button><button data-t="tebak">❓ Tebak</button><button data-t="surat">📖 Surat</button><button data-t="hafal">🧠 Hafal</button></div><div id="qb"></div>`;
       larea.querySelectorAll('.qtabs button').forEach(b=>{ b.classList.toggle('on',b.dataset.t===tab); b.onclick=()=>{ sfx.click(); tab=b.dataset.t; shell(); }; });
-      ({huruf,tebak,surat})[tab](document.getElementById('qb')); }
+      ({huruf,tebak,surat,hafal:startHafalan})[tab](document.getElementById('qb')); }
     function huruf(qb){ qb.innerHTML=`<div class="hija">${HIJ.map((h,i)=>`<button data-i="${i}">${h[0]}<small>${h[1]}</small></button>`).join('')}</div>`; say('Ketuk hurufnya!');
       let seen=new Set(); qb.querySelectorAll('.hija button').forEach(b=>b.onclick=()=>{ const h=HIJ[+b.dataset.i]; b.animate([{transform:'scale(1)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:400}); say(h[1]); seen.add(h[0]); if(seen.size%6===0) L.earned=Math.max(L.earned,seen.size/6|0); }); }
     function tebak(qb){ let r=0; const N=6; const pool=shuffle(HIJ.slice(0,14));
@@ -2935,7 +2983,7 @@
   $('#go').addEventListener('click',()=>{
     ctx(); $('#start').style.display='none'; sfx.meow(); applyTime();
     if(isBday()) birthday(); else if(!playParent('hello')) say(timeGreeting()); render(); sessionStart=Date.now(); checkLimit();
-    try{ placeGift(); dailyHello(); }catch(e){}
+    try{ placeGift(); dailyHello(); setTimeout(moodCard,2600); calendarHello(); applyCalm(); }catch(e){}
     setTimeout(()=>{ if(busy) return; const nu=(state.inbox||[]).filter(m=>!m.heard).length; const dm=daysTo(state.meet);
       if(nu){ emitAt('📩',3); say(`Ada pesan suara dari ${TWIN}! Buka Main, lalu Kotak Pos.`); }
       else if(dm!==null&&dm>=0&&dm<=7&&state.meetSaid!==today()){ state.meetSaid=today(); save(); say(dm===0?`Hari ini ketemu ${TWIN}! Hore!`:dm===1?`Besok ketemu ${TWIN}!`:`${numWord(dm)} kali tidur lagi ketemu ${TWIN}!`); } },6500);
@@ -3118,7 +3166,7 @@
   function offlineChallenge(g){ gamesSince++; const d=today(); if(state.offl.d!==d){ state.offl.d=d; state.offl.n=0; } if(state.offl.n>=3||gamesSince<2) return;
     gamesSince=0; const f=OFFL[g]; const [e,t]=f?f():rnd(OFFL._); setTimeout(()=>{ if(document.body.classList.contains('ingame')) return; const R=document.getElementById('room'); const c=document.createElement('div'); c.className='rcard';
       c.innerHTML=`<div class="rc-in"><div style="font-weight:900;font-size:18px;opacity:.7">🏃 Tantangan di Rumah</div><div class="rc-big">${e}</div><div class="rc-t" style="font-size:22px;max-width:300px">${t}</div><div class="row2" style="justify-content:center;margin-top:12px"><button class="pbtn green" id="offOk" style="font-size:20px">✅ Sudah!</button><button class="pbtn gray" id="offNo" style="font-size:18px">Nanti</button></div></div>`;
-      R.appendChild(c); say('Tantangan di rumah! '+t); state.offl.n++; save();
+      R.appendChild(c); say('Tantangan di rumah! '+t); state.offl.n++; save(); c.addEventListener('click',e=>{ if(e.target===c) c.remove(); });
       c.querySelector('#offOk').onclick=()=>{ c.remove(); state.offl.total++; save(); confetti(); sfx.yay(); addStar(); setTimeout(addStar,400); say('Hebat! Kamu sudah melakukannya!'); };
       c.querySelector('#offNo').onclick=()=>{ c.remove(); sfx.click(); }; },2200); }
 
@@ -3350,6 +3398,141 @@
 
   (function(){ const C={"🦌": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><radialGradient id=\"f\" cx=\"35%\" cy=\"30%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#e8b980\"/><stop offset=\".55\" stop-color=\"#c98a4a\"/><stop offset=\"1\" stop-color=\"#8f5a2a\"/></radialGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><path d=\"M22 14 l-6 -10 M22 14 l-10 -4 M42 14 l6 -10 M42 14 l10 -4\" stroke=\"#6b4510\" stroke-width=\"3\" stroke-linecap=\"round\"/><ellipse cx=\"16\" cy=\"22\" rx=\"7\" ry=\"4\" fill=\"url(#f)\" transform=\"rotate(-20 16 22)\"/><ellipse cx=\"48\" cy=\"22\" rx=\"7\" ry=\"4\" fill=\"url(#f)\" transform=\"rotate(20 48 22)\"/><path d=\"M18 22 q14 -12 28 0 q2 16 -10 26 q-4 3 -8 0 q-12 -10 -10 -26z\" fill=\"url(#f)\"/><ellipse cx=\"32\" cy=\"42\" rx=\"7\" ry=\"6\" fill=\"#f4dcc0\"/><ellipse cx=\"32\" cy=\"40\" rx=\"3\" ry=\"2\" fill=\"#2b1a10\"/><circle cx=\"25\" cy=\"28\" r=\"2.6\" fill=\"#2b1a10\"/><circle cx=\"26\" cy=\"26.8\" r=\"0.99\" fill=\"#fff\"/><circle cx=\"39\" cy=\"28\" r=\"2.6\" fill=\"#2b1a10\"/><circle cx=\"40\" cy=\"26.8\" r=\"0.99\" fill=\"#fff\"/><circle cx=\"26\" cy=\"20\" r=\"1.6\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"38\" cy=\"20\" r=\"1.6\" fill=\"#fff\" opacity=\".7\"/></svg>", "🐊": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><radialGradient id=\"f\" cx=\"35%\" cy=\"30%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#b6f08a\"/><stop offset=\".55\" stop-color=\"#5cb83a\"/><stop offset=\"1\" stop-color=\"#2f7a22\"/></radialGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><path d=\"M4 40 q2 -12 18 -12 h22 q10 -6 16 2 q2 8 -6 10 h-30 q-14 6 -20 0z\" fill=\"url(#f)\"/><path d=\"M6 40 q16 4 32 0 q10 -2 16 -6\" stroke=\"#2f7a22\" stroke-width=\"1.5\" fill=\"none\"/><path d=\"M10 40 l2 3 2 -3 2 3 2 -3 2 3 2 -3 2 3 2 -3\" stroke=\"#fff\" stroke-width=\"1.5\" fill=\"none\"/><circle cx=\"46\" cy=\"28\" r=\"5\" fill=\"url(#f)\"/><circle cx=\"54\" cy=\"29\" r=\"4.5\" fill=\"url(#f)\"/><circle cx=\"46\" cy=\"27\" r=\"2.2\" fill=\"#2b1a10\"/><circle cx=\"47\" cy=\"25.8\" r=\"0.84\" fill=\"#fff\"/><circle cx=\"54\" cy=\"28\" r=\"2\" fill=\"#2b1a10\"/><circle cx=\"55\" cy=\"26.8\" r=\"0.76\" fill=\"#fff\"/><path d=\"M24 46 v8 M36 46 v8\" stroke=\"#2f7a22\" stroke-width=\"4\" stroke-linecap=\"round\"/><path d=\"M22 30 l4 -3 4 3 4 -3 4 3\" stroke=\"#2f7a22\" stroke-width=\"2\" fill=\"none\"/></svg>", "🥒": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#9fe07f\"/><stop offset=\"1\" stop-color=\"#3f962a\"/></linearGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><path d=\"M14 50 q-6 -8 6 -20 q14 -16 28 -20 q8 -2 6 6 q-4 14 -20 28 q-12 10 -20 6z\" fill=\"url(#f)\"/><circle cx=\"22\" cy=\"40\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"30\" cy=\"32\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"38\" cy=\"24\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"44\" cy=\"18\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"28\" cy=\"44\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"36\" cy=\"36\" r=\"1.4\" fill=\"#d8ffb0\"/><path d=\"M52 8 q4 -4 6 0\" stroke=\"#6b4510\" stroke-width=\"2\" fill=\"none\"/></svg>", "🚢": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#e8a86a\"/><stop offset=\"1\" stop-color=\"#a8652a\"/></linearGradient></defs><path d=\"M0 54 q8 -4 16 0 q8 4 16 0 q8 -4 16 0 q8 4 16 0 v10 h-64z\" fill=\"#4fb3ec\"/><path d=\"M6 38 h52 l-8 16 h-36z\" fill=\"url(#f)\"/><rect x=\"14\" y=\"22\" width=\"34\" height=\"16\" rx=\"3\" fill=\"#fff4dc\" stroke=\"#c98a4a\" stroke-width=\"2\"/><rect x=\"18\" y=\"26\" width=\"6\" height=\"6\" rx=\"1\" fill=\"#7ad0ff\"/><rect x=\"28\" y=\"26\" width=\"6\" height=\"6\" rx=\"1\" fill=\"#7ad0ff\"/><rect x=\"38\" y=\"26\" width=\"6\" height=\"6\" rx=\"1\" fill=\"#7ad0ff\"/><path d=\"M30 22 v-14 l14 8z\" fill=\"#ff8a8a\"/><path d=\"M10 44 h44\" stroke=\"#8a5428\" stroke-width=\"2\"/></svg>", "🐜": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><radialGradient id=\"f\" cx=\"35%\" cy=\"30%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#8a6a5a\"/><stop offset=\".55\" stop-color=\"#4a3428\"/><stop offset=\"1\" stop-color=\"#2a1a10\"/></radialGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><path d=\"M18 40 l-8 10 M24 42 l-4 12 M36 42 l4 12 M44 40 l8 10 M20 34 l-10 -4 M44 34 l10 -4\" stroke=\"#4a3428\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><ellipse cx=\"48\" cy=\"34\" rx=\"12\" ry=\"9\" fill=\"url(#f)\"/><ellipse cx=\"31\" cy=\"36\" rx=\"7\" ry=\"6\" fill=\"url(#f)\"/><circle cx=\"16\" cy=\"30\" r=\"9\" fill=\"url(#f)\"/><path d=\"M12 22 q-4 -10 -8 -10 M18 21 q2 -10 6 -12\" stroke=\"#4a3428\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"12\" cy=\"29\" r=\"2.3\" fill=\"#2b1a10\"/><circle cx=\"13\" cy=\"27.8\" r=\"0.87\" fill=\"#fff\"/><circle cx=\"19\" cy=\"29\" r=\"2.3\" fill=\"#2b1a10\"/><circle cx=\"20\" cy=\"27.8\" r=\"0.87\" fill=\"#fff\"/><ellipse cx=\"47\" cy=\"34\" rx=\"4.5\" ry=\"3\" fill=\"#ff8fa6\" opacity=\".55\"/><ellipse cx=\"17\" cy=\"34\" rx=\"4.5\" ry=\"3\" fill=\"#ff8fa6\" opacity=\".55\"/></svg>", "🕌": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#ffffff\"/><stop offset=\"1\" stop-color=\"#e6e0f0\"/></linearGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><rect x=\"6\" y=\"20\" width=\"6\" height=\"36\" fill=\"url(#f)\" stroke=\"#c8bfe0\"/><path d=\"M5 20 l4 -10 4 10z\" fill=\"#3fb07a\"/><rect x=\"52\" y=\"20\" width=\"6\" height=\"36\" fill=\"url(#f)\" stroke=\"#c8bfe0\"/><path d=\"M51 20 l4 -10 4 10z\" fill=\"#3fb07a\"/><rect x=\"14\" y=\"34\" width=\"36\" height=\"22\" fill=\"url(#f)\" stroke=\"#c8bfe0\"/><path d=\"M16 34 q16 -26 32 0z\" fill=\"#3fb07a\"/><path d=\"M32 8 v6\" stroke=\"#ffd23f\" stroke-width=\"2\"/><circle cx=\"32\" cy=\"6\" r=\"2.5\" fill=\"#ffd23f\"/><path d=\"M27 56 v-10 q5 -6 10 0 v10z\" fill=\"#a8743d\"/></svg>"}; Object.keys(C).forEach(k=>{ ART[k]=C[k]; ARTURL[k]='url("data:image/svg+xml;charset=utf-8,'+encodeURIComponent(C[k])+'")'; });
     ARTRE=new RegExp('('+Object.keys(ART).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')\uFE0F?','gu'); })();
+
+
+  /* ================= v16: betah & bermanfaat ================= */
+  state.done=state.done||{}; state.hafal=state.hafal||{}; state.sr=state.sr||{}; state.mood=state.mood||{}; state.jr=state.jr||{n:0,last:''};
+  state.cal=state.cal||[]; if(!state.settings.city) state.settings.city=(STORE_KEY.indexOf('kucingUmum')===0?'Jakarta':(CHILD==='Mecca'?'Makassar':'Majene')); if(state.settings.calmAt===undefined) state.settings.calmAt=19.5;
+  const _finishLearn=finishLearn; finishLearn=function(msg){ try{ if(curGame){ state.done[curGame]=(state.done[curGame]||0)+1; save(); } }catch(e){} return _finishLearn(msg); };
+  function openGame(g){ const b=document.querySelector(`#picker [data-game="${g}"]`); if(!b) return; closeLearn(); setTimeout(()=>{ picker.classList.add('show'); window.__pickCat(g); setTimeout(()=>b.click(),80); },350); }
+
+  /* ---------- 1. Jelajah Sulawesi (bab harian) ---------- */
+  const JOURNEY=[
+    {pl:'Majene',e:'⛵',p:[['🐱🧳','Hari ini Kucing mulai berpetualang keliling Sulawesi! Dari mana dulu ya?'],['🌊⛵','Kita mulai dari Majene. Di sini ada perahu sandeq, perahu layar orang Mandar.'],['⛵💨','Perahu sandeq ramping dan cepat sekali kalau ditiup angin. Wuuush!'],['🐟🎣','Para nelayan pulang membawa ikan segar. Wah, Kucing senang sekali!']],q:['Perahu layar orang Mandar namanya apa?',[['⛵','Sandeq',1],['🚗','Mobil',0],['✈️','Pesawat',0]]]},
+    {pl:'Makassar',e:'🌅',p:[['🐱🚌','Kucing pergi ke Makassar, kota besar di Sulawesi Selatan.'],['🌅🌊','Sore hari, Kucing ke Pantai Losari melihat matahari terbenam. Langitnya oranye!'],['🍌🔥','Di pinggir pantai ada pisang epe, pisang yang dijepit lalu dibakar. Hmm, wangi!'],['🐱😋','Kucing makan sedikit saja. "Nyam! Manis sekali!"']],q:['Di pantai, matahari terbenam warnanya apa?',[['🟠','Oranye',1],['🟢','Hijau',0],['🔵','Biru',0]]]},
+    {pl:'Bantimurung',e:'🦋',p:[['🐱🌳','Kucing pergi ke Bantimurung, ada hutan dan air terjun.'],['💦🪨','Air terjunnya deras. Byuuur! Airnya dingin dan segar.'],['🦋🦋🦋','Di sini banyak sekali kupu-kupu warna-warni. Bantimurung terkenal dengan kupu-kupunya.'],['🦋🐱','Satu kupu-kupu hinggap di hidung Kucing. Hihihi, geli!']],q:['Bantimurung terkenal dengan apa?',[['🦋','Kupu-kupu',1],['🐘','Gajah',0],['🐧','Penguin',0]]]},
+    {pl:'Toraja',e:'🏠',p:[['🐱⛰️','Kucing naik ke daerah pegunungan, namanya Toraja. Udaranya sejuk.'],['🏠⛵','Di sini ada rumah adat Tongkonan. Atapnya melengkung tinggi seperti perahu!'],['🐃🌾','Ada kerbau di sawah. Kerbau sangat penting bagi orang Toraja.'],['🐱☕','Kucing istirahat sambil melihat pemandangan gunung. Indah sekali!']],q:['Atap rumah Tongkonan bentuknya seperti apa?',[['⛵','Perahu',1],['⚽','Bola',0],['⭐','Bintang',0]]]},
+    {pl:'Bulukumba',e:'🚢',p:[['🐱🏖️','Kucing pergi ke Bulukumba di ujung selatan Sulawesi.'],['🚢🔨','Di sini orang membuat kapal pinisi dari kayu. Kapal layar yang besar dan kuat!'],['🌊🚢','Kapal pinisi bisa berlayar jauh mengarungi lautan.'],['🐱👋','Kucing melambai ke kapal pinisi yang mau berlayar. "Dadah, hati-hati!"']],q:['Kapal pinisi terbuat dari apa?',[['🌳','Kayu',1],['🧊','Es',0],['🍪','Kue',0]]]},
+    {pl:'Danau Tempe',e:'🏠',p:[['🐱🚣','Kucing naik perahu ke Danau Tempe di Wajo.'],['🏠🌊','Wah, ada rumah yang mengapung di atas air danau!'],['🐟🎣','Orang di sini banyak yang mencari ikan di danau.'],['🐦🌅','Burung-burung terbang di atas danau. Kucing senang melihatnya.']],q:['Rumah di Danau Tempe ada di mana?',[['🌊','Di atas air',1],['☁️','Di awan',0],['🌳','Di pohon',0]]]},
+    {pl:'Hutan Sulawesi',e:'🐃',p:[['🐱🌳','Kucing masuk ke hutan Sulawesi yang hijau.'],['🐃','Lihat, itu anoa! Anoa seperti kerbau kecil dan hanya ada di Sulawesi.'],['🐦🥚','Ada juga burung maleo. Telurnya dipendam di pasir yang hangat.'],['🐱🤫','Kucing berjalan pelan-pelan supaya hewan-hewan tidak kaget.']],q:['Hewan yang seperti kerbau kecil namanya apa?',[['🐃','Anoa',1],['🐱','Kucing',0],['🐟','Ikan',0]]]},
+    {pl:'Tangkoko',e:'👀',p:[['🐱🌙','Malam hari, Kucing ke hutan Tangkoko di Sulawesi Utara.'],['👀🐒','Ada tarsius! Hewan kecil dengan mata yang besaaar sekali.'],['🌳🦗','Tarsius melompat dari pohon ke pohon mencari serangga.'],['🐱😮','Kucing kagum. "Matanya lebih besar dari mataku!"']],q:['Tarsius punya mata yang…',[['👀','Besar',1],['🤏','Kecil sekali',0],['😴','Selalu tutup',0]]]},
+    {pl:'Bunaken',e:'🐠',p:[['🐱🚤','Kucing naik perahu ke Pulau Bunaken dekat Manado.'],['🐠🪸','Lautnya jernih. Di bawah air ada terumbu karang dan ikan warna-warni!'],['🐢🌊','Ada penyu yang berenang pelan. Halo, Penyu!'],['🐱💙','Kucing berjanji ikut menjaga laut supaya tetap bersih. Jangan buang sampah ke laut ya!']],q:['Supaya laut bersih, kita tidak boleh…',[['🗑️','Buang sampah ke laut',1],['🐟','Melihat ikan',0],['🏊','Berenang',0]]]},
+    {pl:'Pulang',e:'🏠',p:[['🐱🧳','Petualangan keliling Sulawesi selesai. Saatnya pulang!'],['⛵🌅','Kucing ingat semua: sandeq, Pantai Losari, kupu-kupu, Tongkonan, pinisi…'],['🐃👀🐠','…anoa, tarsius, dan ikan-ikan di Bunaken!'],['🐱🏠💖','Kucing sampai di rumah dan memeluk '+CHILD+'. "Sulawesi indah sekali. Besok main lagi ya!"']],q:['Kita tinggal di pulau apa?',[['🏝️','Sulawesi',1],['🌕','Bulan',0],['⭐','Bintang',0]]]}];
+  function startJourney(){ openLearn(); lhead.textContent='Jelajah Sulawesi 🗺️'; const J=state.jr; const n=J.n; const doneToday=J.last===today();
+    const route=JOURNEY.map((c,i)=>`<span class="${i<n?'ok':i===n&&!doneToday?'cur':''}">${i<n?c.e:i===n&&!doneToday?'❔':'🔒'}<small>${i<n||i===n&&!doneToday?c.pl:''}</small></span>`).join('');
+    if(n>=JOURNEY.length){ larea.innerHTML=`<div class="jroute">${route}</div><div class="meet"><div class="big">🏆</div><div class="t">Semua tempat sudah dikunjungi!</div><button class="pbtn" id="jrAgain" style="font-size:18px">🔁 Ulang dari awal</button></div>`; say('Hebat! Semua tempat di Sulawesi sudah dikunjungi!'); document.getElementById('jrAgain').onclick=()=>{ state.jr={n:0,last:''}; save(); closeLearn(); }; return; }
+    if(doneToday){ larea.innerHTML=`<div class="jroute">${route}</div><div class="meet"><div class="big">🌙</div><div class="t">Bab hari ini sudah selesai!</div><div class="muted" style="font-size:17px">Besok Kucing ke tempat baru. Sabar ya! 😊</div></div>`; say('Bab hari ini sudah selesai. Besok kita ke tempat baru!'); return; }
+    const ch=JOURNEY[n]; let i=0; larea.innerHTML=`<div class="jroute">${route}</div><div class="adv" style="top:150px"><div class="apic" id="jp"></div><div class="atxt" id="jt"></div><div class="achs" id="jc"></div></div>`; say('Bab '+numWord(n+1)+'. Ke '+ch.pl+'!');
+    function page(){ const [pic,tx]=ch.p[i]; document.getElementById('jp').textContent=pic; document.getElementById('jt').textContent=tx; document.getElementById('jp').animate([{opacity:0,transform:'scale(.8)'},{opacity:1,transform:'none'}],{duration:450}); say(tx);
+      document.getElementById('jc').innerHTML=`<button class="pbtn green" id="jn" style="font-size:22px">${i<ch.p.length-1?'Lanjut ▶':'Ayo jawab ❓'}</button>`; document.getElementById('jn').onclick=()=>{ sfx.click(); if(i<ch.p.length-1){ i++; page(); } else quiz(); }; }
+    function quiz(){ const [qq,opts]=ch.q; document.getElementById('jp').textContent='❓'; document.getElementById('jt').textContent=qq; say(qq); const box=document.getElementById('jc'); box.innerHTML='';
+      shuffle(opts).forEach(([e,t,ok])=>{ const b=document.createElement('button'); b.className='ach'; b.innerHTML=`<b>${e}</b>${t}`; box.appendChild(b); b.onclick=()=>{ if(box._d) return; if(ok){ box._d=1; sfx.star(); L.earned+=3; J.n++; J.last=today(); save(); say('Betul! '+t+'!'); later(()=>finishLearn('Bab '+ch.pl+' selesai! Besok kita ke tempat baru!'),1600); } else { wig(b); say('Hmm, coba lagi'); } }; }); }
+    page(); }
+
+  /* ---------- 2. Peta pulau ---------- */
+  const ISLANDS=[['Pulau Hitung','🔢',['count','size','pattern','sort','market','share']],['Pulau Warna','🎨',['color','shape','coloring','draw','puzzle']],['Pulau Huruf','🔤',['abc','trace','speak','items','seq']],['Pulau Hewan','🐮',['animal','pop2','fishing','shadow','memory']],['Pulau Kebiasaan','🪥',['teeth','hands','clothes','potty','safe']],['Pulau Hati','💖',['feel','calm','family','story','adv']]];
+  function islandDone(i){ return ISLANDS[i][2].filter(g=>state.done[g]).length; }
+  function islandOpen(i){ return i===0||islandDone(i-1)>=2; }
+  function startMap(){ openLearn(); renderMap(); }
+  function renderMap(){ lhead.textContent='Peta Petualangan 🗺️'; const pos=[[22,22],[70,18],[28,48],[74,46],[24,76],[72,74]];
+    larea.innerHTML=`<div class="imap"><svg class="iroute" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M22 22 L70 18 L28 48 L74 46 L24 76 L72 74" stroke="#fff" stroke-width=".8" stroke-dasharray="2 2" fill="none" opacity=".8"/></svg>${ISLANDS.map(([n,e,gs],i)=>{ const d=islandDone(i), o=islandOpen(i); return `<button class="isl ${o?'':'lock'}" data-i="${i}" style="left:${pos[i][0]}%;top:${pos[i][1]}%"><b>${o?e:'🔒'}</b><span>${n}</span><i>${'⭐'.repeat(Math.min(3,Math.floor(d*3/gs.length+(d?0.5:0))))||'·'} ${d}/${gs.length}</i></button>`; }).join('')}</div>`;
+    say('Mau ke pulau mana? Selesaikan dua permainan untuk membuka pulau berikutnya!');
+    larea.querySelectorAll('.isl').forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; if(!islandOpen(i)){ wig(b); say('Pulau ini masih terkunci. Selesaikan dua permainan di '+ISLANDS[i-1][0]+' dulu ya!'); return; } sfx.click(); showIsland(i); }); }
+  function showIsland(i){ const [n,e,gs]=ISLANDS[i]; lhead.textContent=n+' '+e; say('Selamat datang di '+n+'! Mau main apa?');
+    larea.innerHTML=`<div class="igames">${gs.map(g=>{ const b=document.querySelector(`#picker [data-game="${g}"]`); if(!b) return ''; return `<button data-g="${g}" class="${state.done[g]?'ok':''}">${b.innerHTML}${state.done[g]?'<em>✓</em>':''}</button>`; }).join('')}</div><button class="pbtn gray" id="ibk" style="position:absolute;left:50%;bottom:4%;transform:translateX(-50%);font-size:18px">◀ Peta</button>`;
+    document.getElementById('ibk').onclick=()=>{ sfx.click(); renderMap(); };
+    larea.querySelectorAll('.igames button').forEach(b=>b.onclick=()=>{ sfx.click(); openGame(b.dataset.g); }); }
+
+  /* ---------- 3. Rapor bintang ---------- */
+  function startRapor(){ openLearn(); lhead.textContent=`Rapor ${CHILD} 🏅`; const D=state.done, lvC=[5,6,7,8,9][Math.min(getLv('count'),4)];
+    const R=[['🎨','Kenal warna',D.color],['🔺','Kenal bentuk',D.shape],['🔢',`Hitung sampai ${lvC}`,D.count],['🔤','Kenal huruf',(D.abc||0)+(D.trace||0)],['🐮','Kenal hewan',D.animal],['🧩','Jago puzzle',D.puzzle],['🔁','Paham pola',D.pattern],['🧺','Bisa mengelompokkan',D.sort],
+      ['🪥','Sikat gigi',D.teeth],['🧼','Cuci tangan',D.hands],['🚽','Ke toilet',(D.potty||0)+Object.keys(state.potty||{}).length],['⚠️','Tahu bahaya',D.safe],['💖','Kenal perasaan',D.feel],['🍪','Suka berbagi',D.share],
+      ['📖',`${Object.keys(state.sr).length} cerita dibaca`,Object.keys(state.sr).length],['🤲',`${Object.keys(state.hafal).length} doa & surat hafal`,Object.keys(state.hafal).length],['🗺️',`${state.jr.n} tempat dijelajah`,state.jr.n],['🌻',`${state.harvests||0} kali panen`,state.harvests],['🐾',`${state.friends.length} teman`,state.friends.length]].filter(x=>!(x[0]==='🤲'&&!document.querySelector('#picker [data-game="doa"]')));
+    const got=R.filter(x=>x[2]).length;
+    larea.innerHTML=`<div class="rapor"><div class="rhead">⭐ ${got} dari ${R.length} lencana</div><div class="rgrid2">${R.map(([e,t,v])=>`<div class="${v?'ok':''}"><b>${v?e:'🔒'}</b><span>${t}</span>${v?'<em>✓</em>':''}</div>`).join('')}</div></div>`;
+    say(`Hebat! ${CHILD} sudah dapat ${got} lencana. Ayo kumpulkan lagi!`); L.earned=Math.max(L.earned,1); }
+
+  /* ---------- 4. Hafalan bertahap ---------- */
+  function hafalItems(){ const S=SURAH.map(s=>({k:'s_'+s.k,t:'Surat '+s.t,e:'📖',parts:s.a.map(a=>({ar:a[0],lt:a[1],id:a[2]}))}));
+    const D=DOA.map(d=>{ const w=d.lt.split(' '); const parts=[]; for(let i=0;i<w.length;i+=3) parts.push({ar:'',lt:w.slice(i,i+3).join(' '),id:''}); return {k:'d_'+d.k,t:d.t,e:d.e,parts,full:d}; }); return D.concat(S); }
+  function startHafalan(area){ const list=hafalItems(); area.innerHTML=`<div class="doalist" style="top:130px">${list.map((h,i)=>`<button data-i="${i}"><b>${state.hafal[h.k]?'🏅':h.e}</b>${h.t}${state.hafal[h.k]?' <span style="color:#22a06b">• hafal</span>':''}</button>`).join('')}</div>`;
+    say('Mau menghafal apa? Pelan-pelan saja ya.'); area.querySelectorAll('.doalist button').forEach(b=>b.onclick=()=>{ sfx.click(); hafal(list[+b.dataset.i]); }); }
+  function hafal(h){ let step=0; const P=h.parts; lhead.textContent='Hafalan: '+h.t;
+    const speakPart=(k,after)=>{ const p=P[k]; if(p.ar) sayAr(p.ar,p.lt,after); else say(p.lt,after); };
+    function render(){ larea.innerHTML=`<div class="hfl"><div class="hsteps">${P.map((_,k)=>`<span class="${k<step?'ok':k===step?'cur':''}">${k+1}</span>`).join('')}</div>
+      <div class="hcard"><div class="ayat" style="text-align:center">${P[step].ar||''}</div><div class="hlt">${P[step].lt}</div></div>
+      <div class="hbtns"><button class="pbtn blue" id="hDen">👂 Dengar</button><button class="pbtn" id="hSam">🔗 Sambung dari awal</button><button class="pbtn green" id="hOk">✅ Sudah bisa</button></div>
+      <div class="muted" style="text-align:center;font-size:16px;margin-top:8px">Dengar, lalu ulangi bersama @@DAD@@ atau @@MOM@@.</div></div>`;
+      document.getElementById('hDen').onclick=()=>speakPart(step);
+      document.getElementById('hSam').onclick=()=>{ let k=0; const nx=()=>{ if(!L.alive||k>step) return; speakPart(k,()=>{ k++; later(nx,500); }); }; nx(); };
+      document.getElementById('hOk').onclick=()=>{ sfx.star(); L.earned++; if(step<P.length-1){ step++; say('Pintar! Sekarang bagian berikutnya.'); later(()=>{ render(); speakPart(step); },1400); } else { state.hafal[h.k]=today(); save(); confetti(); finishLearn(`MasyaAllah! ${CHILD} sudah hafal ${h.t}! Dapat lencana!`); } };
+      speakPart(step); }
+    render(); }
+
+  /* ---------- 6. Kartu perasaan harian ---------- */
+  function moodCard(){ if(state.mood[today()]) return; if(document.body.classList.contains('ingame')||busy||document.querySelector('.rcard')||picker.classList.contains('show')||document.querySelector('.panel.show')){ setTimeout(moodCard,5000); return; } const R=document.getElementById('room'); const c=document.createElement('div'); c.className='rcard';
+    const M=[['😄','senang','Asyik! Kucing juga senang hari ini!'],['😢','sedih','Peluk dulu ya. Kucing temani.'],['😠','marah','Tarik napas pelan-pelan ya. Huuu… haaa…'],['😨','takut','Tidak apa-apa. '+CHILD+' aman.'],['😴','ngantuk','Hihi, masih ngantuk ya? Nanti istirahat dulu.']];
+    c.innerHTML=`<div class="rc-in"><div class="rc-t">Hari ini ${CHILD} merasa apa?</div><div class="moodrow">${M.map((m,i)=>`<button data-i="${i}">${m[0]}<small>${m[1]}</small></button>`).join('')}</div></div>`; R.appendChild(c);
+    say(`Selamat datang! Hari ini ${CHILD} merasa apa?`); c.addEventListener('click',e=>{ if(e.target===c) c.remove(); });
+    c.querySelectorAll('.moodrow button').forEach(b=>b.onclick=()=>{ const m=M[+b.dataset.i]; state.mood[today()]=m[1]; save(); sfx.pop(); say(m[2]); c.remove(); if(m[1]==='senang') happy(); }); }
+  const _pReport3=pReport; pReport=function(body){ _pReport3(body); const E={senang:'😄',sedih:'😢',marah:'😠',takut:'😨',ngantuk:'😴'}; let row=''; for(let i=6;i>=0;i--){ const d=new Date(Date.now()-i*864e5); const v=state.mood[dkey(d)]; row+=`<div><b>${v?E[v]:'·'}</b><span>${['Min','Sen','Sel','Rab','Kam','Jum','Sab'][d.getDay()]}</span></div>`; }
+    const box=document.createElement('div'); box.innerHTML=`<div style="font-weight:900;margin:10px 0 6px">💖 Perasaan minggu ini</div><div class="mwk">${row}</div><div class="muted">Dari kartu perasaan yang dipilih ${CHILD} setiap pagi.</div>`; body.insertBefore(box,body.children[1]||null); };
+
+  /* ---------- 7. Mode tenang sebelum tidur ---------- */
+  const CALM_OK=['story','adv','doa','quran','calm','journey','calendar'];
+  function isCalm(){ const a=state.settings.calmAt; if(!a) return false; const n=new Date(), h=n.getHours()+n.getMinutes()/60; return h>=a||h<5; }
+  (function(){ const box=picker.querySelector('.box'); const cp=document.createElement('div'); cp.id='calmPick'; cp.innerHTML=`<div class="cpmsg">🌙 Sudah malam. Waktunya kegiatan yang tenang sebelum tidur.</div><div class="cgrid"></div>`; box.appendChild(cp);
+    const g=cp.querySelector('.cgrid'); CALM_OK.forEach(k=>{ const o=picker.querySelector(`.pgrid [data-game="${k}"]`); if(!o) return; const b=document.createElement('button'); b.innerHTML=o.innerHTML; b.style.background='linear-gradient(160deg,#8ea2e8,#5a6fc8)'; b.onclick=()=>{ o.click(); }; g.appendChild(b); }); })();
+  function applyCalm(){ const on=isCalm(); if(on!==document.body.classList.contains('calmmode')){ document.body.classList.toggle('calmmode',on); if(on&&$('#start').style.display==='none'&&!busy) say('Sudah malam. Ayo dengar cerita atau berdoa, lalu tidur ya.'); } }
+  setInterval(applyCalm,60000); applyCalm();
+
+  /* ---------- 8. Kalender ---------- */
+  const CITIES={Majene:[-3.5403,118.9707,8],Makassar:[-5.1477,119.4327,8],Mamuju:[-2.6748,118.8885,8],Polewali:[-3.4167,119.3333,8],Parepare:[-4.0135,119.6255,8],Palu:[-0.8917,119.8707,8],Kendari:[-3.9985,122.5130,8],Manado:[1.4748,124.8421,8],Gorontalo:[0.5435,123.0568,8],Balikpapan:[-1.2379,116.8529,8],Samarinda:[-0.5022,117.1536,8],Denpasar:[-8.6705,115.2126,8],Mataram:[-8.5833,116.1167,8],Jakarta:[-6.2,106.8166,7],Bandung:[-6.9175,107.6191,7],Semarang:[-6.9667,110.4167,7],Yogyakarta:[-7.7956,110.3695,7],Surabaya:[-7.2575,112.7521,7],Medan:[3.5952,98.6722,7],Padang:[-0.9471,100.4172,7],Palembang:[-2.9761,104.7754,7],Pekanbaru:[0.5071,101.4478,7],Pontianak:[-0.0263,109.3425,7],Banjarmasin:[-3.3186,114.5944,8],Ambon:[-3.6954,128.1814,9],Jayapura:[-2.5337,140.7181,9]};
+  function prayTimes(date,lat,lng,tz){ const dtr=d=>d*Math.PI/180, rtd=r=>r*180/Math.PI, sin=d=>Math.sin(dtr(d)), cos=d=>Math.cos(dtr(d)), tan=d=>Math.tan(dtr(d)), asin=x=>rtd(Math.asin(x)), acos=x=>rtd(Math.acos(Math.max(-1,Math.min(1,x)))), atan2=(y,x)=>rtd(Math.atan2(y,x)), acot=x=>rtd(Math.atan(1/x));
+    const fix=(a,b)=>{ a=a-b*Math.floor(a/b); return a<0?a+b:a; }; let y=date.getFullYear(), m=date.getMonth()+1, d=date.getDate(); if(m<=2){ y--; m+=12; } const A=Math.floor(y/100), B=2-A+Math.floor(A/4);
+    const jd=Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5-lng/(15*24);
+    const sun=t=>{ const D=jd+t-2451545.0; const g=fix(357.529+0.98560028*D,360), q=fix(280.459+0.98564736*D,360), L=fix(q+1.915*sin(g)+0.020*sin(2*g),360); const e=23.439-0.00000036*D; const RA=fix(atan2(cos(e)*sin(L),cos(L))/15,24); return {decl:asin(sin(e)*sin(L)),eqt:q/15-RA}; };
+    const mid=t=>fix(12-sun(t/24).eqt,24); const ang=(a,t,ccw)=>{ const dec=sun(t/24).decl, noon=mid(t); const T=acos((-sin(a)-sin(dec)*sin(lat))/(cos(dec)*cos(lat)))/15; return noon+(ccw?-T:T); };
+    const asr=(f,t)=>{ const dec=sun(t/24).decl; return ang(-acot(f+tan(Math.abs(lat-dec))),t,false); };
+    let T={subuh:ang(20,5,true),terbit:ang(0.833,6,true),dzuhur:mid(12),ashar:asr(1,13),maghrib:ang(0.833,18,false),isya:ang(18,18,false)};
+    T={subuh:ang(20,T.subuh,true),terbit:ang(0.833,T.terbit,true),dzuhur:mid(T.dzuhur),ashar:asr(1,T.ashar),maghrib:ang(0.833,T.maghrib,false),isya:ang(18,T.isya,false)};
+    const adj={subuh:2,terbit:-2,dzuhur:3,ashar:2,maghrib:2,isya:2}, out={}; for(const k in T){ let h=fix(T[k]+tz-lng/15+adj[k]/60,24); let hh=Math.floor(h), mm=Math.round((h-hh)*60); if(mm===60){ hh++; mm=0; } out[k]=[hh,mm]; } return out; }
+  function hijri(d){ try{ const f=new Intl.DateTimeFormat('id-ID-u-ca-islamic-umalqura',{day:'numeric',month:'numeric',year:'numeric'}).formatToParts(d); const g=t=>+((f.find(x=>x.type===t)||{}).value||0); return {d:g('day'),m:g('month'),y:g('year'),txt:new Intl.DateTimeFormat('id-ID-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(d)}; }catch(e){ return null; } }
+  function eventsOn(d){ const ev=[]; const md=(d.getMonth()+1)+'-'+d.getDate(); const NAS={'1-1':['🎉','Tahun Baru'],'4-21':['🌸','Hari Kartini'],'5-1':['🛠️','Hari Buruh'],'6-1':['🦅','Hari Lahir Pancasila'],'7-23':['🧒','Hari Anak Nasional'],'8-17':['🇮🇩','Hari Kemerdekaan Indonesia'],'10-28':['🤝','Hari Sumpah Pemuda'],'11-10':['🎖️','Hari Pahlawan'],'11-25':['👩‍🏫','Hari Guru'],'12-22':['👩','Hari Ibu'],'12-25':['🎄','Hari Natal']};
+    if(NAS[md]) ev.push(NAS[md]); const isl=!!document.querySelector('#picker [data-game="doa"]'); const h=isl&&hijri(d);
+    if(h){ const HE={'1-1':['🌙','Tahun Baru Islam'],'3-12':['🕌','Maulid Nabi Muhammad'],'9-1':['🌙','Awal Ramadan'],'10-1':['🕌','Idul Fitri'],'12-10':['🐐','Idul Adha']}; const k=h.m+'-'+h.d; if(HE[k]) ev.push([HE[k][0],HE[k][1]+' (perkiraan)']); if(h.m===9) ev.push(['🌙','Bulan Ramadan']); }
+    if(isl&&d.getDay()===5) ev.push(['🕌','Hari Jumat. Waktunya sholat Jumat untuk '+'@@DAD@@']);
+    (state.cal||[]).forEach(c=>{ if(c.d===md) ev.push(['🎂','Ulang tahun '+c.n]); }); if(state.bday){ const [y,m,dd]=state.bday.split('-').map(Number); if(m+'-'+dd===md) ev.push(['🎂','Ulang tahun '+CHILD+'!']); }
+    if(state.meet){ const [y,m,dd]=state.meet.split('-').map(Number); if(y===d.getFullYear()&&m===d.getMonth()+1&&dd===d.getDate()) ev.push(['👯','Ketemu '+TWIN]); }
+    return ev; }
+  function startCalendar(){ openLearn(); lhead.textContent='Hari Ini 📅'; const d=new Date(); const isl=!!document.querySelector('#picker [data-game="doa"]'); const c=CITIES[state.settings.city]||CITIES.Majene;
+    const DAY=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'], MON=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+    const h=isl&&hijri(d); const ev=eventsOn(d), evT=eventsOn(new Date(Date.now()+864e5));
+    let pr=''; if(isl){ const P=prayTimes(d,c[0],c[1],c[2]); const now=d.getHours()*60+d.getMinutes(); const L=[['subuh','🌅','Subuh'],['dzuhur','☀️','Dzuhur'],['ashar','🌤️','Ashar'],['maghrib','🌇','Maghrib'],['isya','🌙','Isya']]; const nx=L.find(([k])=>P[k][0]*60+P[k][1]>now);
+      pr=`<div class="calbox"><div class="ch">🕌 Waktu sholat · ${state.settings.city}</div><div class="prow">${L.map(([k,e,n])=>`<div class="${nx&&nx[0]===k?'nx':''}"><b>${e}</b><span>${n}</span><i>${String(P[k][0]).padStart(2,'0')}.${String(P[k][1]).padStart(2,'0')}</i></div>`).join('')}</div></div>`; L._nx=nx; }
+    larea.innerHTML=`<div class="cal"><div class="cdate"><div class="cday">${DAY[d.getDay()]}</div><div class="cnum">${d.getDate()}</div><div class="cmon">${MON[d.getMonth()]} ${d.getFullYear()}</div>${h?`<div class="chij">${h.txt}</div>`:''}</div>
+      ${pr}<div class="calbox"><div class="ch">✨ Hari ini</div>${ev.length?ev.map(e=>`<div class="cev"><b>${e[0]}</b>${e[1]}</div>`).join(''):'<div class="cev"><b>😊</b>Hari biasa yang menyenangkan!</div>'}</div>
+      ${evT.length?`<div class="calbox"><div class="ch">🔜 Besok</div>${evT.map(e=>`<div class="cev"><b>${e[0]}</b>${e[1]}</div>`).join('')}</div>`:''}</div>`;
+    let tx=`Hari ini hari ${DAY[d.getDay()]}, tanggal ${d.getDate()} ${MON[d.getMonth()]}.`; if(ev.length) tx+=' '+ev.map(e=>e[1]).join('. ')+'.'; if(isl){ const P=prayTimes(d,c[0],c[1],c[2]); const L2=[['subuh','Subuh'],['dzuhur','Dzuhur'],['ashar','Ashar'],['maghrib','Maghrib'],['isya','Isya']]; const now=d.getHours()*60+d.getMinutes(); const n2=L2.find(([k])=>P[k][0]*60+P[k][1]>now); if(n2) tx+=` Sholat berikutnya ${n2[1]}, jam ${P[n2[0]][0]} lewat ${P[n2[0]][1]} menit.`; }
+    say(tx); L.earned=Math.max(L.earned,1); }
+  function pCal(body){ body.innerHTML=`<div class="muted">Kota untuk waktu sholat, dan tanggal ulang tahun keluarga yang mau diingatkan kucing di menu Hari Ini.</div>
+      <div class="row2">Kota: <select id="cCity" style="font-size:16px;padding:6px;border-radius:10px">${Object.keys(CITIES).map(c=>`<option ${c===state.settings.city?'selected':''}>${c}</option>`).join('')}</select></div>
+      <div style="font-weight:900;margin-top:10px">🎂 Ulang tahun keluarga</div><div id="cList"></div>
+      <div class="row2"><input id="cN" placeholder="Nama (mis. Opa)" style="flex:1;min-width:120px;padding:8px;border-radius:12px;border:1px solid #ddd;font-size:15px"><input type="date" id="cD" style="padding:8px;border-radius:12px;border:1px solid #ddd;font-size:15px"><button class="pbtn" id="cAdd">+ Tambah</button></div>
+      <div class="muted">Waktu sholat dihitung otomatis (metode Kemenag) dan bisa beda 1–2 menit dari jadwal resmi. Tanggal Hijriah adalah perkiraan.</div>`;
+    body.querySelector('#cCity').onchange=e=>{ state.settings.city=e.target.value; save(); };
+    const list=body.querySelector('#cList'); state.cal.forEach((c,i)=>{ const r=document.createElement('div'); r.className='row2'; r.innerHTML=`<span style="flex:1">🎂 ${c.n} · ${c.d.split('-').reverse().join('/')}</span><button class="pbtn gray">🗑️</button>`; r.querySelector('button').onclick=()=>{ state.cal.splice(i,1); save(); renderParent(); }; list.appendChild(r); });
+    body.querySelector('#cAdd').onclick=()=>{ const n=body.querySelector('#cN').value.trim().slice(0,20), d=body.querySelector('#cD').value; if(!n||!d) return; const [y,m,dd]=d.split('-').map(Number); state.cal.push({n,d:m+'-'+dd}); save(); renderParent(); }; }
+  PT.push(['cal','📅 Kalender']);
+  { const g=PGROUPS.find(x=>x[0]==='Waktu'); if(g) g[1].push('cal'); }
+  const _rp=renderParent; renderParent=function(){ _rp(); };
+  { const _r=renderParent; renderParent=function(){ const tabs=document.getElementById('ptabs'); if(ptab==='cal'){ _r(); const body=document.getElementById('pbody'); body.innerHTML=''; pCal(body); } else _r(); }; }
+  /* morning greeting extras */
+  function calendarHello(){ if(state.calDay===today()) return; state.calDay=today(); save(); const ev=eventsOn(new Date()); if(ev.length) setTimeout(()=>{ if(!busy&&!document.querySelector('.rcard')) say('Hari ini: '+ev.map(e=>e[1]).join('. ')); },17000); }
+
+  /* ---------- 5. rekam cerita (hook in story reader) ---------- */
+  const srKey=(t,i)=>'srec_'+t.replace(/[^a-z0-9]/gi,'').slice(0,24)+'_'+i;
+
 
 
   /* ===== versi umum ===== */
