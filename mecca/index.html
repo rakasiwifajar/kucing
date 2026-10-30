@@ -344,6 +344,43 @@
   .seqslots{position:absolute;left:0;right:0;top:24%;display:flex;justify-content:center;gap:10px}
   .seqslots div{width:clamp(88px,26vw,120px);height:clamp(88px,26vw,120px);border-radius:22px;border:4px dashed #cbb8a4;display:flex;align-items:center;justify-content:center;font-size:clamp(50px,14vw,70px);position:relative;background:#fffaf4}
   .seqslots div b{position:absolute;top:-14px;left:-10px;background:#f06b8f;color:#fff;border-radius:50%;width:30px;height:30px;font-size:17px;display:flex;align-items:center;justify-content:center}
+
+  .postbox{position:absolute;left:14px;right:14px;top:84px;bottom:20px;display:flex;flex-direction:column;gap:16px;justify-content:center}
+  .pcard{border:none;border-radius:26px;background:#fff;box-shadow:0 6px 0 #ecd9c4;padding:18px;font-size:clamp(19px,5.2vw,26px);font-weight:900;color:#4a3428;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .pcard b{font-size:clamp(56px,16vw,84px);position:relative;line-height:1.1}.pcard b i{position:absolute;top:-4px;right:-16px;background:#f06b8f;color:#fff;font-style:normal;font-size:18px;border-radius:14px;padding:2px 9px}.pcard small{font-size:15px;opacity:.7}
+  .meet{position:absolute;left:12px;right:12px;top:96px;text-align:center}.meet .t{font-size:clamp(22px,6.5vw,32px);font-weight:900;margin-bottom:14px}.meet .big{font-size:90px}
+  .moons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;font-size:clamp(38px,11vw,54px)}.moons span{transition:transform .2s,filter .2s;cursor:pointer}.moons span.ok{transform:scale(1.25);filter:drop-shadow(0 0 8px #ffd54a)}
+  .steps.sm{gap:4px}.steps.sm span{width:34px;height:34px;font-size:18px}
+  .bigstep{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:clamp(170px,50vw,240px);height:clamp(170px,50vw,240px);border:none;border-radius:50%;background:radial-gradient(circle at 40% 30%,#fff,#ffe9c7);box-shadow:0 8px 0 #ecd9c4;font-size:clamp(90px,26vw,130px);line-height:1}
+  .safeitem{position:absolute;left:50%;top:22%;transform:translateX(-50%);font-size:clamp(100px,30vw,150px);text-align:center;line-height:1;width:90%}.safeitem small{display:block;font-size:clamp(18px,5vw,24px);font-weight:900;color:#4a3428;margin-top:8px}
+  .safebtns{position:absolute;left:12px;right:12px;bottom:7%;display:flex;gap:14px}.safebtns button{flex:1;border:none;border-radius:26px;padding:14px;font-size:clamp(48px,14vw,64px);color:#fff;font-weight:900;line-height:1.1}.safebtns small{display:block;font-size:20px}
+  .safebtns .ok{background:#2fb37a;box-shadow:0 6px 0 #1f8a5c}.safebtns .no{background:#ef5a5a;box-shadow:0 6px 0 #c23d3d}.safebtns button.nope{animation:wiggle .4s 2}.safebtns button.pick{outline:6px solid #ffd54a}
+  .prep{position:absolute;left:0;right:0;top:76px;width:100%;height:calc(100% - 90px)}.prep .zone{fill:#fff;fill-opacity:.4;stroke:#7c6fe0;stroke-width:3;stroke-dasharray:8 6;cursor:pointer}.prep .zone.ok{stroke:#2fb37a;fill:#2fb37a;fill-opacity:.25}#pObj{transition:transform .6s ease;pointer-events:none}
+  .patrow{position:absolute;left:10px;right:10px;top:20%;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;font-size:clamp(34px,10vw,52px)}.patrow span{background:#fff;border-radius:16px;padding:4px 6px;box-shadow:0 4px 0 #ecd9c4}.patrow .q{background:#fff3c4}.patrow .q.ok{background:#d5f5e3}
+  .sortitem{position:absolute;left:50%;top:15%;transform:translateX(-50%);font-size:clamp(90px,26vw,130px);line-height:1;min-height:1em}
+  .baskets{position:absolute;left:12px;right:12px;bottom:5%;display:flex;gap:14px}.baskets button{flex:1;border:none;border-radius:26px;background:#fff;box-shadow:0 6px 0 #ecd9c4;padding:10px;min-height:min(40vh,240px);display:flex;flex-direction:column;align-items:center;color:#4a3428}
+  .baskets b{font-size:54px;line-height:1.1}.baskets .in{flex:1;display:flex;flex-wrap:wrap;justify-content:center;font-size:30px;align-content:flex-start;margin-top:6px}.baskets small{font-size:20px;font-weight:900}.baskets button.nope{animation:wiggle .4s 2}
+  .plate{position:absolute;left:50%;top:84px;transform:translateX(-50%);width:min(80%,360px);min-height:120px;border-radius:50%;background:radial-gradient(#fff,#f1e6da);box-shadow:0 6px 0 #ddc9b3;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;font-size:34px;padding:14px 30px}
+  .ppl{position:absolute;left:8px;right:8px;bottom:5%;display:flex;gap:8px;justify-content:center}.ppl button{flex:1;max-width:170px;border:none;border-radius:22px;background:#fff;box-shadow:0 5px 0 #ecd9c4;padding:8px 4px;color:#4a3428;display:flex;flex-direction:column;align-items:center;min-height:min(34vh,200px)}
+  .ppl b{font-size:clamp(40px,12vw,56px);line-height:1.1}.ppl small{font-weight:900;font-size:15px}.ppl .got{display:flex;flex-wrap:wrap;justify-content:center;font-size:24px;margin-top:6px}.ppl button.nope{animation:wiggle .4s 2}
+  #learn.calm{background:linear-gradient(#cfe6ff,#e9ddff)}
+  .feelrow{position:absolute;left:12px;right:12px;top:34%;display:grid;grid-template-columns:1fr 1fr;gap:14px}.feelrow button{border:none;border-radius:24px;background:#fff;box-shadow:0 5px 0 #d6cdea;font-size:60px;padding:10px;color:#4a3428;line-height:1.1}.feelrow small{display:block;font-size:20px;font-weight:900}
+  .balloon{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%) scale(1);font-size:90px;filter:drop-shadow(0 8px 10px #0002)}
+  .qtabs{position:absolute;left:12px;right:12px;top:74px;display:flex;gap:8px}.qtabs button{flex:1;border:none;border-radius:16px;padding:10px 4px;font-weight:900;font-size:15px;background:#fff;box-shadow:0 4px 0 #ecd9c4;color:#4a3428}.qtabs button.on{background:#22a06b;color:#fff}
+  .hija{position:absolute;left:8px;right:8px;top:130px;bottom:10px;overflow:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-content:start}.hija button{border:none;border-radius:18px;background:#fff;box-shadow:0 4px 0 #ecd9c4;font-size:clamp(34px,10vw,46px);padding:6px 0;color:#2a6b4f;font-family:'Amiri','Scheherazade New','Geeza Pro',serif;line-height:1.3}.hija button small{display:block;font-size:13px;color:#4a3428;font-family:system-ui,sans-serif;font-weight:800}
+  .surah{position:absolute;left:10px;right:10px;top:72px;bottom:96px;overflow:auto;background:#fff;border-radius:20px;padding:8px;box-shadow:0 5px 0 #ecd9c4}.ay{border-radius:14px;padding:4px 6px;cursor:pointer}.ay.on{background:#fff3c4}
+  .ayat{direction:rtl;text-align:right;font-size:clamp(24px,7vw,32px);font-family:'Amiri','Scheherazade New','Geeza Pro',serif;line-height:1.9;color:#2a6b4f}.ayat .no{display:inline-block;font-size:14px;background:#22a06b;color:#fff;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center;font-family:system-ui}.ayatl{font-size:14px;color:#6b5a4d;padding:0 2px 8px;border-bottom:1px dashed #eee}
+  .movecat{position:absolute;left:50%;top:46%;width:min(56vw,30vh,260px);height:min(56vw,30vh,260px);transform:translate(-50%,-50%)}.movecat svg{width:100%;height:100%;overflow:visible}
+  .mv-hop{animation:mvhop .6s ease-in-out infinite}@keyframes mvhop{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-72%)}}
+  .mv-tilt{animation:mvtilt 1.6s ease-in-out infinite}@keyframes mvtilt{0%,100%{transform:translate(-50%,-50%) rotate(-7deg)}50%{transform:translate(-50%,-50%) rotate(7deg)}}
+  .mv-wobble{animation:mvwob .5s ease-in-out infinite}@keyframes mvwob{0%,100%{transform:translate(-58%,-50%) rotate(-8deg)}50%{transform:translate(-42%,-50%) rotate(8deg)}}
+  .mv-stretch{animation:mvstr 1.4s ease-in-out infinite}@keyframes mvstr{0%,100%{transform:translate(-50%,-50%) scale(1,1)}50%{transform:translate(-50%,-58%) scale(.92,1.15)}}
+  .mv-spin{animation:mvspin 1.6s linear infinite}@keyframes mvspin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .mvcount{position:absolute;left:0;right:0;bottom:17%;text-align:center;font-size:clamp(60px,18vw,90px);font-weight:900;color:#f06b8f;text-shadow:0 4px 0 #fff}
+  .gdays{position:absolute;left:0;right:0;top:118px;display:flex;justify-content:center;gap:8px;font-size:28px}.gdays span{opacity:.3;background:#fff;border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center}.gdays span.ok{opacity:1;box-shadow:0 0 0 3px #58c39a}
+  .pot{position:absolute;left:50%;bottom:20%;transform:translateX(-50%);width:min(52vw,230px);height:min(30vw,22vh,140px);background:linear-gradient(90deg,#a8552c,#e09a62 38%,#b5653a 70%,#934726);clip-path:polygon(0 0,100% 0,86% 100%,14% 100%)}
+  .soil{position:absolute;left:50%;bottom:calc(20% + min(30vw,22vh,140px) - 12px);transform:translateX(-50%);width:min(52vw,230px);height:24px;border-radius:50%;background:radial-gradient(#7a4a2c,#4a2a18);z-index:1}
+  .plant{position:absolute;left:50%;bottom:calc(20% + min(30vw,22vh,140px) - 6px);transform:translateX(-50%);font-size:clamp(80px,24vw,120px);line-height:1;transform-origin:50% 100%;transition:filter .5s;z-index:2}.plant.wilt{filter:saturate(.3) brightness(.9);transform:translateX(-50%) rotate(14deg)}
   .seqcards{position:absolute;left:0;right:0;bottom:12%;display:flex;justify-content:center;gap:12px}
   .seqcards button{width:clamp(88px,26vw,120px);height:clamp(88px,26vw,120px);border:none;border-radius:22px;background:#fff;box-shadow:0 6px 0 #ecd9c4;font-size:clamp(50px,14vw,70px)}
   .seqcards button.nope{animation:wiggle .4s 2}
@@ -502,6 +539,8 @@
       <button data-game="talk" style="background:#ef8354">🎤<small>Kucing Ngomong</small></button>
       <button data-game="coloring" style="background:#22a06b">🖌️<small>Mewarnai</small></button>
       <button data-game="decor" style="background:#c98f5c">🏠<small>Hias Kamar</small></button>
+      <button data-game="move" style="background:#ef6b6b">🤸<small>Gerak Bareng</small></button>
+      <button data-game="garden" style="background:#4caf50">🌱<small>Kebun Mini</small></button>
     </div>
     <div class="sec">📚 Belajar</div><div class="pgrid">
       <button data-game="color" style="background:#ef6b6b">🎨<small>Warna</small></button>
@@ -518,16 +557,26 @@
       <button data-game="trace" style="background:#7c6fe0">✏️<small>Menebalkan</small></button>
       <button data-game="seq" style="background:#e8a33d">➡️<small>Urutan</small></button>
       <button data-game="items" style="background:#58c39a">🪑<small>Benda Rumah</small></button>
+      <button data-game="prep" style="background:#c98f5c">📦<small>Di Mana?</small></button>
+      <button data-game="pattern" style="background:#7c6fe0">🔁<small>Pola</small></button>
+      <button data-game="sort" style="background:#e8a33d">🧺<small>Kelompokkan</small></button>
+      <button data-game="share" style="background:#f29b5a">🍪<small>Berbagi Kue</small></button>
     </div>
     <div class="sec">🌟 Kebiasaan Baik</div><div class="pgrid">
       <button data-game="teeth" style="background:#5ab4e8">🪥<small>Sikat Gigi</small></button>
       <button data-game="hands" style="background:#58c39a">🧼<small>Cuci Tangan</small></button>
       <button data-game="clothes" style="background:#e86fc4">👕<small>Pakai Baju</small></button>
+      <button data-game="potty" style="background:#5ab4e8">🚽<small>Ke Toilet</small></button>
+      <button data-game="safe" style="background:#ef5a5a">⚠️<small>Aman/Bahaya</small></button>
+      <button data-game="calm" style="background:#8e9be8">🫧<small>Pojok Tenang</small></button>
     </div>
     <div class="sec">👨‍👩‍👧 Keluarga, Cerita & Doa</div><div class="pgrid">
       <button data-game="family" style="background:#e8a33d">👨‍👩‍👧<small>Siapa Ini?</small></button>
       <button data-game="story" style="background:#4f6fd1">📖<small>Cerita</small></button>
       <button data-game="doa" style="background:#22a06b">🤲<small>Doa Harian</small></button>
+      <button data-game="quran" style="background:#1f8a5c">📗<small>Mengaji</small></button>
+      <button data-game="post" style="background:#f06b8f">📮<small>Kotak Pos</small></button>
+      <button data-game="meet" style="background:#9b7be0">👯<small>Ketemu Kembaran</small></button>
     </div>
   </div></div>
   <div id="meal"><div class="sheet">
@@ -734,7 +783,12 @@
   let sessionStart=Date.now();
   function checkLimit(){
     const lim=state.settings.limit; if(state.lockUntil && Date.now()<state.lockUntil){ showLock(); return; }
-    if(!lim || $('#start').style.display!=='none') return;
+    if($('#start').style.display!=='none') return;
+    const dl=state.settings.daily, usedToday=state.stats.minutes[today()]||0;
+    if(dl && usedToday>=dl){ const t=new Date(); t.setHours(24,0,0,0); state.lockUntil=t.getTime()+6*3600000; save();
+      try{ if(typeof closeLearn==='function') closeLearn(); }catch(e){}
+      document.body.classList.add('night'); eyes(true); say('Huaaam. Waktu main hari ini sudah habis. Kucing Mecca tidur dulu. Besok main lagi ya!'); setTimeout(showLock,4000); return; }
+    if(!lim) return;
     if(Date.now()-sessionStart >= lim*60000){ state.lockUntil=Date.now()+60*60000; save();
       try{ if(typeof closeLearn==='function') closeLearn(); }catch(e){}
       document.body.classList.add('night'); eyes(true); say('Huaaam. Kucing Mecca sudah ngantuk. Main lagi nanti ya!'); if(!playParent('night')) {}
@@ -745,7 +799,7 @@
   setInterval(checkLimit,15000);
 
   /* ---------- parent menu ---------- */
-  const PT=[['voice','🎙️ Suara'],['family','📷 Foto Keluarga'],['items','📦 Foto Benda'],['goal','🎁 Hadiah'],['bday','🎂 Ulang Tahun'],['time','⏰ Waktu Layar'],['lang','🌐 Bahasa'],['report','📊 Laporan']];
+  const PT=[['voice','🎙️ Suara'],['family','📷 Foto Keluarga'],['items','📦 Foto Benda'],['goal','🎁 Hadiah'],['bday','🎂 Ulang Tahun'],['time','⏰ Waktu Layar'],['lang','🌐 Bahasa'],['report','📊 Laporan'],['grow','🌱 Tumbuh Kembang'],['twin','👯 Kembar']];
   let ptab='voice';
   function openParent(){ renderParent(); openPanel('parentP'); }
   holdGate(document.getElementById('gear'),openParent);
@@ -754,7 +808,7 @@
     const tabs=document.getElementById('ptabs'); tabs.innerHTML='';
     PT.forEach(([k,n])=>{ const b=document.createElement('button'); b.textContent=n; if(k===ptab) b.className='on'; b.onclick=()=>{ ptab=k; renderParent(); }; tabs.appendChild(b); });
     const body=document.getElementById('pbody'); body.innerHTML='';
-    ({voice:pVoice,family:pFamily,items:pItems,goal:pGoal,bday:pBday,time:pTime,lang:pLang,report:pReport})[ptab](body);
+    ({voice:pVoice,family:pFamily,items:pItems,goal:pGoal,bday:pBday,time:pTime,lang:pLang,report:pReport,grow:pGrow,twin:pTwin})[ptab](body);
   }
   function pVoice(body){
     const canRec=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder);
@@ -791,7 +845,9 @@
     opts.forEach(m=>{ const b=document.createElement('button'); b.className='pbtn '+(state.settings.limit===m?'':'gray'); b.textContent=m?m+' menit':'Tanpa batas';
       b.onclick=()=>{ state.settings.limit=m; sessionStart=Date.now(); save(); renderParent(); }; box.appendChild(b); });
     const left=state.settings.limit? Math.max(0,Math.round((state.settings.limit*60000-(Date.now()-sessionStart))/60000)) : null;
-    body.querySelector('#limInfo').textContent= left===null?'Saat ini tanpa batas waktu.':`Sisa waktu main sesi ini: ±${left} menit.`;
+    body.querySelector('#limInfo').textContent= left===null?'Saat ini tanpa batas waktu per sesi.':`Sisa waktu main sesi ini: ±${left} menit.`;
+    const dd=document.createElement('div'); dd.innerHTML=`<div style="border-top:1px solid #eee;margin-top:10px;padding-top:10px"><b>Batas total per hari</b><div class="muted">Dihitung dari semua waktu main hari ini. Kalau habis, kucingnya tidur sampai besok pagi. Untuk anak umur 3 tahun, waktu layar dianjurkan tidak lebih dari ±1 jam sehari.</div><div class="row2" id="dlims"></div><div class="muted">Hari ini sudah main: ±${state.stats.minutes[today()]||0} menit.</div></div>`; body.appendChild(dd);
+    const db=dd.querySelector('#dlims'); [0,30,45,60,90].forEach(m=>{ const b=document.createElement('button'); b.className='pbtn '+((state.settings.daily||0)===m?'':'gray'); b.textContent=m?m+' menit':'Tanpa batas'; b.onclick=()=>{ state.settings.daily=m; save(); renderParent(); }; db.appendChild(b); });
   }
   function pLang(body){
     const L3=[['id','🇮🇩 Bahasa Indonesia'],['en','🇬🇧 English (kata-kata belajar)'],['mak','Bahasa Makassar (angka)']];
@@ -1199,6 +1255,8 @@
     else if(g==='teeth') startTeeth(); else if(g==='hands') startHands(); else if(g==='clothes') startClothes();
     else if(g==='family') startFamily(); else if(g==='story') startStory(); else if(g==='twins') startTwins();
     else if(g==='talk') startTalk(); else if(g==='doa') startDoa(); else if(g==='trace') startTrace(); else if(g==='coloring') startColoring();
+    else if(g==='post') startPost(); else if(g==='meet') startMeet(); else if(g==='potty') startPotty(); else if(g==='safe') startSafe(); else if(g==='prep') startPrep(); else if(g==='pattern') startPattern();
+    else if(g==='sort') startSort(); else if(g==='share') startShare(); else if(g==='calm') startCalm(); else if(g==='quran') startQuran(); else if(g==='move') startMove(); else if(g==='garden') startGarden();
     else if(g==='decor') openDecor(); else if(g==='abc') startAbc(); else if(g==='seq') startSeq(); else if(g==='items') startItems();
   }));
 
@@ -2102,6 +2160,330 @@
     round();
   }
 
+  /* ================= v9: tumbuh kembang ================= */
+  state.inbox=state.inbox||[]; state.potty=state.potty||{}; state.miles=state.miles||{};
+  const canRec=()=>!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder);
+  const dkey=d=>d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  function recButton(btn,st,maxMs,onBlob,labels){
+    btn.onclick=async()=>{ if(btn._r){ btn._r.stop(); return; }
+      try{ const sm=await navigator.mediaDevices.getUserMedia({audio:true}); const ch=[]; const mr=new MediaRecorder(sm); mr.ondataavailable=e=>ch.push(e.data);
+        mr.onstop=()=>{ sm.getTracks().forEach(t=>t.stop()); btn._r=null; btn.classList.remove('on'); btn.innerHTML=labels[0]; onBlob(new Blob(ch,{type:mr.mimeType||'audio/mp4'})); };
+        if('speechSynthesis' in window) speechSynthesis.cancel(); if(parentAudio) parentAudio.pause();
+        btn._r=mr; mr.start(); btn.classList.add('on'); btn.innerHTML=labels[1]; if(st) st.textContent='Merekam… ketuk lagi kalau sudah selesai';
+        setTimeout(()=>{ if(btn._r===mr) mr.stop(); },maxMs);
+      }catch(e){ if(st) st.textContent='Mikrofon belum diizinkan 🙏'; } };
+  }
+  function playURL(u,onend){ try{ if('speechSynthesis' in window) speechSynthesis.cancel(); if(parentAudio) parentAudio.pause(); parentAudio=new Audio(u); if(onend) parentAudio.onended=onend; const r=parentAudio.play(); if(r&&r.catch) r.catch(()=>{}); return true; }catch(e){ return false; } }
+  async function shareAudio(b,text){
+    const ext=/webm/.test(b.type)?'webm':/ogg/.test(b.type)?'ogg':'m4a';
+    const f=new File([b],`Pesan-${CHILD}-untuk-${TWIN}.${ext}`,{type:b.type||'audio/mp4'});
+    try{ if(navigator.canShare&&navigator.canShare({files:[f]})){ await navigator.share({files:[f],text}); return true; } }catch(e){ if(e&&e.name==='AbortError') return false; }
+    const a=document.createElement('a'); a.href=URL.createObjectURL(f); a.download=f.name; document.body.appendChild(a); a.click(); a.remove(); return true;
+  }
+  function sparkleIn(ch,n,el){ const R=learn.getBoundingClientRect(), r=(el||larea).getBoundingClientRect(); for(let i=0;i<n;i++){ const e=document.createElement('div'); e.className='fx'; e.textContent=ch; e.style.left=(r.left-R.left+Math.random()*r.width)+'px'; e.style.top=(r.top-R.top+Math.random()*r.height*.6)+'px'; e.style.animationDelay=(i*.08)+'s'; larea.appendChild(e); setTimeout(()=>e.remove(),2000); } }
+  function wig(b){ b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); }
+
+  /* 1. Kotak Pos Kembar */
+  function startPost(){
+    openLearn(); lhead.textContent='Kotak Pos Kembar 📮';
+    const unheard=state.inbox.filter(m=>!m.heard).length;
+    larea.innerHTML=`<div class="postbox">
+      <button class="pcard" id="pSend"><b>🎤</b>Kirim pesan buat ${TWIN}</button>
+      <button class="pcard" id="pIn"><b>📬${unheard?`<i>${unheard}</i>`:''}</b>Pesan dari ${TWIN}</button></div>`;
+    say(unheard?`Ada pesan dari ${TWIN}! Ketuk kotak suratnya.`:`Mau kirim pesan suara buat ${TWIN}?`);
+    document.getElementById('pSend').onclick=()=>{ sfx.click(); send(); };
+    document.getElementById('pIn').onclick=()=>{ sfx.click(); inbox(); };
+    function send(){
+      lhead.textContent=`Pesan buat ${TWIN} 🎤`;
+      larea.innerHTML=`<div class="bigmsg" style="top:70px">Ketuk 🎤, lalu bilang:<br><span style="font-size:clamp(20px,6vw,28px)">"Halo ${TWIN}! Aku sayang kamu!"</span></div>
+        <div class="muted" id="pSt" style="position:absolute;left:12px;right:12px;top:46%;text-align:center;font-size:17px;font-weight:800"></div>
+        <div class="row2" id="pAct" style="position:absolute;left:0;right:0;top:56%;justify-content:center;display:none"><button class="pbtn green" id="pPlay" style="font-size:18px">▶️ Dengar</button><button class="pbtn blue" id="pShare" style="font-size:18px">📤 Kirim ke WhatsApp</button></div>
+        <button class="mic" id="pMic">🎤</button>`;
+      const st=document.getElementById('pSt'); let url=null, blob=null;
+      if(!canRec()){ st.textContent='Perekam belum bisa dipakai di sini. Buka game lewat aplikasi di layar utama ya.'; say('Perekamnya belum bisa dipakai'); return; }
+      say(`Ketuk mikrofonnya, lalu bilang halo ke ${TWIN}!`);
+      recButton(document.getElementById('pMic'),st,15000,b=>{ blob=b; url=URL.createObjectURL(b); st.textContent='Sudah terekam! Dengar dulu, lalu kirim.'; document.getElementById('pAct').style.display='flex'; sfx.star(); L.earned=Math.max(L.earned,1); },['🎤','⏹️']);
+      document.getElementById('pPlay').onclick=()=>{ if(url) playURL(url); };
+      document.getElementById('pShare').onclick=async()=>{ if(!blob) return;
+        const ok=await shareAudio(blob,`💌 Pesan suara dari ${CHILD} untuk ${TWIN}. Simpan filenya, lalu buka game Kucing ${TWIN} → Main → Kotak Pos → Pesan dari ${CHILD} → Masukkan pesan.`);
+        if(ok){ st.textContent='Terkirim! 💌'; confetti(); say(`Hore! Pesannya dikirim ke ${TWIN}!`); L.earned=2; } };
+    }
+    async function inbox(){
+      lhead.textContent=`Pesan dari ${TWIN} 📬`;
+      larea.innerHTML=`<div class="doalist" id="ibl" style="bottom:84px"></div><div class="row2" style="position:absolute;left:12px;right:12px;bottom:14px;justify-content:center"><label class="pbtn blue" style="cursor:pointer;font-size:16px">⬆️ Masukkan pesan dari WhatsApp<input type="file" accept="audio/*,.m4a,.mp3,.aac,.ogg,.opus,.webm,.wav" id="ibUp" style="display:none"></label></div>`;
+      const list=document.getElementById('ibl');
+      document.getElementById('ibUp').onchange=async e=>{ const f=e.target.files[0]; if(!f) return; const id=Date.now(); await IDB.set('tw_'+id,f); const d=new Date();
+        state.inbox.push({id,d:d.getDate()+'/'+(d.getMonth()+1),heard:false}); while(state.inbox.length>20){ const o=state.inbox.shift(); IDB.del('tw_'+o.id); } save(); sfx.star(); inbox(); };
+      if(!state.inbox.length){ list.innerHTML=`<div class="muted" style="text-align:center;padding:20px;font-size:16px">Belum ada pesan.<br><br>Untuk Papa/Mami: kalau ada pesan suara dari ${TWIN} di WhatsApp, simpan dulu filenya, lalu tekan tombol biru di bawah.</div>`; say(`Belum ada pesan dari ${TWIN}. Nanti kita tunggu ya!`); return; }
+      const urls={}; for(const m of state.inbox){ const b=await IDB.get('tw_'+m.id); if(b) urls[m.id]=URL.createObjectURL(b); }
+      say(`Ketuk suratnya untuk dengar suara ${TWIN}!`);
+      state.inbox.slice().reverse().forEach(m=>{ const b=document.createElement('button'); b.innerHTML=`<b>${m.heard?'💌':'📩'}</b>Pesan tanggal ${m.d}${m.heard?'':' <span style="color:#f06b8f">• baru</span>'}`; list.appendChild(b);
+        b.onclick=()=>{ if(!urls[m.id]){ say('Pesannya tidak bisa dibuka'); return; } playURL(urls[m.id]); m.heard=true; save(); b.querySelector('b').textContent='💌'; const s=b.querySelector('span'); if(s) s.remove(); L.earned=Math.max(L.earned,1); sparkleIn('💖',5,b); }; });
+    }
+  }
+
+  /* 2. Hitung mundur ketemu kembaran */
+  function daysTo(ds){ if(!ds) return null; const [y,m,d]=ds.split('-').map(Number); const t=new Date(y,m-1,d), n=new Date(); n.setHours(0,0,0,0); return Math.round((t-n)/864e5); }
+  function startMeet(){
+    openLearn(); lhead.textContent=`Ketemu ${TWIN} 👯`; const n=daysTo(state.meet);
+    if(n===null||n<0){ larea.innerHTML=`<div class="meet"><div class="big">📅</div><div class="t">Kapan ketemu ${TWIN}?</div><div class="muted" style="font-size:16px">Papa/Mami: tahan ⚙️ → 👯 Kembar, lalu pilih tanggalnya.</div></div>`; say(`Kapan ya ketemu ${TWIN}? Tanya Papa dan Mami!`); return; }
+    if(n===0){ larea.innerHTML=`<div class="meet"><div class="big">🎉👯🎉</div><div class="t">Hari ini ketemu ${TWIN}!</div></div>`; confetti(); sfx.yay(); say(`Hore! Hari ini ${CHILD} ketemu ${TWIN}! Peluk yang erat ya!`); L.earned=1; return; }
+    const moons=Math.min(n,14);
+    larea.innerHTML=`<div class="meet"><div class="t">${n===1?`Besok ketemu ${TWIN}!`:`Tinggal ${n} kali tidur lagi`}</div><div class="moons">${'<span>🌙</span>'.repeat(moons)}${n>14?'<span>…</span>':''}<span class="tw">👯</span></div><div class="muted" style="font-size:16px;margin-top:12px">Ketuk bulannya sambil berhitung!</div></div>`;
+    say(n===1?`Besok ${CHILD} ketemu ${TWIN}! Tinggal satu kali tidur lagi!`:`Tinggal ${numWord(n)} kali tidur lagi, ${CHILD} ketemu ${TWIN}! Ayo hitung bulannya!`);
+    let c=0; larea.querySelectorAll('.moons span').forEach((s,i)=>{ if(i>=moons) return; onTap(s,()=>{ if(s.classList.contains('ok')) return; s.classList.add('ok'); c++; sfx.pop(); say(numWord(c));
+      if(c===moons){ L.earned=1; later(()=>{ sparkleIn('💖',6); say(`${numWord(moons)} kali tidur lagi! Sabar ya, nanti ketemu ${TWIN}!`); },900); } }); });
+  }
+
+  /* 3. Latihan toilet */
+  function startPotty(){
+    openLearn(); lhead.textContent='Ke Toilet 🚽';
+    const n=state.potty[today()]||0;
+    larea.innerHTML=`<div class="postbox"><button class="pcard" id="ptL"><b>🐱🚽</b>Latihan bareng kucing</button><button class="pcard" id="ptW" style="background:#e9fbf2"><b>🎉</b>Aku berhasil pipis/pup di toilet!<small>Hari ini: ${n} kali</small></button></div>`;
+    say(`Kalau mau pipis, bilang ke Mami ya! Ayo latihan ke toilet.`);
+    document.getElementById('ptL').onclick=()=>{ sfx.click(); practice(); };
+    document.getElementById('ptW').onclick=()=>{ state.potty[today()]=(state.potty[today()]||0)+1; save(); confetti(); sfx.yay(); L.earned+=2;
+      if(!playParent('praise')) say(`Hore! ${CHILD} hebat, sudah pipis di toilet! Anak pintar!`); larea.innerHTML='<div class="meet"><div class="big">🏆</div><div class="t">Hebat sekali!</div></div>'; later(closeLearn,3800); };
+    function practice(){
+      const S=[['🙋','Bilang: Mami, aku mau pipis!'],['🚽','Pergi ke toilet. Baca doa dulu'],['🩲','Buka celana'],['🪑','Duduk di kloset'],['💦','Pipis. Ssssss'],['🧻','Bersihkan pakai air'],['👖','Pakai celana lagi'],['🌊','Siram toiletnya. Byuur!'],['🧼','Cuci tangan pakai sabun']];
+      let i=0; larea.innerHTML=`<div class="steps sm">${S.map(s=>`<span>${s[0]}</span>`).join('')}</div><div class="bigmsg" id="ptm" style="top:112px"></div><button class="bigstep" id="ptB"></button><div class="muted" style="position:absolute;left:0;right:0;bottom:6%;text-align:center;font-size:17px;font-weight:800">Ketuk gambarnya 👆</div>`;
+      const dots=larea.querySelectorAll('.steps span'), m=document.getElementById('ptm'), b=document.getElementById('ptB');
+      function show(){ dots.forEach((d,k)=>d.className=k<i?'ok':k===i?'cur':''); b.textContent=S[i][0]; m.textContent=(i+1)+'. '+S[i][1]; say(S[i][1]); if(i===1) later(()=>playDoa('wc'),2500);
+        b.animate([{transform:'translate(-50%,-50%) scale(.6)'},{transform:'translate(-50%,-50%) scale(1)'}],{duration:400}); }
+      onTap(b,()=>{ if(b._lock) return; b._lock=1; setTimeout(()=>b._lock=0,900);
+        if(i===4){ for(let k=0;k<10;k++) tone(1200+Math.random()*400,900,.1,'sine',.04,k*.07); sparkleIn('💧',6,b); } else if(i===7){ sfx.splash(); sparkleIn('🌊',4,b); } else if(i===8){ sparkleIn('🫧',6,b); sfx.pop(); } else sfx.pop();
+        i++; if(i>=S.length){ dots.forEach(d=>d.className='ok'); L.earned+=2; finishLearn(`Hebat! ${CHILD} sudah tahu caranya ke toilet. Kalau mau pipis, bilang ke Mami ya!`); } else later(show,700); });
+      show();
+    }
+  }
+
+  /* 4. Aman atau bahaya */
+  function startSafe(){
+    openLearn(); lhead.textContent='Aman atau Bahaya? ⚠️';
+    const D=[['🔥','api kompor',0,'Api itu panas! Jangan dekat-dekat kompor ya.'],['🔌','colokan listrik',0,'Colokan listrik bahaya! Jangan dimasukkan jari.'],['🔪','pisau',0,'Pisau tajam! Hanya orang dewasa yang pakai.'],['💊','obat',0,'Obat bukan permen! Minum obat hanya kalau dikasih Papa atau Mami.'],['🚗','jalan raya',0,'Di jalan raya banyak mobil. Selalu pegang tangan Papa atau Mami!'],['✂️','gunting tajam',0,'Gunting tajam bisa melukai. Minta tolong Papa atau Mami ya.'],['🧴','sabun cuci',0,'Sabun cuci tidak boleh diminum!'],['🏊','kolam tanpa orang dewasa',0,'Jangan main air sendirian. Harus ditemani orang dewasa!'],['🪟','jendela tinggi',0,'Jangan naik ke jendela, nanti jatuh!'],
+      ['🧸','boneka',1,'Boneka aman. Boleh dipeluk!'],['📚','buku',1,'Buku aman. Ayo baca buku!'],['⚽','bola',1,'Bola aman untuk main.'],['🖍️','krayon',1,'Krayon aman untuk menggambar.'],['🍌','pisang',1,'Pisang aman dan sehat dimakan.'],['🛏️','kasur',1,'Kasur aman untuk tidur.'],['🧩','puzzle',1,'Puzzle aman untuk main.']];
+    const Q=shuffle(shuffle(D.filter(x=>!x[2])).slice(0,4).concat(shuffle(D.filter(x=>x[2])).slice(0,3))); let r=0;
+    function round(){ const q=Q[r]; L._lk=0;
+      larea.innerHTML=`<div class="safeitem">${q[0]}<small>${q[1]}</small></div><div class="safebtns"><button class="ok" data-v="1">✅<small>Aman</small></button><button class="no" data-v="0">⛔<small>Bahaya</small></button></div>`;
+      say(`Ini ${q[1]}. Aman atau bahaya?`);
+      larea.querySelectorAll('.safebtns button').forEach(b=>b.onclick=()=>{ if(L._lk) return; const v=+b.dataset.v;
+        if(v===q[2]){ L._lk=1; sfx.star(); L.earned++; b.classList.add('pick'); if(!q[2]) tone(660,330,.35,'square',.06); say((q[2]?'Betul, aman! ':'Betul, bahaya! ')+q[3]);
+          later(()=>{ r++; if(r>=Q.length) finishLearn(`Pintar! ${CHILD} sudah tahu mana yang aman dan mana yang bahaya!`); else round(); },4300); }
+        else { wig(b); say(q[2]?'Hmm, ini sebenarnya aman. '+q[3]:'Hati-hati! '+q[3]); } });
+    }
+    round();
+  }
+
+  /* 5. Di atas, di bawah, di dalam */
+  function startPrep(){
+    openLearn();
+    const Z={atas:[200,90,'di atas meja'],bawah:[200,200,'di bawah meja'],dalam:[70,200,'di dalam kotak'],samping:[340,200,'di samping meja']};
+    const OBJ=[['⚽','bola'],['🧸','boneka'],['🍎','apel'],['🐱','kucing'],['🚗','mobil-mobilan'],['🦆','bebek']];
+    const order=shuffle(Object.keys(Z)).concat(shuffle(Object.keys(Z)).slice(0,2)); let r=0;
+    function round(){ L._lk=0;
+      const k=order[r], o=rnd(OBJ); lhead.textContent='Taruh '+o[0]+' '+Z[k][2];
+      larea.innerHTML=`<svg class="prep" viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet">
+        <rect x="0" y="234" width="400" height="86" fill="#d9cfe9"/>
+        <rect x="112" y="116" width="176" height="16" rx="6" fill="#b5793f"/><rect x="124" y="132" width="12" height="104" rx="3" fill="#9a6331"/><rect x="264" y="132" width="12" height="104" rx="3" fill="#9a6331"/>
+        <path d="M22 174 h96 l-8 62 h-80 z" fill="#d9a55b" stroke="#b5793f" stroke-width="4" stroke-linejoin="round"/>
+        ${Object.entries(Z).map(([kk,[x,y]])=>`<circle class="zone" data-k="${kk}" cx="${x}" cy="${y}" r="34"/>`).join('')}
+        <text id="pObj" x="200" y="290" font-size="54" text-anchor="middle" dominant-baseline="middle">${o[0]}</text></svg>`;
+      say(`Taruh ${o[1]} ${Z[k][2]}!`);
+      const ob=larea.querySelector('#pObj');
+      larea.querySelectorAll('.zone').forEach(z=>onTap(z,()=>{ if(L._lk) return; const kk=z.dataset.k, [x,y]=Z[kk]; L._lk=1; ob.style.transform=`translate(${x-200}px,${y-290}px)`;
+        if(kk===k){ z.classList.add('ok'); sfx.star(); L.earned++; say(`Betul! ${o[1]} ada ${Z[k][2]}!`); later(()=>{ r++; if(r>=order.length) finishLearn(`Hebat! ${CHILD} sudah tahu di atas, di bawah, di dalam, dan di samping!`); else round(); },2700); }
+        else { sfx.boing(); say(`Itu ${Z[kk][2]}. Coba lagi, ${Z[k][2]}!`); later(()=>{ ob.style.transform=''; L._lk=0; },1600); } }));
+    }
+    round();
+  }
+
+  /* 6. Pola */
+  function startPattern(){
+    openLearn(); lhead.textContent='Pola 🔁';
+    const SETS=[['🍎','🍌','🍇'],['🔴','🔵','🟡'],['🐱','🐶','🐰'],['⭐','🌙','☀️'],['🚗','🚌','🚲'],['🌸','🍀','🌻']]; let r=0; const N=6;
+    function round(){ L._lk=0;
+      const set=shuffle(rnd(SETS).slice()); const t=r<2?[0,1]:r===2?[0,0,1]:r===3?[0,1,1]:[0,1,2];
+      const Lv=t.length*2+(r%2); const items=[]; for(let i=0;i<Lv;i++) items.push(set[t[i%t.length]]); const ans=set[t[Lv%t.length]];
+      const used=[...new Set(t.map(i=>set[i]))]; let opts=used.slice(); if(opts.length<3) opts.push(set.find(x=>!used.includes(x))); else opts.push(rnd(SETS.filter(s=>!s.includes(ans)))[0]);
+      opts=shuffle(opts).slice(0,3); if(!opts.includes(ans)) opts[0]=ans; opts=shuffle(opts);
+      larea.innerHTML=`<div class="patrow">${items.map(x=>`<span>${x}</span>`).join('')}<span class="q">❓</span></div><div class="seqcards">${opts.map(x=>`<button>${x}</button>`).join('')}</div>`;
+      say(r===0?'Lihat polanya. Habis ini apa?':rnd(['Habis ini apa ya?','Selanjutnya apa?']));
+      larea.querySelectorAll('.seqcards button').forEach(b=>b.onclick=()=>{ if(L._lk) return;
+        if(b.textContent===ans){ L._lk=1; const q=larea.querySelector('.q'); q.textContent=ans; q.classList.add('ok'); b.style.visibility='hidden'; sfx.star(); L.earned++; say('Betul! Polanya pas!'); later(()=>{ r++; if(r>=N) finishLearn(`Pintar! ${CHILD} jago menebak pola!`); else round(); },1900); }
+        else { wig(b); say('Hmm, lihat lagi polanya'); } });
+    }
+    round();
+  }
+
+  /* 7. Mengelompokkan */
+  function startSort(){
+    openLearn(); lhead.textContent='Kelompokkan 🧺';
+    const CATS=[[['🍎','buah',['🍎','🍌','🍇','🍊','🍓','🍉']],['🐶','hewan',['🐶','🐱','🐮','🐔','🐟','🐘']]],
+      [['🚗','kendaraan',['🚗','🚌','🚲','✈️','🚂','🛵']],['👕','pakaian',['👕','👖','👗','🧦','🧢','👟']]],
+      [['🔴','merah',['🍎','🍓','❤️','🌹','🚒','🍒']],['🟡','kuning',['🍌','⭐','🌻','🐥','🧀','🌕']]]];
+    const order=shuffle(CATS).slice(0,2); let r=0;
+    function round(){ L._lk=0;
+      const [A,B]=order[r]; const items=shuffle(shuffle(A[2]).slice(0,4).map(e=>[e,0]).concat(shuffle(B[2]).slice(0,4).map(e=>[e,1])));
+      larea.innerHTML=`<div class="sortitem" id="sIt"></div><div class="baskets"><button data-b="0"><b>${A[0]}</b><small>${A[1]}</small><div class="in"></div></button><button data-b="1"><b>${B[0]}</b><small>${B[1]}</small><div class="in"></div></button></div>`;
+      say(`Masukkan ke keranjang yang benar! ${A[1]}, atau ${B[1]}?`);
+      let i=0; const it=document.getElementById('sIt');
+      function show(){ it.textContent=items[i][0]; it.animate([{transform:'translateX(-50%) scale(.3)'},{transform:'translateX(-50%) scale(1)'}],{duration:350}); }
+      larea.querySelectorAll('.baskets button').forEach(b=>b.onclick=()=>{ if(L._lk||i>=items.length) return; const v=+b.dataset.b;
+        if(v===items[i][1]){ const s=document.createElement('span'); s.textContent=items[i][0]; b.querySelector('.in').appendChild(s); sfx.pop(); L._lk=1; it.textContent=''; say(rnd(['Betul!','Pintar!','Iya!'])+' '+(v?B[1]:A[1])); i++; if(i%3===0) L.earned++;
+          later(()=>{ L._lk=0; if(i>=items.length){ r++; sfx.star(); if(r>=order.length) finishLearn(`Hebat! ${CHILD} pintar mengelompokkan!`); else { say('Hore! Semuanya masuk!'); later(round,1800); } } else show(); },800); }
+        else { wig(b); say(`Bukan. Ini masuk ${items[i][1]?B[1]:A[1]}`); } });
+      show();
+    }
+    round();
+  }
+
+  /* 8. Berbagi kue */
+  function startShare(){
+    openLearn(); lhead.textContent='Berbagi Kue 🍪';
+    const P=[['🐱','Kucing'],['👧',TWIN],['👨','Papa'],['👩','Mami']]; const RR=[[2,2],[3,1],[4,1],[3,2]]; let r=0;
+    function round(){ L._lk=0;
+      const [np,each]=RR[r]; const ppl=P.slice(0,np), total=np*each, got=ppl.map(()=>0); let left=total;
+      larea.innerHTML=`<div class="plate" id="plate">${'<span>🍪</span>'.repeat(total)}</div><div class="ppl">${ppl.map((p,i)=>`<button data-i="${i}"><b>${p[0]}</b><small>${p[1]}</small><div class="got"></div></button>`).join('')}</div>`;
+      say(`Ada ${numWord(total)} kue. Bagi sama rata untuk ${ppl.map(p=>p[1]).join(', ')}! Ketuk orangnya untuk kasih kue.`);
+      larea.querySelectorAll('.ppl button').forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; if(left<=0||L._lk) return;
+        if(got[i]>Math.min(...got)){ wig(b); say(`${ppl[i][1]} sudah dapat. Kasih yang lain dulu, biar adil!`); return; }
+        got[i]++; left--; const pl=document.getElementById('plate'); if(pl.lastElementChild) pl.lastElementChild.remove(); const s=document.createElement('span'); s.textContent='🍪'; b.querySelector('.got').appendChild(s); sfx.pop(); say(`${ppl[i][1]} dapat ${numWord(got[i])}`);
+        if(left===0){ L._lk=1; L.earned++; later(()=>{ confetti(); sfx.yay(); say(`Hore! Semua dapat ${numWord(each)} kue. Sama banyak! Berbagi itu indah!`); later(()=>{ r++; if(r>=RR.length) finishLearn(`${CHILD} anak baik, suka berbagi!`); else round(); },4500); },800); } });
+    }
+    round();
+  }
+
+  /* 9. Pojok tenang */
+  function startCalm(){
+    openLearn(); lhead.textContent='Pojok Tenang 🫧'; learn.classList.add('calm'); L.onClose=()=>learn.classList.remove('calm');
+    larea.innerHTML=`<div class="bigmsg" style="top:74px">${CHILD} lagi merasa apa?</div><div class="feelrow"><button data-f="sedih">😢<small>Sedih</small></button><button data-f="marah">😠<small>Marah</small></button><button data-f="takut">😨<small>Takut</small></button><button data-f="capek">😫<small>Capek</small></button></div>`;
+    say(`${CHILD} lagi merasa apa? Tidak apa-apa, kucing temani.`);
+    const V={sedih:`Tidak apa-apa sedih. Kucing di sini temani ${CHILD}.`,marah:'Tidak apa-apa marah. Tapi kita tidak memukul ya. Ayo tenangkan badan dulu.',takut:`Tidak apa-apa takut. ${CHILD} aman. Papa dan Mami ada.`,capek:'Capek ya. Ayo istirahat sebentar.'};
+    let k=0; every(()=>{ const n=[262,330,392,330,294,349,440,349][k++%8]; tone(n,n,1.9,'sine',.035); },1000);
+    larea.querySelectorAll('.feelrow button').forEach(b=>b.onclick=()=>{ sfx.click(); larea.innerHTML=`<div class="bigmsg" style="top:40%">${b.textContent.trim().slice(0,2)}</div>`; say(V[b.dataset.f], ()=>later(breathe,300)); });
+    function breathe(){
+      larea.innerHTML=`<div class="balloon" id="bal">🎈</div><div class="bigmsg" id="bm" style="top:auto;bottom:24%"></div><button class="pbtn" id="hug" style="position:absolute;left:50%;bottom:7%;transform:translateX(-50%);font-size:20px;padding:12px 22px;white-space:nowrap">🤗 Peluk kucing</button>`;
+      const bal=document.getElementById('bal'), bm=document.getElementById('bm'); let c=0;
+      document.getElementById('hug').onclick=()=>{ sparkleIn('💛',6); sfx.meow(); if(!playParent('love')) say(`Peluuuk! Kucing sayang ${CHILD}.`); };
+      function cycle(){ if(c>=4){ bm.textContent='Sudah lebih tenang? 💛'; L.earned=1; say(`Hebat! ${CHILD} sudah bisa menenangkan diri. Kucing sayang ${CHILD}.`); return; }
+        c++; bm.textContent='Tarik napaaas… 🌬️'; say('Tarik napaas'); bal.style.transition='transform 4s ease-in-out'; bal.style.transform='translate(-50%,-50%) scale(2.2)';
+        later(()=>{ bm.textContent='Hembuskaaan… 😮‍💨'; say('Hembuskan pelan pelan'); bal.style.transition='transform 5s ease-in-out'; bal.style.transform='translate(-50%,-50%) scale(1)'; later(cycle,5600); },4400); }
+      later(cycle,600);
+    }
+  }
+
+  /* 10. Hijaiyah & surat pendek */
+  const HIJ=[['ا','Alif'],['ب','Ba'],['ت','Ta'],['ث','Tsa'],['ج','Jim'],['ح','Ha'],['خ','Kho'],['د','Dal'],['ذ','Dzal'],['ر','Ro'],['ز','Za'],['س','Sin'],['ش','Syin'],['ص','Shod'],['ض','Dhod'],['ط','Tho'],['ظ','Zho'],['ع',"'Ain"],['غ','Ghoin'],['ف','Fa'],['ق','Qof'],['ك','Kaf'],['ل','Lam'],['م','Mim'],['ن','Nun'],['و','Wau'],['ه','Ha'],['ي','Ya']];
+  const SURAH=[
+    {k:'ikhlas',t:'Al-Ikhlas',a:[['قُلْ هُوَ اللَّهُ أَحَدٌ','Qul huwallaahu ahad','Katakanlah: Dialah Allah, Yang Maha Esa.'],['اللَّهُ الصَّمَدُ','Allaahush shamad','Allah tempat meminta segala sesuatu.'],['لَمْ يَلِدْ وَلَمْ يُولَدْ','Lam yalid wa lam yuulad','Dia tidak beranak dan tidak diperanakkan.'],['وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ','Wa lam yakul lahuu kufuwan ahad','Dan tidak ada sesuatu pun yang setara dengan Dia.']]},
+    {k:'nas',t:'An-Nas',a:[['قُلْ أَعُوذُ بِرَبِّ النَّاسِ',"Qul a'uudzu birabbin naas",'Katakanlah: Aku berlindung kepada Tuhan manusia.'],['مَلِكِ النَّاسِ','Malikin naas','Raja manusia.'],['إِلَٰهِ النَّاسِ','Ilaahin naas','Sembahan manusia.'],['مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ','Min syarril waswaasil khannaas','Dari kejahatan bisikan setan yang bersembunyi.'],['الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ','Alladzii yuwaswisu fii shuduurin naas','Yang membisikkan ke dalam dada manusia.'],['مِنَ الْجِنَّةِ وَالنَّاسِ','Minal jinnati wan naas','Dari golongan jin dan manusia.']]},
+    {k:'falaq',t:'Al-Falaq',a:[['قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ',"Qul a'uudzu birabbil falaq",'Katakanlah: Aku berlindung kepada Tuhan yang menguasai subuh.'],['مِن شَرِّ مَا خَلَقَ','Min syarri maa khalaq','Dari kejahatan makhluk-Nya.'],['وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ','Wa min syarri ghaasiqin idzaa waqab','Dan dari kejahatan malam apabila telah gelap.'],['وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ',"Wa min syarrin naffaatsaati fil 'uqad",'Dan dari kejahatan perempuan penyihir yang meniup pada buhul-buhul.'],['وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ','Wa min syarri haasidin idzaa hasad','Dan dari kejahatan orang yang dengki apabila ia dengki.']]},
+    {k:'fatihah',t:'Al-Fatihah',a:[['بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ','Bismillaahir rahmaanir rahiim','Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.'],['الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ',"Alhamdu lillaahi rabbil 'aalamiin",'Segala puji bagi Allah, Tuhan seluruh alam.'],['الرَّحْمَٰنِ الرَّحِيمِ','Arrahmaanir rahiim','Yang Maha Pengasih, Maha Penyayang.'],['مَالِكِ يَوْمِ الدِّينِ','Maaliki yaumid diin','Pemilik hari pembalasan.'],['إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ',"Iyyaaka na'budu wa iyyaaka nasta'iin",'Hanya kepada Engkau kami menyembah, dan hanya kepada Engkau kami mohon pertolongan.'],['اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ','Ihdinash shiraathal mustaqiim','Tunjukilah kami jalan yang lurus.'],['صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ',"Shiraathal ladziina an'amta 'alaihim ghairil maghdhuubi 'alaihim wa ladh dhaalliin",'Yaitu jalan orang-orang yang telah Engkau beri nikmat, bukan jalan mereka yang dimurkai dan bukan pula jalan mereka yang sesat.']]}];
+  const surURL={}; SURAH.forEach(s=>IDB.get('sur_'+s.k).then(b=>{ if(b) surURL[s.k]=URL.createObjectURL(b); }));
+  let arVoice=null; function findAr(){ try{ arVoice=speechSynthesis.getVoices().find(v=>/^ar/i.test(v.lang))||null; }catch(e){} } if('speechSynthesis' in window){ findAr(); try{ speechSynthesis.addEventListener('voiceschanged',findAr); }catch(e){} }
+  function sayAr(ar,latin,after){ if(!soundOn||!('speechSynthesis' in window)||!arVoice){ say(latin,after); return; }
+    try{ const u=new SpeechSynthesisUtterance(ar); u.lang=arVoice.lang; u.voice=arVoice; u.rate=.72; let f=false; const go=()=>{ if(!f){ f=true; if(after) after(); } }; u.onend=go; u.onerror=go; speechSynthesis.cancel(); setTimeout(()=>speechSynthesis.speak(u),30); }catch(e){ say(latin,after); } }
+  function startQuran(){
+    openLearn(); lhead.textContent='Mengaji 📗';
+    let tab='huruf';
+    function shell(){ larea.innerHTML=`<div class="qtabs"><button data-t="huruf">ا ب ت Huruf</button><button data-t="tebak">❓ Tebak</button><button data-t="surat">📖 Surat</button></div><div id="qb"></div>`;
+      larea.querySelectorAll('.qtabs button').forEach(b=>{ b.classList.toggle('on',b.dataset.t===tab); b.onclick=()=>{ sfx.click(); tab=b.dataset.t; shell(); }; });
+      ({huruf,tebak,surat})[tab](document.getElementById('qb')); }
+    function huruf(qb){ qb.innerHTML=`<div class="hija">${HIJ.map((h,i)=>`<button data-i="${i}">${h[0]}<small>${h[1]}</small></button>`).join('')}</div>`; say('Ketuk hurufnya!');
+      let seen=new Set(); qb.querySelectorAll('.hija button').forEach(b=>b.onclick=()=>{ const h=HIJ[+b.dataset.i]; b.animate([{transform:'scale(1)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:400}); say(h[1]); seen.add(h[0]); if(seen.size%6===0) L.earned=Math.max(L.earned,seen.size/6|0); }); }
+    function tebak(qb){ let r=0; const N=6; const pool=shuffle(HIJ.slice(0,14));
+      function round(){ const opts=shuffle(pool).slice(0,3), t=rnd(opts); qb.innerHTML=`<div class="bigmsg" style="top:130px">Mana huruf ${t[1]}?</div><div class="seqcards" style="bottom:14%">${opts.map(o=>`<button style="font-family:serif;color:#2a6b4f">${o[0]}</button>`).join('')}</div>`; say(`Mana huruf ${t[1]}?`);
+        qb.querySelectorAll('.seqcards button').forEach(b=>b.onclick=()=>{ if(b.textContent===t[0]){ sfx.star(); L.earned++; say(`Betul! Ini huruf ${t[1]}!`); r++; if(r>=N) finishLearn(`Masya Allah! ${CHILD} pintar mengenal huruf hijaiyah!`); else later(round,1700); } else { wig(b); const o=HIJ.find(h=>h[0]===b.textContent); say(`Ini huruf ${o?o[1]:''}. Cari ${t[1]}`); } }); }
+      round(); }
+    function surat(qb){ qb.innerHTML=`<div class="doalist" style="top:130px">${SURAH.map((s,i)=>`<button data-i="${i}"><b>📖</b>Surat ${s.t}${surURL[s.k]?' 🎙️':''}</button>`).join('')}</div>`; say('Mau belajar surat apa?');
+      qb.querySelectorAll('button').forEach(b=>b.onclick=()=>{ sfx.click(); showS(SURAH[+b.dataset.i]); }); }
+    function showS(s){ lhead.textContent='Surat '+s.t;
+      larea.innerHTML=`<div class="surah">${s.a.map((a,i)=>`<div class="ay" data-i="${i}"><div class="ayat">${a[0]} <span class="no">${i+1}</span></div><div class="ayatl"><b>${a[1]}</b><br>${a[2]}</div></div>`).join('')}</div>
+        <div class="row2" style="position:absolute;left:8px;right:8px;bottom:10px;justify-content:center"><button class="pbtn green" id="sAll">▶️ Dengarkan</button><button class="pbtn" id="sRec">🔴 Rekam Papa/Mami</button><button class="pbtn gray" id="sBack">◀</button></div><div class="muted" id="sSt" style="position:absolute;left:8px;right:8px;bottom:62px;text-align:center"></div>`;
+      const st=document.getElementById('sSt'); st.textContent=surURL[s.k]?'✅ Ada rekaman Papa/Mami':'Ketuk tiap ayat untuk dengar. Lebih bagus kalau Papa/Mami rekam bacaannya.';
+      const ays=[...larea.querySelectorAll('.ay')];
+      function hi(i){ ays.forEach((a,k)=>a.classList.toggle('on',k===i)); if(ays[i]) ays[i].scrollIntoView({block:'center',behavior:'smooth'}); }
+      ays.forEach((a,i)=>a.onclick=()=>{ hi(i); sayAr(s.a[i][0],s.a[i][1]); L.earned=Math.max(L.earned,1); });
+      document.getElementById('sBack').onclick=()=>{ lhead.textContent='Mengaji 📗'; shell(); };
+      document.getElementById('sAll').onclick=()=>{ L.earned=Math.max(L.earned,1); if(surURL[s.k]){ hi(-1); playURL(surURL[s.k]); return; } let i=0; const nx=()=>{ if(!L.alive||i>=s.a.length){ hi(-1); return; } hi(i); sayAr(s.a[i][0],s.a[i][1],()=>{ i++; later(nx,600); }); }; nx(); };
+      const rb=document.getElementById('sRec');
+      if(!canRec()){ rb.outerHTML='<label class="pbtn blue" style="cursor:pointer">⬆️ Unggah<input type="file" accept="audio/*" id="sUp" style="display:none"></label>'; document.getElementById('sUp').onchange=async e=>{ const f=e.target.files[0]; if(!f) return; await IDB.set('sur_'+s.k,f); surURL[s.k]=URL.createObjectURL(f); st.textContent='✅ Rekaman tersimpan.'; }; }
+      else recButton(rb,st,90000,async b=>{ await IDB.set('sur_'+s.k,b); surURL[s.k]=URL.createObjectURL(b); st.textContent='✅ Rekaman tersimpan. Tekan Dengarkan.'; },['🔴 Rekam ulang','⏹️ Selesai']);
+    }
+    shell();
+  }
+
+  /* 11. Gerak bareng */
+  function startMove(){
+    openLearn(); lhead.textContent='Gerak Bareng 🤸';
+    const M=[['🦘','Lompat',3,'Ayo berdiri! Lompat tiga kali!','hop'],['🦩','Berdiri satu kaki',5,'Berdiri satu kaki, kayak burung bangau! Hitung sampai lima.','tilt'],['👏','Tepuk tangan',5,'Tepuk tangan lima kali!','hop'],['🦆','Jalan kayak bebek',0,'Jalan kayak bebek! Kwek kwek kwek!','wobble'],['🦒','Jinjit tinggi',5,'Jinjit yang tinggi, kayak jerapah!','stretch'],['🐱','Merangkak kayak kucing',0,'Merangkak kayak kucing! Meong!','wobble'],['🌀','Putar badan',2,'Putar badan dua kali! Pelan-pelan ya.','spin'],['🙆','Kepala, pundak, lutut, kaki',0,'Pegang kepala, pundak, lutut, kaki!','hop'],['🐸','Lompat kayak katak',3,'Jongkok, lalu lompat kayak katak!','hop'],['🙌','Tangan ke atas',5,'Angkat tangan tinggi-tinggi!','stretch']];
+    const Q=shuffle(M).slice(0,6); let r=0; const catSvg=cloneCat();
+    function round(){ const m=Q[r];
+      larea.innerHTML=`<div class="bigmsg" style="top:66px">${m[0]} ${m[1]}!</div><div class="movecat mv-${m[4]}">${catSvg}</div><div class="mvcount" id="mvc"></div><button class="pbtn green" id="mvDone" style="position:absolute;left:50%;bottom:6%;transform:translateX(-50%);font-size:22px;padding:14px 28px;display:none">✅ Sudah!</button>`;
+      const c=document.getElementById('mvc'), d=document.getElementById('mvDone');
+      say(m[3],()=>{ if(!L.alive) return; if(m[2]){ let k=0; const iv=every(()=>{ k++; c.textContent=k; c.animate([{transform:'scale(1.5)'},{transform:'scale(1)'}],{duration:400}); tone(440+k*70,440+k*70,.18,'triangle',.12); say(numWord(k)); if(k>=m[2]){ clearInterval(iv); later(()=>{ d.style.display=''; },700); } },1400); }
+        else { let k=0; every(()=>{ if(k++<10) tone(k%2?392:523,k%2?392:523,.15,'triangle',.1); },500); later(()=>{ d.style.display=''; },5500); } });
+      d.onclick=()=>{ sfx.star(); L.earned++; r++; say(rnd(['Hebat!','Kuat sekali!','Keren!'])); if(r>=Q.length) finishLearn(`Hore! ${CHILD} sudah olahraga. Badannya sehat dan kuat!`); else later(round,1300); };
+    }
+    round();
+  }
+
+  /* 12. Kebun mini */
+  const PLANTS=[['bunga matahari','🌻'],['tomat','🍅'],['stroberi','🍓'],['bunga tulip','🌷']];
+  const STG=['🌰','🌱','🌿','🪴'];
+  function startGarden(){
+    openLearn(); lhead.textContent='Kebun Mini 🌱'; const g=state.garden;
+    if(!g){ larea.innerHTML=`<div class="bigmsg" style="top:70px">Mau tanam apa?</div><div class="famgrid" style="top:130px">${PLANTS.map((p,i)=>`<button data-i="${i}" style="font-size:clamp(60px,18vw,90px)">${p[1]}<span style="opacity:1">${p[0]}</span></button>`).join('')}</div>`;
+      say('Mau tanam apa? Pilih bibitnya!');
+      larea.querySelectorAll('.famgrid button').forEach(b=>b.onclick=()=>{ state.garden={p:+b.dataset.i,stage:0,last:'',planted:today()}; save(); sfx.pop(); say(`Kita tanam bibit ${PLANTS[+b.dataset.i][0]}. Siram setiap hari ya, nanti tumbuh!`); later(view,1500); }); return; }
+    view();
+    function view(){ const g=state.garden, p=PLANTS[g.p]; const watered=g.last===today(); const dry=g.last? Math.round((new Date(today().replace(/-/g,'/'))-new Date(g.last.replace(/-/g,'/')))/864e5) : 0;
+      const em=g.stage>=4?p[1]:STG[g.stage];
+      larea.innerHTML=`<div class="bigmsg" id="gm" style="top:66px"></div><div class="gdays">${[0,1,2,3,4].map(i=>`<span class="${i<=g.stage?'ok':''}">${i<4?STG[i]:p[1]}</span>`).join('')}</div>
+        <div class="plant ${dry>=3&&g.stage<4?'wilt':''}" id="pl">${em}</div><div class="soil"></div><div class="pot"></div>
+        <button class="pbtn ${g.stage>=4?'green':'blue'}" id="gBtn" style="position:absolute;left:50%;bottom:5%;transform:translateX(-50%);font-size:22px;padding:14px 26px">${g.stage>=4?'🧺 Panen!':'🚿 Siram'}</button>`;
+      const gm=document.getElementById('gm'), pl=document.getElementById('pl');
+      if(g.stage>=4){ gm.textContent=`${p[0][0].toUpperCase()+p[0].slice(1)} sudah tumbuh! 🎉`; say(`Wah! ${p[0]} sudah tumbuh! Ayo panen!`); }
+      else if(watered){ gm.textContent='Sudah disiram hari ini 💧'; say('Tanamannya sudah minum hari ini. Besok siram lagi ya!'); }
+      else if(dry>=3){ gm.textContent='Tanamannya haus! 🥺'; say('Aduh, tanamannya haus. Ayo siram!'); }
+      else { gm.textContent=g.stage===0?'Bibitnya mau minum':'Ayo siram tanamannya!'; say(g.stage===0?'Bibitnya sudah ditanam. Ayo siram!':'Ayo siram tanamannya!'); }
+      document.getElementById('gBtn').onclick=()=>{ const g=state.garden;
+        if(g.stage>=4){ state.harvests=(state.harvests||0)+1; state.garden=null; save(); L.earned+=3; sparkleIn(p[1],8,pl); finishLearn(`Hore! ${CHILD} panen ${p[0]}! Karena sabar dan rajin menyiram. Ayo tanam lagi!`); return; }
+        sfx.drink(); sparkleIn('💧',8,pl); pl.classList.remove('wilt');
+        if(g.last===today()){ say('Sudah cukup airnya hari ini. Kebanyakan air nanti tanamannya kembung. Besok lagi ya!'); return; }
+        g.last=today(); g.stage++; save(); L.earned++;
+        later(()=>{ pl.animate([{transform:'translateX(-50%) scale(.6)'},{transform:'translateX(-50%) scale(1.15)'},{transform:'translateX(-50%) scale(1)'}],{duration:700}); pl.textContent=g.stage>=4?p[1]:STG[g.stage]; sfx.star();
+          if(g.stage>=4){ confetti(); say(`Wah! ${p[0]} sudah tumbuh! Ayo panen!`); later(view,2500); } else { say(rnd(['Glek glek! Tanamannya tumbuh sedikit!','Terima kasih! Besok siram lagi ya, biar makin besar!'])); later(view,2600); } },1000); };
+    }
+  }
+
+  /* 13. Catatan tumbuh kembang (menu orang tua) */
+  const MILES=[['🗣️ Bicara',[['b1','Bicara kalimat 3 kata atau lebih'],['b2','Menyebut nama sendiri kalau ditanya'],['b3','Bertanya "apa ini?" atau "di mana?"'],['b4','Bicaranya bisa dimengerti orang lain hampir selalu'],['b5','Bisa ngobrol bolak-balik minimal 2 kali']]],
+    ['🏃 Gerak badan',[['g1','Naik tangga (boleh pegangan)'],['g2','Lari tanpa sering jatuh'],['g3','Lompat dengan dua kaki'],['g4','Menendang bola ke depan']]],
+    ['✋ Gerak tangan',[['h1','Menyusun 6 balok atau lebih'],['h2','Mencoret garis atau lingkaran'],['h3','Membuka tutup botol atau toples'],['h4','Membalik halaman buku satu per satu']]],
+    ['🧒 Mandiri',[['m1','Makan sendiri pakai sendok'],['m2','Pakai baju atau celana sederhana sendiri'],['m3','Bilang kalau mau pipis atau pup'],['m4','Cuci tangan dengan bantuan']]],
+    ['💛 Sosial & emosi',[['s1','Main bersama anak lain'],['s2','Mau bergantian kalau dibantu'],['s3','Menunjukkan rasa sayang (peluk, cium)'],['s4','Bisa tenang lagi setelah ditinggal sebentar']]]];
+  function pGrow(body){
+    const tot=MILES.reduce((a,g)=>a+g[1].length,0), done=MILES.reduce((a,g)=>a+g[1].filter(([id])=>state.miles[id]).length,0);
+    let wk=0; for(let i=0;i<7;i++) wk+=state.potty[dkey(new Date(Date.now()-i*864e5))]||0;
+    body.innerHTML=`<div class="muted">Kemampuan yang umumnya muncul di sekitar umur 3 tahun. Centang kalau ${CHILD} sudah bisa, tanggalnya tersimpan otomatis. Ini catatan pribadi, bukan alat diagnosis, karena tiap anak punya waktunya sendiri. Kalau ada yang mengganjal, tanyakan ke bidan, posyandu (KPSP), atau dokter anak.</div>
+      <div style="font-weight:900;margin:10px 0">✅ ${done}/${tot} sudah bisa &nbsp;·&nbsp; 🚽 Berhasil ke toilet 7 hari terakhir: ${wk} kali${state.harvests?` &nbsp;·&nbsp; 🌻 Panen: ${state.harvests}`:''}</div><div id="ml"></div>`;
+    const ml=body.querySelector('#ml');
+    MILES.forEach(([g,items])=>{ const h=document.createElement('div'); h.innerHTML=`<b>${g}</b>`; h.style.marginTop='10px'; ml.appendChild(h);
+      items.forEach(([id,t])=>{ const l=document.createElement('label'); l.style.cssText='display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid #f0e6da;font-size:15px'; const v=state.miles[id];
+        l.innerHTML=`<input type="checkbox" ${v?'checked':''} style="width:22px;height:22px;flex:none"><span style="flex:1">${t}</span><span class="muted" style="font-size:12px">${v||''}</span>`;
+        l.querySelector('input').onchange=e=>{ if(e.target.checked){ const d=new Date(); state.miles[id]=d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear(); } else delete state.miles[id]; save(); renderParent(); }; ml.appendChild(l); }); });
+  }
+  function pTwin(body){
+    const n=daysTo(state.meet);
+    body.innerHTML=`<div class="muted">Tanggal ${CHILD} ketemu ${TWIN} lagi. Di game: Main → 👯 Ketemu ${TWIN}, nanti kucingnya hitung mundur pakai "berapa kali tidur lagi".</div>
+      <div class="row2">Tanggal ketemu: <input type="date" id="mt" value="${state.meet||''}" style="padding:8px;border-radius:12px;border:1px solid #ddd;font-size:15px"><button class="pbtn green" id="mtS">💾 Simpan</button>${state.meet?'<button class="pbtn gray" id="mtD">Hapus</button>':''}</div>
+      <div class="muted">${n===null?'Belum diatur.':n<0?'Tanggalnya sudah lewat.':n===0?'Hari ini! 🎉':`Tinggal ${n} hari lagi.`}</div>
+      <div style="border-top:1px solid #eee;margin-top:12px;padding-top:10px" class="muted"><b>📮 Kotak Pos Kembar.</b> Cara kirim: ${CHILD} rekam pesan di Main → Kotak Pos → Kirim, lalu tekan "Kirim ke WhatsApp" ke HP Opa/Oma atau yang pegang HP ${TWIN}. Cara terima: simpan file suaranya dari WhatsApp, lalu buka Kotak Pos → Pesan dari ${TWIN} → tombol biru. Paling lancar kalau file dikirim dari game ini, bukan voice note biasa.</div>`;
+    body.querySelector('#mtS').onclick=()=>{ state.meet=body.querySelector('#mt').value||null; save(); renderParent(); };
+    const d=body.querySelector('#mtD'); if(d) d.onclick=()=>{ state.meet=null; save(); renderParent(); };
+  }
+
   /* Hewan */
   function startAnimals(){
     openLearn();
@@ -2168,6 +2550,9 @@
   $('#go').addEventListener('click',()=>{
     ctx(); $('#start').style.display='none'; sfx.meow(); applyTime();
     if(isBday()) birthday(); else if(!playParent('hello')) say(timeGreeting()); render(); sessionStart=Date.now(); checkLimit();
+    setTimeout(()=>{ if(busy) return; const nu=(state.inbox||[]).filter(m=>!m.heard).length; const dm=daysTo(state.meet);
+      if(nu){ emitAt('📩',3); say(`Ada pesan suara dari ${TWIN}! Buka Main, lalu Kotak Pos.`); }
+      else if(dm!==null&&dm>=0&&dm<=7&&state.meetSaid!==today()){ state.meetSaid=today(); save(); say(dm===0?`Hari ini ketemu ${TWIN}! Hore!`:dm===1?`Besok ketemu ${TWIN}!`:`${numWord(dm)} kali tidur lagi ketemu ${TWIN}!`); } },6500);
     try{ const el=document.documentElement; const f=el.requestFullscreen||el.webkitRequestFullscreen; if(f){ const r=f.call(el); if(r&&r.catch) r.catch(()=>{}); } }catch(e){}
   });
 
