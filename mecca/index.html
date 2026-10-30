@@ -166,6 +166,14 @@
   .mini-btns button.end{background:#b9a99a;box-shadow:0 5px 0 #8f7f71}
   .mini-btns button.hint{animation:pulse .8s infinite}
   .chew{font-size:clamp(18px,5vw,24px);font-weight:900;color:#ef8354;min-height:1.4em}
+  .pz-board{position:absolute;border-radius:18px;background:#fff;box-shadow:0 6px 0 #ecd9c4;overflow:hidden}
+  .pz-ghost{position:absolute;top:0;left:0;width:100%;height:100%;opacity:.22;background-size:100% 100%}
+  .pz-slot{position:absolute;border:3px dashed rgba(74,52,40,.25);box-sizing:border-box}
+  .pz-slot.hint{animation:pulse .5s 3;background:rgba(255,211,77,.45)}
+  .pz-piece{position:absolute;border-radius:10px;box-shadow:0 5px 0 rgba(0,0,0,.18),0 0 0 3px #fff;touch-action:none;cursor:grab;transition:left .25s, top .25s, transform .15s;z-index:4}
+  .pz-piece.drag{transition:none;transform:scale(1.08);z-index:9;box-shadow:0 12px 18px rgba(0,0,0,.25),0 0 0 3px #fff}
+  .pz-piece.ok{box-shadow:none;border-radius:0;cursor:default;z-index:3}
+  .pz-done{animation:bounce .5s 2}
   /* start */
   #start{position:absolute;top:0;left:0;right:0;bottom:0;z-index:20;background:rgba(253,241,227,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:20px}
   #start h1{margin:0;font-size:clamp(30px,8vw,56px)}
@@ -296,6 +304,7 @@
     <button data-game="draw" style="background:#58c39a">🖍️<small>Gambar</small></button>
     <button data-game="shadow" style="background:#4a3428">👤<small>Bayangan</small></button>
     <button data-game="peek" style="background:#e8a33d">🙈<small>Cilukba</small></button>
+    <button data-game="puzzle" style="background:#7c6fe0">🧩<small>Puzzle</small></button>
   </div></div>
   <div id="meal"><div class="sheet">
     <div class="mt" id="mealTitle">Makan bareng Kucing Mecca</div>
@@ -654,7 +663,7 @@
     if(g==='ball') runAct('fun'); else if(g==='yarn') runAct('yarn'); else if(g==='bubble') startBubbles();
     else if(g==='color') startTarget('color'); else if(g==='shape') startTarget('shape');
     else if(g==='count') startCount(); else if(g==='animal') startAnimals(); else if(g==='pop2') startTarget('fish');
-    else if(g==='piano') startPiano(); else if(g==='draw') startDraw(); else if(g==='shadow') startShadow(); else if(g==='peek') startPeek();
+    else if(g==='piano') startPiano(); else if(g==='draw') startDraw(); else if(g==='shadow') startShadow(); else if(g==='peek') startPeek(); else if(g==='puzzle') startPuzzle();
   }));
 
   /* bubble mini game */
@@ -895,6 +904,69 @@
           else { tone(300,250,.15,'triangle',.15); say(rnd(['Bukan di sini','Tidak ada','Coba yang lain'])); }
         });
       }
+    }
+    round();
+  }
+
+  /* Puzzle */
+  const PZ={
+    kucing:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect width="300" height="300" fill="#ffe2bd"/><circle cx="40" cy="40" r="18" fill="#fff3"/><path d="M62 120 L78 40 L130 88 Z M238 120 L222 40 L170 88 Z" fill="#a3aec2"/><path d="M80 104 L88 62 L114 86 Z M220 104 L212 62 L186 86 Z" fill="#ffb7c5"/><ellipse cx="150" cy="168" rx="110" ry="96" fill="#a3aec2"/><path d="M128 86 q22 -10 44 0 M132 104 q18 -8 36 0" stroke="#7c879c" stroke-width="8" fill="none" stroke-linecap="round"/><ellipse cx="150" cy="200" rx="64" ry="48" fill="#fff3e2"/><ellipse cx="104" cy="158" rx="20" ry="24" fill="#fff"/><ellipse cx="196" cy="158" rx="20" ry="24" fill="#fff"/><ellipse cx="107" cy="162" rx="13" ry="16" fill="#3b2a20"/><ellipse cx="199" cy="162" rx="13" ry="16" fill="#3b2a20"/><path d="M140 186 h20 l-10 11 z" fill="#ff7b95"/><path d="M150 197 q-12 16 -24 5 M150 197 q12 16 24 5" stroke="#3b2a20" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="78" cy="200" rx="16" ry="10" fill="#ff9fb2"/><ellipse cx="222" cy="200" rx="16" ry="10" fill="#ff9fb2"/></svg>',
+    rumah:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect width="300" height="300" fill="#bfe6ff"/><circle cx="245" cy="55" r="32" fill="#ffd34d"/><rect y="220" width="300" height="80" fill="#7ccf7a"/><rect x="70" y="130" width="160" height="120" fill="#ffe8b8"/><path d="M50 140 L150 55 L250 140 Z" fill="#ef4444"/><rect x="132" y="185" width="40" height="65" rx="6" fill="#a0612f"/><rect x="88" y="155" width="34" height="30" fill="#8ec5ff" stroke="#fff" stroke-width="5"/><rect x="180" y="155" width="34" height="30" fill="#8ec5ff" stroke="#fff" stroke-width="5"/><circle cx="35" cy="240" r="16" fill="#f472b6"/><circle cx="270" cy="250" r="14" fill="#facc15"/><ellipse cx="70" cy="60" rx="38" ry="16" fill="#fff"/></svg>',
+    ikan:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect width="300" height="300" fill="#5ab4e8"/><rect y="240" width="300" height="60" fill="#f6d79b"/><path d="M40 300 q-14 -40 4 -80 q16 -30 0 -60" stroke="#22c55e" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M262 300 q14 -36 -4 -70" stroke="#16a34a" stroke-width="12" fill="none" stroke-linecap="round"/><ellipse cx="140" cy="140" rx="80" ry="52" fill="#f97316"/><path d="M212 140 L270 95 L262 140 L270 185 Z" fill="#fb923c"/><path d="M110 92 q20 -24 46 -2" fill="#fb923c"/><circle cx="96" cy="128" r="12" fill="#fff"/><circle cx="93" cy="128" r="7" fill="#1f2937"/><path d="M128 110 v60 M156 104 v72" stroke="#fdba74" stroke-width="8"/><circle cx="60" cy="70" r="9" fill="#fff9"/><circle cx="76" cy="44" r="6" fill="#fff9"/><circle cx="230" cy="60" r="8" fill="#fff9"/></svg>',
+    pelangi:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect width="300" height="300" fill="#e0f2ff"/><g fill="none" stroke-width="18"><path d="M30 240 A120 120 0 0 1 270 240" stroke="#ef4444"/><path d="M48 240 A102 102 0 0 1 252 240" stroke="#f97316"/><path d="M66 240 A84 84 0 0 1 234 240" stroke="#facc15"/><path d="M84 240 A66 66 0 0 1 216 240" stroke="#22c55e"/><path d="M102 240 A48 48 0 0 1 198 240" stroke="#3b82f6"/><path d="M120 240 A30 30 0 0 1 180 240" stroke="#a855f7"/></g><ellipse cx="45" cy="245" rx="44" ry="24" fill="#fff"/><ellipse cx="255" cy="245" rx="44" ry="24" fill="#fff"/><rect y="262" width="300" height="38" fill="#7ccf7a"/><circle cx="250" cy="45" r="22" fill="#ffd34d"/></svg>',
+    mobil:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect width="300" height="300" fill="#cdeafe"/><rect y="215" width="300" height="85" fill="#6b7280"/><rect x="20" y="252" width="50" height="8" fill="#fff"/><rect x="125" y="252" width="50" height="8" fill="#fff"/><rect x="230" y="252" width="50" height="8" fill="#fff"/><path d="M40 205 L40 160 Q42 145 60 142 L95 140 L125 100 L200 100 L232 140 L258 145 Q266 150 266 165 L266 205 Z" fill="#ef4444"/><path d="M106 140 L130 110 L160 110 L160 140 Z M170 110 L196 110 L218 140 L170 140 Z" fill="#bfe6ff"/><circle cx="90" cy="210" r="26" fill="#1f2937"/><circle cx="90" cy="210" r="11" fill="#d1d5db"/><circle cx="220" cy="210" r="26" fill="#1f2937"/><circle cx="220" cy="210" r="11" fill="#d1d5db"/><circle cx="258" cy="168" r="8" fill="#fde047"/><circle cx="60" cy="50" r="24" fill="#ffd34d"/></svg>'
+  };
+  const PZNAME={kucing:'kucing',rumah:'rumah',ikan:'ikan',pelangi:'pelangi',mobil:'mobil'};
+  function startPuzzle(){
+    openLearn();
+    const PLAN=[['kucing',1,2],['rumah',2,1],['ikan',2,2],['pelangi',2,2],['mobil',2,3]];
+    let r=0;
+    function round(){
+      larea.innerHTML=''; const [key,rows,cols]=PLAN[r]; const url='url("data:image/svg+xml;utf8,'+encodeURIComponent(PZ[key])+'")';
+      const n=rows*cols; lhead.textContent=`Puzzle 🧩 ${n} keping`; say(r===0?'Ayo susun puzzle! Geser kepingnya ke tempat yang pas.':'Puzzle '+PZNAME[key]+'. Ayo susun!');
+      const W=learn.clientWidth, H=learn.clientHeight;
+      const B=Math.floor(Math.min(W*.74, H*.42, 340)), top=74;
+      const board=document.createElement('div'); board.className='pz-board'; board.style.width=board.style.height=B+'px'; board.style.top=top+'px'; board.style.left=((W-B)/2)+'px'; larea.appendChild(board);
+      const ghost=document.createElement('div'); ghost.className='pz-ghost'; ghost.style.backgroundImage=url; board.appendChild(ghost);
+      const cw=B/cols, ch=B/rows, bx=(W-B)/2, by=top;
+      const slots=[];
+      for(let i=0;i<n;i++){ const rr=Math.floor(i/cols), cc=i%cols; const sl=document.createElement('div'); sl.className='pz-slot';
+        Object.assign(sl.style,{left:cc*cw+'px',top:rr*ch+'px',width:cw+'px',height:ch+'px'}); board.appendChild(sl); slots.push(sl); }
+      // tray positions below the board
+      const trayTop=top+B+18, trayH=H-trayTop-10, scale=Math.min(1, (W-20)/(cols*cw*1.15+10), trayH/(ch*1.15*Math.ceil(n/Math.max(1,Math.min(n,3)))) );
+      const order=shuffle([...Array(n).keys()]); let placed=0;
+      const perRow=Math.min(n,3), pw=cw*scale, ph=ch*scale;
+      order.forEach((idx,k)=>{
+        const rr=Math.floor(idx/cols), cc=idx%cols;
+        const pc=document.createElement('div'); pc.className='pz-piece';
+        Object.assign(pc.style,{width:cw+'px',height:ch+'px',backgroundImage:url,backgroundSize:B+'px '+B+'px',backgroundPosition:(-cc*cw)+'px '+(-rr*ch)+'px'});
+        const row=Math.floor(k/perRow), inRow=Math.min(perRow,n-row*perRow), col=k%perRow;
+        const hx=W/2-(inRow*(pw+12))/2+col*(pw+12)+pw/2-cw/2, hy=trayTop+row*(ph+12)+ph/2-ch/2;
+        pc.style.left=hx+'px'; pc.style.top=hy+'px'; pc.style.transform=`scale(${scale})`; pc._home=[hx,hy];
+        larea.appendChild(pc);
+        let drag=null;
+        const down=e=>{ if(pc.classList.contains('ok')) return; e.preventDefault(); ctx(); const P=e.touches?e.touches[0]:e;
+          drag={sx:P.clientX, sy:P.clientY, ox:parseFloat(pc.style.left), oy:parseFloat(pc.style.top), moved:false};
+          pc.classList.add('drag'); pc.style.transform='scale(1.05)'; tone(600,700,.06,'triangle',.12); };
+        const move=e=>{ if(!drag) return; e.preventDefault(); const P=e.touches?e.touches[0]:e; const dx=P.clientX-drag.sx, dy=P.clientY-drag.sy;
+          if(Math.abs(dx)+Math.abs(dy)>6) drag.moved=true; pc.style.left=(drag.ox+dx)+'px'; pc.style.top=(drag.oy+dy)+'px'; };
+        const up=()=>{ if(!drag) return; const d=drag; drag=null; pc.classList.remove('drag');
+          const tx=bx+cc*cw, ty=by+rr*ch; const x=parseFloat(pc.style.left), y=parseFloat(pc.style.top);
+          if(Math.hypot(x-tx,y-ty) < Math.max(cw,ch)*.42){
+            pc.style.left=tx+'px'; pc.style.top=ty+'px'; pc.style.transform='scale(1)'; pc.classList.add('ok'); placed++;
+            sfx.pop(); tone(880,1320,.15,'triangle',.18,.05);
+            if(placed===n){ L.earned++; board.classList.add('pz-done'); ghost.style.opacity='1'; sfx.yay(); confetti();
+              say('Hore! Puzzle '+PZNAME[key]+' selesai! Pintar!'); r++;
+              if(r>=PLAN.length) later(()=>finishLearn('Hebat sekali! Semua puzzle selesai!'),2400); else later(round,2800); }
+            else say(rnd(['Pas!','Betul!','Bagus!']));
+          } else {
+            pc.style.left=pc._home[0]+'px'; pc.style.top=pc._home[1]+'px'; pc.style.transform=`scale(${scale})`;
+            if(!d.moved){ slots[idx].classList.remove('hint'); void slots[idx].offsetWidth; slots[idx].classList.add('hint'); say('Geser ke kotak yang kuning'); }
+            else { tone(260,200,.15,'triangle',.1); say(rnd(['Coba lagi','Hampir!','Bukan di situ'])); }
+          } };
+        if(window.PointerEvent){ pc.addEventListener('pointerdown',e=>{ try{pc.setPointerCapture(e.pointerId);}catch(_){} down(e); }); pc.addEventListener('pointermove',move); pc.addEventListener('pointerup',up); pc.addEventListener('pointercancel',up); }
+        else { pc.addEventListener('touchstart',down,{passive:false}); pc.addEventListener('touchmove',move,{passive:false}); pc.addEventListener('touchend',up); }
+      });
     }
     round();
   }
