@@ -40,9 +40,16 @@
   .err{color:#d83a3a;font-weight:800;min-height:1.2em}
   #loading{position:fixed;inset:0;display:none;align-items:center;justify-content:center;font-size:24px;font-weight:900;background:#fff7ee}
   .hide{display:none}
+  .kids{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
+  .kid{position:relative;border:none;background:#fff;border-radius:26px;padding:12px 8px 14px;box-shadow:0 6px 0 #ecd9c4;font:inherit;font-size:22px;font-weight:900;color:#4a3428}
+  .kid svg{width:110px;height:100px;display:block;margin:0 auto}
+  .kid .ed{position:absolute;top:6px;right:6px;width:38px;height:38px;border-radius:50%;background:#f3e8da;font-size:18px;display:flex;align-items:center;justify-content:center}
+  #delKid,#backPick{display:block}
 </style>
 </head><body>
 <div id="loading">Memuat… 🐾</div>
+<div class="wrap hide" id="picker"><div class="hero"><h1>Siapa yang main? 🐾</h1><p class="sub">Ketuk namamu</p></div><div class="kids" id="kids"></div>
+  <button class="go" id="addKid" style="background:#58c39a;box-shadow:0 8px 0 #3a9a74">➕ Tambah anak</button><p class="muted" style="text-align:center;margin-top:14px">✏️ untuk mengubah profil</p></div>
 <div class="wrap hide" id="setup">
   <div class="hero"><div class="cat" id="heroCat"></div><h1>Kucingku 🐾</h1><p class="sub">Isi dulu ya, Ayah/Bunda. Cuma sekali, nanti bisa diubah di Menu Orang Tua.</p></div>
   <div class="card"><h2>👧 Nama anak</h2><input type="text" id="fChild" maxlength="16" placeholder="contoh: Aisyah" autocomplete="off">
@@ -60,6 +67,8 @@
     <div class="muted" style="margin-top:6px">Doa harian, huruf hijaiyah, dan surat pendek.</div></div>
   <div class="err" id="err"></div>
   <button class="go" id="save">Mulai main! 🐾</button>
+  <button class="chip" id="delKid" style="display:none;margin:18px auto 0;background:#fde2e2;color:#b03030">🗑️ Hapus profil anak ini</button>
+  <button class="chip" id="backPick" style="display:none;margin:10px auto 0">◀ Kembali</button>
 </div>
 <script>
 const PKEY='kucingUmumProfil';
@@ -71,9 +80,15 @@ const DADS=['Papa','Ayah','Abi','Bapak','Daddy','Abah'], MOMS=['Mama','Bunda','U
 const clean=(v,n)=>String(v||'').replace(/[^A-Za-zÀ-ÿ0-9 \-]/g,'').replace(/\s+/g,' ').trim().slice(0,n||16);
 const cap=v=>v.replace(/\b\w/g,c=>c.toUpperCase());
 function catSvg(p){ const [n,b,s,l,d]=PAL[p]; const id='g'+p; return `<svg viewBox="0 0 120 110"><defs><radialGradient id="${id}" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="${l}"/><stop offset=".55" stop-color="${b}"/><stop offset="1" stop-color="${d}"/></radialGradient></defs><ellipse cx="60" cy="104" rx="38" ry="5" fill="#000" opacity=".1"/><path d="M20 44 L26 8 L52 28 Z M100 44 L94 8 L68 28 Z" fill="url(#${id})"/><path d="M28 34 L30 18 L44 28Z M92 34 L90 18 L76 28Z" fill="#ffb7c5"/><ellipse cx="60" cy="58" rx="44" ry="40" fill="url(#${id})"/><path d="M50 26 q10 -4 20 0" stroke="${s}" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="60" cy="72" rx="24" ry="18" fill="#fff3e2"/><ellipse cx="42" cy="54" rx="9" ry="11" fill="#fff"/><ellipse cx="78" cy="54" rx="9" ry="11" fill="#fff"/><ellipse cx="43" cy="56" rx="7" ry="9" fill="#e0a13e"/><ellipse cx="79" cy="56" rx="7" ry="9" fill="#e0a13e"/><ellipse cx="43" cy="57" rx="4" ry="6" fill="#1f140d"/><ellipse cx="79" cy="57" rx="4" ry="6" fill="#1f140d"/><circle cx="46" cy="51" r="2.6" fill="#fff"/><circle cx="82" cy="51" r="2.6" fill="#fff"/><path d="M55 66 h10 l-5 6z" fill="#ff7b95"/><path d="M60 72 q-5 6 -10 2 M60 72 q5 6 10 2" stroke="#3b2a20" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`; }
-function prof(){ try{ return JSON.parse(localStorage.getItem(PKEY)||'null'); }catch(e){ return null; } }
+const LKEY='kucingUmumProfiles';
+function loadAll(){ let A=null; try{ A=JSON.parse(localStorage.getItem(LKEY)||'null'); }catch(e){} if(!A){ A={list:[],active:null}; try{ const old=JSON.parse(localStorage.getItem(PKEY)||'null'); if(old&&old.child){ old.id='a'; A.list.push(old); A.active='a'; } }catch(e){} saveAll(A); } return A; }
+function saveAll(A){ localStorage.setItem(LKEY,JSON.stringify(A)); }
+function keysOf(P){ return P.id==='a'?{skey:'kucingUmum',idb:'kucingDB-umum'}:{skey:'kucingUmum-'+P.id,idb:'kucingDB-umum-'+P.id}; }
+function prof(){ const A=loadAll(); return A.list.find(x=>x.id===A.active)||null; }
 function esc(v){ return String(v).replace(/[\\'"`$<>{}]/g,''); }
 async function launch(P){
+  const A=loadAll(); A.active=P.id; saveAll(A); localStorage.setItem(PKEY,JSON.stringify(P)); const KS=keysOf(P);
+  document.getElementById('picker').classList.add('hide');
   document.getElementById('setup').classList.add('hide'); document.getElementById('loading').style.display='flex';
   let t; try{ t=await (await fetch('app.html',{cache:'no-cache'})).text(); }catch(e){ t=await (await fetch('app.html')).text(); }
   const C=PAL[P.color]||PAL.oranye, S=PAL[P.sibColor]||PAL.abu, O=PAL.oranye;
@@ -85,7 +100,7 @@ async function launch(P){
   const twin=!!P.twin, has=!!P.sib;
   const V={CHILD:esc(P.child),TWIN:esc(P.sib||'Kakak'),CAT:esc(P.cat||('Kucing '+P.child)),DAD:esc(P.dad||'Ayah'),MOM:esc(P.mom||'Bunda'),SALEH:P.gender==='l'?'saleh':'salehah',
     SK:twin?'Si Kembar':'Bersaudara',KB:twin?'Kembar':'Saudara',KBN:twin?'Kembaran':'Saudara',SK2:twin?'Si kembar':'Mereka berdua',kbn:twin?'kembaran':'saudara',
-    DOAMAKAN:P.islam===false?'Sebelum makan, berdoa dulu ya.':'Sebelum makan, baca doa dulu ya: Allahumma baarik lanaa.',HASSIB:has?'true':'false',
+    DOAMAKAN:P.islam===false?'Sebelum makan, berdoa dulu ya.':'Sebelum makan, baca doa dulu ya: Allahumma baarik lanaa.',HASSIB:has?'true':'false',SKEY:KS.skey,IDB:KS.idb,MULTI:A.list.length>1?'true':'false',
     HIDE:[].concat(has?[]:['twins','post','meet']).concat(P.islam===false?['doa','quran']:[]).join(','),
     C0:C[1],C1:C[2],C2:C[3],C3:C[4],S0:S[1],S1:S[2],S2:S[3],S3:S[4]};
   t=t.replace(/@@(\w+)@@/g,(m,k)=>V[k]!==undefined?V[k]:m);
@@ -93,7 +108,7 @@ async function launch(P){
 }
 function setupForm(P){
   P=P||{}; const $=id=>document.getElementById(id);
-  document.getElementById('setup').classList.remove('hide');
+  document.getElementById('picker').classList.add('hide'); document.getElementById('setup').classList.remove('hide'); window.scrollTo(0,0);
   let color=P.color||'oranye', sibColor=P.sibColor||'abu', theme=P.theme||'peach', dad=P.dad||'Ayah', mom=P.mom||'Bunda', gender=P.gender||'p', islam=P.islam!==false, twin=!!P.twin;
   $('fChild').value=P.child||''; $('fCat').value=P.cat||''; $('fSib').value=P.sib||'';
   const hero=()=>{ $('heroCat').innerHTML=catSvg(color); };
@@ -106,10 +121,18 @@ function setupForm(P){
   const th=$('fTheme'); Object.keys(THEMES).forEach(k=>{ const [n,w,f]=THEMES[k]; const b=document.createElement('button'); b.style.background=`linear-gradient(${w} 0 60%, ${f} 60%)`; b.textContent=n; if(k===theme) b.classList.add('on'); b.onclick=()=>{ theme=k; th.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); }; th.appendChild(b); });
   hero();
   $('save').onclick=()=>{ const child=cap(clean($('fChild').value)); if(!child){ $('err').textContent='Isi nama anak dulu ya 🙏'; $('fChild').focus(); return; }
-    const NP={child,gender,color,cat:clean($('fCat').value,20)||('Kucing '+child),dad,mom,sib:cap(clean($('fSib').value)),twin,sibColor,theme,islam};
-    localStorage.setItem(PKEY,JSON.stringify(NP)); history.replaceState(null,'','./'); launch(NP); };
+    const A=loadAll(); const id=P.id||Math.random().toString(36).slice(2,8);
+    const NP={id,child,gender,color,cat:clean($('fCat').value,20)||('Kucing '+child),dad,mom,sib:cap(clean($('fSib').value)),twin,sibColor,theme,islam};
+    const i=A.list.findIndex(x=>x.id===id); if(i>=0) A.list[i]=NP; else A.list.push(NP); A.active=id; saveAll(A); history.replaceState(null,'','./'); launch(NP); };
+  const A0=loadAll(); $('backPick').style.display=A0.list.length?'block':'none'; $('backPick').onclick=()=>{ history.replaceState(null,'','./'); showPicker(); };
+  if(P.id && A0.list.length>1){ $('delKid').style.display='block'; let sure=false; $('delKid').onclick=()=>{ if(!sure){ sure=true; $('delKid').textContent='Ketuk sekali lagi untuk menghapus '+P.child; return; }
+      const A=loadAll(); A.list=A.list.filter(x=>x.id!==P.id); if(A.active===P.id) A.active=A.list[0]&&A.list[0].id; saveAll(A); const k=keysOf(P); try{ localStorage.removeItem(k.skey); indexedDB.deleteDatabase(k.idb); }catch(e){} location.replace('./?pick=1'); }; }
 }
 if('serviceWorker' in navigator){ window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); }); }
-const P=prof(); if(!P || /[?&]setup=1/.test(location.search)) setupForm(P); else launch(P);
+function showPicker(){ const A=loadAll(); document.getElementById('setup').classList.add('hide'); const pk=document.getElementById('picker'); pk.classList.remove('hide'); const box=document.getElementById('kids'); box.innerHTML='';
+  A.list.forEach(P=>{ const b=document.createElement('button'); b.className='kid'; b.innerHTML=catSvg(P.color||'oranye')+P.child+'<span class="ed">✏️</span>'; box.appendChild(b);
+    b.onclick=e=>{ if(e.target.closest('.ed')){ history.replaceState(null,'','./?setup=1'); setupForm(P); return; } launch(P); }; });
+  document.getElementById('addKid').onclick=()=>{ history.replaceState(null,'','./?new=1'); setupForm({}); }; }
+(function(){ const A=loadAll(), q=location.search; if(/[?&]new=1/.test(q)) setupForm({}); else if(/[?&]setup=1/.test(q)) setupForm(prof()||{}); else if(/[?&]pick=1/.test(q)||A.list.length>1) { if(A.list.length) showPicker(); else setupForm({}); } else if(A.list.length===1) launch(A.list[0]); else setupForm({}); })();
 </script>
 </body></html>
