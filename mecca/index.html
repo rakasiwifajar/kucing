@@ -777,7 +777,7 @@
 
   /* ===== v18 tampilan ===== */
   #learn .head{white-space:nowrap;overflow:hidden;line-height:1.2;max-width:calc(100% - 150px);padding:6px 16px}
-  #learn .head>span.em:last-child{order:-1}
+  #learn .head{display:block;text-align:center}
   /* 2. cerita mengisi layar */
   .story .pic.hasScn{flex:1 1 auto;min-height:150px;display:flex;align-items:stretch}
   .story .pic.hasScn .scn{height:auto;flex:1;min-height:150px}
@@ -846,6 +846,21 @@
     .cam{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto auto 1fr;justify-items:center;gap:10px 24px;align-content:center}
     .camv{grid-row:1/6;width:min(42vw,70vh,420px)}
   }
+
+  /* ===== v19 presisi tampilan ===== */
+  #cap{transform:translate(-50%,8px)}#cap.show{transform:translate(-50%,0)}
+  #cap.low{font-size:clamp(14px,3.8vw,18px);padding:6px 14px;background:rgba(255,255,255,.9)}
+  #learn .head.wrap2{display:block;white-space:normal;line-height:1.15;text-align:center;padding:6px 14px}
+  @media (max-width:430px){ .twinstage{bottom:190px} }
+  @media (max-width:360px){
+    #tl{gap:4px;left:8px}#tl button{width:38px;height:38px;font-size:20px}
+    #stars{right:58px;padding:4px 10px;font-size:20px;gap:4px}
+    #sound{width:46px;height:46px;font-size:23px;right:8px}
+  }
+  .twinstage .tc .nm{bottom:auto;top:-24px}
+  #spMic ~ #spOk,#spMic ~ #spAgain{bottom:calc(clamp(110px,30vw,140px) + 40px)!important}
+  @media (max-width:380px){ .szrow{zoom:.78} }
+  .hija{top:150px}
 </style>
 </head>
 <body>
@@ -3712,8 +3727,11 @@
   const cap=document.createElement('div'); cap.id='cap'; document.body.appendChild(cap);
   let capT=null, capW=null;
   function capHide(){ cap.classList.remove('show'); }
-  function capSkip(){ const g=learn.classList.contains('show')?learn.dataset.g:''; return !S7.cap||!!document.querySelector('.panel.show')||['story','adv','journey','sing'].includes(g); }
-  function capShow(text){ clearTimeout(capT); clearTimeout(capW); if(capSkip()||!text){ capHide(); return null; }
+  function capSkip(){ const g=learn.classList.contains('show')?learn.dataset.g:''; return !S7.cap||!!document.querySelector('.panel.show')||picker.classList.contains('show')||['story','adv','journey','sing'].includes(g); }
+  function capNorm(x){ return String(x).toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); }
+  function capDup(text){ try{ const t=capNorm(text); if(t.length<4) return false; const root=learn.classList.contains('show')?learn:document.getElementById('room'); return capNorm(root.innerText||'').includes(t); }catch(e){ return false; } }
+  function capPlace(){ try{ if(learn.classList.contains('show')){ cap.style.top='auto'; cap.style.bottom='calc(env(safe-area-inset-bottom,0px) + 8px)'; cap.classList.add('low'); } else { const bt=document.getElementById('bar').getBoundingClientRect().top; cap.style.top='auto'; cap.style.bottom=Math.max(8,innerHeight-bt+10)+'px'; cap.classList.remove('low'); } }catch(e){} }
+  function capShow(text){ clearTimeout(capT); clearTimeout(capW); if(capSkip()||!text||capDup(text)){ capHide(); return null; } capPlace();
     cap.innerHTML=text.split(/\s+/).filter(Boolean).map(w=>`<span>${esc7(w)}</span>`).join(' '); cap.classList.add('show'); capT=setTimeout(capHide,2500+text.length*110); return cap.querySelectorAll('span'); }
   function capFor(u){ const text=u.text||''; const sp=capShow(text); if(!sp||!sp.length) return; const starts=[]; text.replace(/\S+/g,(m,i)=>{ starts.push(i); return m; });
     let gotB=false, idx=-1; const rate=u.rate||1;
@@ -3923,7 +3941,7 @@
 
   /* ================= v18: tampilan ================= */
   /* 1. judul game satu baris, emoji di depan, huruf menyesuaikan */
-  function fitHead(){ const h=lhead; if(!h||!learn.classList.contains('show')) return; h.style.fontSize=''; let fs=parseFloat(getComputedStyle(h).fontSize)||24, n=0; while(h.scrollWidth>h.clientWidth+1&&fs>13&&n<30){ fs-=1; n++; h.style.fontSize=fs+'px'; } }
+  function fitHead(){ const h=lhead; if(!h||!learn.classList.contains('show')) return; h.classList.remove('wrap2'); h.style.fontSize='';  let fs=parseFloat(getComputedStyle(h).fontSize)||24, n=0; while(h.scrollWidth>h.clientWidth+1&&fs>16&&n<30){ fs-=1; n++; h.style.fontSize=fs+'px'; } if(h.scrollWidth>h.clientWidth+1){ h.classList.add('wrap2'); h.style.fontSize='16px'; } }
   try{ new MutationObserver(()=>requestAnimationFrame(fitHead)).observe(lhead,{childList:true,characterData:true,subtree:true}); addEventListener('resize',()=>requestAnimationFrame(fitHead)); }catch(e){}
 
   /* 4. kartu perasaan jadi lembar dari bawah */
