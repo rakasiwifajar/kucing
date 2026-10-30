@@ -188,6 +188,29 @@
   .ripple{position:absolute;width:20px;height:20px;border-radius:50%;border:3px solid #fff;opacity:.9;animation:rip .7s ease-out forwards;pointer-events:none}
   @keyframes rip{to{width:90px;height:90px;margin:-35px 0 0 -35px;opacity:0}}
   #rodline{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:3}
+  .stage{position:absolute;left:0;right:0;top:0;bottom:0;background:radial-gradient(ellipse at 50% 110%,#5b2a86 0,#2a1747 55%,#160c29 100%);overflow:hidden}
+  .stage .floor{position:absolute;left:-10%;right:-10%;bottom:calc(var(--songsH,200px) + 10px);height:22%;background:repeating-conic-gradient(#ff7bd5 0 25%,#7b5cff 0 50%) 0 0/60px 60px;transform:perspective(300px) rotateX(55deg);transform-origin:bottom;opacity:.55}
+  .light{position:absolute;top:-40px;width:120px;height:120%;opacity:.28;transform-origin:top center;filter:blur(2px);pointer-events:none}
+  .ball{position:absolute;top:58px;left:50%;margin-left:-26px;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#bbb 40%,#777);box-shadow:0 0 22px #fff8;animation:spinb 3s linear infinite}
+  .ball::before{content:"";position:absolute;left:50%;top:-60px;width:2px;height:60px;background:#ccc}
+  @keyframes spinb{to{transform:rotate(360deg)}}
+  .dancers{position:absolute;left:0;right:0;bottom:calc(var(--songsH,200px) + 40px);display:flex;justify-content:center;align-items:flex-end;gap:2%}
+  .dancer{width:min(42vw,30vh,230px);height:min(42vw,30vh,230px);transform-origin:50% 100%;transition:transform .18s ease-out}
+  .dancer svg{width:100%;height:100%;overflow:visible}
+  .dancer.up{transform:translateY(-12%) scale(1.04,.97)}
+  .dancer.left{transform:rotate(-10deg)}
+  .dancer.right{transform:rotate(10deg)}
+  .dancer.spin{animation:spin1 .6s ease-in-out}
+  @keyframes spin1{to{transform:rotateY(360deg)}}
+  .wl .armL{transform-origin:62px 132px;transition:transform .18s} .wl .armR{transform-origin:138px 132px;transition:transform .18s}
+  .wl.armsUp .armL{transform:rotate(130deg)} .wl.armsUp .armR{transform:rotate(-130deg)}
+  .wl.armsWave .armL{transform:rotate(60deg)} .wl.armsWave .armR{transform:rotate(-20deg)}
+  .nm{position:absolute;bottom:-26px;left:0;right:0;text-align:center;color:#fff;font-weight:900;font-size:clamp(14px,4vw,20px);text-shadow:0 2px 0 #0006}
+  .songs{position:absolute;left:0;right:0;bottom:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 10px}
+  .songs button{border:none;border-radius:18px;background:#fff;font-size:clamp(13px,3.6vw,17px);font-weight:900;padding:8px 4px;box-shadow:0 5px 0 #c9b7e8;color:#4a3428;display:flex;flex-direction:column;align-items:center;gap:2px}
+  .songs button b{font-size:clamp(24px,6.5vw,32px)}
+  .songs button.on{background:#ffd34d;box-shadow:0 5px 0 #c9a12a}
+  .note2{position:absolute;font-size:30px;animation:rise 1.4s ease-out forwards;pointer-events:none}
   /* start */
   #start{position:absolute;top:0;left:0;right:0;bottom:0;z-index:20;background:rgba(253,241,227,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:20px}
   #start h1{margin:0;font-size:clamp(30px,8vw,56px)}
@@ -320,6 +343,7 @@
     <button data-game="peek" style="background:#e8a33d">🙈<small>Cilukba</small></button>
     <button data-game="puzzle" style="background:#7c6fe0">🧩<small>Puzzle</small></button>
     <button data-game="fishing" style="background:#3b82f6">🎣<small>Mancing</small></button>
+    <button data-game="dance" style="background:#e86fc4">💃<small>Joget</small></button>
   </div></div>
   <div id="meal"><div class="sheet">
     <div class="mt" id="mealTitle">Makan bareng Kucing Medina</div>
@@ -678,7 +702,7 @@
     if(g==='ball') runAct('fun'); else if(g==='yarn') runAct('yarn'); else if(g==='bubble') startBubbles();
     else if(g==='color') startTarget('color'); else if(g==='shape') startTarget('shape');
     else if(g==='count') startCount(); else if(g==='animal') startAnimals(); else if(g==='pop2') startTarget('fish');
-    else if(g==='piano') startPiano(); else if(g==='draw') startDraw(); else if(g==='shadow') startShadow(); else if(g==='peek') startPeek(); else if(g==='puzzle') startPuzzle(); else if(g==='fishing') startFishing();
+    else if(g==='piano') startPiano(); else if(g==='draw') startDraw(); else if(g==='shadow') startShadow(); else if(g==='peek') startPeek(); else if(g==='puzzle') startPuzzle(); else if(g==='fishing') startFishing(); else if(g==='dance') startDance();
   }));
 
   /* bubble mini game */
@@ -1044,6 +1068,90 @@
     // tapping the water makes a ripple
     larea.querySelector('.pond-water').addEventListener('click',e=>{ const rp=document.createElement('div'); rp.className='ripple';
       rp.style.left=(e.clientX-R.left-10)+'px'; rp.style.top=(e.clientY-R.top-10)+'px'; larea.appendChild(rp); setTimeout(()=>rp.remove(),800); tone(500,250,.12,'sine',.08); });
+  }
+
+  /* Joget bareng Wulan */
+  const WULAN_SVG=`<svg viewBox="0 0 200 260">
+    <g class="legs"><rect x="78" y="196" width="16" height="46" rx="8" fill="#f2c39c"/><rect x="106" y="196" width="16" height="46" rx="8" fill="#f2c39c"/>
+      <ellipse cx="84" cy="246" rx="16" ry="9" fill="#ff5d8f"/><ellipse cx="116" cy="246" rx="16" ry="9" fill="#ff5d8f"/></g>
+    <path d="M70 124 Q100 112 130 124 L152 206 Q100 222 48 206 Z" fill="#ff86b6"/>
+    <path d="M58 196 Q100 212 142 196" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/>
+    <circle cx="80" cy="170" r="5" fill="#fff" opacity=".8"/><circle cx="118" cy="160" r="5" fill="#fff" opacity=".8"/><circle cx="104" cy="188" r="5" fill="#fff" opacity=".8"/>
+    <g class="armL"><rect x="54" y="128" width="14" height="52" rx="7" fill="#f2c39c"/><circle cx="61" cy="182" r="9" fill="#f2c39c"/></g>
+    <g class="armR"><rect x="132" y="128" width="14" height="52" rx="7" fill="#f2c39c"/><circle cx="139" cy="182" r="9" fill="#f2c39c"/></g>
+    <circle cx="100" cy="78" r="50" fill="#f2c39c"/>
+    <path d="M50 78 Q50 26 100 26 Q150 26 150 78 Q140 50 100 48 Q60 50 50 78 Z" fill="#3b2418"/>
+    <circle cx="42" cy="60" r="16" fill="#3b2418"/><circle cx="158" cy="60" r="16" fill="#3b2418"/>
+    <circle cx="52" cy="48" r="7" fill="#ff5d8f"/><circle cx="148" cy="48" r="7" fill="#ff5d8f"/>
+    <ellipse cx="82" cy="84" rx="7" ry="9" fill="#3b2418"/><ellipse cx="118" cy="84" rx="7" ry="9" fill="#3b2418"/>
+    <circle cx="84" cy="81" r="2.5" fill="#fff"/><circle cx="120" cy="81" r="2.5" fill="#fff"/>
+    <ellipse cx="70" cy="100" rx="9" ry="6" fill="#ff9fb2" opacity=".8"/><ellipse cx="130" cy="100" rx="9" ry="6" fill="#ff9fb2" opacity=".8"/>
+    <path d="M86 104 Q100 118 114 104" stroke="#3b2418" stroke-width="5" fill="#fff" stroke-linecap="round"/>
+  </svg>`;
+  const midi=m=>440*Math.pow(2,(m-69)/12);
+  const SONGS=[
+    {n:'Kelap-Kelip Bintang',e:'⭐',bpm:104,mel:[[60,1],[60,1],[67,1],[67,1],[69,1],[69,1],[67,2],[65,1],[65,1],[64,1],[64,1],[62,1],[62,1],[60,2],[67,1],[67,1],[65,1],[65,1],[64,1],[64,1],[62,2],[67,1],[67,1],[65,1],[65,1],[64,1],[64,1],[62,2]],bass:[48,48,53,48,53,48,55,48]},
+    {n:'Kebun Pak Tani',e:'🐮',bpm:116,mel:[[67,1],[67,1],[67,1],[62,1],[64,1],[64,1],[62,2],[71,1],[71,1],[69,1],[69,1],[67,3],[null,1],[62,1],[67,1],[67,1],[67,1],[62,1],[64,1],[64,1],[62,2],[71,1],[71,1],[69,1],[69,1],[67,4]],bass:[43,48,43,50,43,48,50,43]},
+    {n:'Lagu Gembira',e:'🎻',bpm:112,mel:[[64,1],[64,1],[65,1],[67,1],[67,1],[65,1],[64,1],[62,1],[60,1],[60,1],[62,1],[64,1],[64,1.5],[62,.5],[62,2],[64,1],[64,1],[65,1],[67,1],[67,1],[65,1],[64,1],[62,1],[60,1],[60,1],[62,1],[64,1],[62,1.5],[60,.5],[60,2]],bass:[48,43,48,43,48,43,43,48]},
+    {n:'Goyang Seru',e:'🕺',bpm:122,mel:[[64,.5],[67,.5],[69,.5],[67,.5],[64,.5],[62,.5],[60,1],[64,.5],[67,.5],[69,.5],[72,.5],[69,.5],[67,.5],[64,1],[64,.5],[67,.5],[69,.5],[67,.5],[64,.5],[62,.5],[60,.5],[62,.5],[64,.5],[62,.5],[60,1],[null,1]],bass:[48,48,45,45,41,41,43,43]},
+    {n:'Disko Kucing',e:'🪩',bpm:126,mel:[[69,.5],[72,.5],[76,.5],[72,.5],[67,.5],[71,.5],[74,.5],[71,.5],[65,.5],[69,.5],[72,.5],[69,.5],[64,.5],[68,.5],[71,.5],[76,.5]],bass:[45,43,41,40]},
+    {n:'Joget Santai',e:'🌴',bpm:96,mel:[[60,.5],[62,.5],[64,.5],[67,.5],[69,1],[67,1],[64,.5],[62,.5],[60,1],[null,1],[67,.5],[69,.5],[67,.5],[64,.5],[62,1],[64,1],[60,2],[null,1]],bass:[48,48,45,45,41,43,48,48]}
+  ];
+  function startDance(){
+    openLearn(); lhead.textContent='Joget bareng Wulan 💃';
+    const catSvg=document.getElementById('cat').outerHTML.replace(/ id="[^"]*"/g,'').replace('<svg','<svg class="dcat"');
+    larea.innerHTML=`<div class="stage"><div class="floor"></div><div class="ball"></div>
+      <div class="light" style="left:8%;background:linear-gradient(#ff7bd5,transparent);transform:rotate(-18deg)"></div>
+      <div class="light" style="right:8%;background:linear-gradient(#7bdcff,transparent);transform:rotate(18deg)"></div>
+      <div class="dancers"><div class="dancer wl" id="dW">${WULAN_SVG}<div class="nm">Wulan</div></div><div class="dancer" id="dC">${catSvg}<div class="nm">Kucing Medina</div></div></div>
+      <div class="songs" id="songs"></div></div>`;
+    const dW=document.getElementById('dW'), dC=document.getElementById('dC'), songsEl=document.getElementById('songs'), lights=larea.querySelectorAll('.light');
+    setTimeout(()=>{ larea.querySelector('.stage').style.setProperty('--songsH', songsEl.offsetHeight+'px'); },0);
+    say('Ayo joget bareng Wulan dan Kucing Medina! Pilih lagunya.');
+    let cur=null, beat=0, sched=null, nextT=0, mi=0, bi=0, danceSecs=0;
+    function kick(t){ voice({f:[[0,150],[1,45]],dur:.18,type:'sine',vol:.6,delay:t-ac.currentTime,attack:.003}); }
+    function snare(t){ voice({noise:.9,dur:.14,formants:[[1800,1,1.5]],vol:.25,delay:t-ac.currentTime,attack:.003}); }
+    function hat(t){ voice({noise:.6,dur:.05,formants:[[8000,1,1.5]],vol:.12,delay:t-ac.currentTime,attack:.002}); }
+    function note(m,t,d,type,vol){ const f=midi(m); try{ const o=ac.createOscillator(), g=ac.createGain(); o.type=type; o.frequency.value=f;
+      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+.02); g.gain.exponentialRampToValueAtTime(0.0001,t+d*.95);
+      o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t+d); }catch(e){} }
+    function onBeat(b){
+      const moves=['up','left','up','right']; [dW,dC].forEach((d,i)=>{ d.classList.remove('up','left','right'); d.classList.add(moves[(b+i*2)%4]); });
+      dW.classList.toggle('armsUp', b%4===0||b%4===2); dW.classList.toggle('armsWave', b%4===1);
+      if(b%8===7){ [dW,dC].forEach(d=>{ d.classList.remove('spin'); void d.offsetWidth; d.classList.add('spin'); }); }
+      lights.forEach((l,i)=>l.style.transform=`rotate(${(b%2?1:-1)*(i?1:-1)*22}deg)`);
+      if(b%2===0){ const e=document.createElement('div'); e.className='note2'; e.textContent=rnd(['🎵','🎶','✨','💖','⭐']);
+        e.style.left=(10+Math.random()*80)+'%'; e.style.top=(30+Math.random()*30)+'%'; larea.querySelector('.stage').appendChild(e); setTimeout(()=>e.remove(),1500); }
+    }
+    function scheduler(){
+      if(!cur||!L.alive) return; const spb=60/cur.bpm;
+      while(nextT < ac.currentTime+0.2){
+        // drums & bass on each beat (we step in half beats)
+        const step=Math.round(beat*2);
+        if(step%2===0){ const b=step/2; if(b%2===0) kick(nextT); else snare(nextT);
+          note(cur.bass[Math.floor(b/2)%cur.bass.length]-12,nextT,spb*.9,'triangle',.22);
+          const delay=Math.max(0,(nextT-ac.currentTime)*1000); const bb=b; setTimeout(()=>{ if(cur) onBeat(bb); },delay); }
+        hat(nextT);
+        // melody
+        if(mi_t<=beat+1e-6){ const [m,d]=cur.mel[mi]; if(m) { note(m,nextT,d*spb,'square',.07); note(m+12,nextT,d*spb*.8,'sine',.06); } mi_t+=d; mi=(mi+1)%cur.mel.length; if(mi===0){ /*loop*/ } }
+        beat+=.5; nextT+=spb/2;
+      }
+    }
+    let mi_t=0;
+    function play(i){
+      ctx(); if(!ac) return; cur=SONGS[i]; beat=0; mi=0; mi_t=0; nextT=ac.currentTime+.6;
+      songsEl.querySelectorAll('button').forEach((b,k)=>b.classList.toggle('on',k===i));
+      say('Lagu '+cur.n+'. Ayo joget!');
+      clearInterval(sched); sched=every(scheduler,25);
+    }
+    function stop(){ cur=null; clearInterval(sched); songsEl.querySelectorAll('button').forEach(b=>b.classList.remove('on')); [dW,dC].forEach(d=>d.classList.remove('up','left','right')); }
+    SONGS.forEach((sg,i)=>{ const b=document.createElement('button'); b.innerHTML=`<b>${sg.e}</b>${sg.n}`; songsEl.appendChild(b);
+      b.addEventListener('click',()=>{ sfx.click(); if(cur===sg){ stop(); say('Istirahat dulu'); } else play(i); }); });
+    // tap the dancers
+    onTap(dW,()=>{ dW.classList.remove('spin'); void dW.offsetWidth; dW.classList.add('spin'); say(rnd(['Hore! Wulan joget!','Ayo ikut joget!','Goyang terus!'])); });
+    onTap(dC,()=>{ dC.classList.remove('spin'); void dC.offsetWidth; dC.classList.add('spin'); sfx.meow(); });
+    every(()=>{ if(cur){ danceSecs++; if(danceSecs%20===0 && L.earned<5){ L.earned++; sfx.star(); say(rnd(['Wah, pintar joget!','Keren sekali!','Terus joget!'])); } } },1000);
+    L.earned=Math.max(L.earned,1);
   }
 
   /* Hewan */
