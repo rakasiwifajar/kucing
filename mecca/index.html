@@ -174,6 +174,20 @@
   .pz-piece.drag{transition:none;transform:scale(1.08);z-index:9;box-shadow:0 12px 18px rgba(0,0,0,.25),0 0 0 3px #fff}
   .pz-piece.ok{box-shadow:none;border-radius:0;cursor:default;z-index:3}
   .pz-done{animation:bounce .5s 2}
+  .pond-sky{position:absolute;left:0;right:0;top:0;height:26%;background:linear-gradient(#bfe6ff,#e6f6ff)}
+  .pond-water{position:absolute;left:0;right:0;top:26%;bottom:0;background:linear-gradient(#5ab4e8,#2f7fc0)}
+  .pond-water::before{content:"";position:absolute;left:0;right:0;top:-10px;height:20px;background:radial-gradient(circle at 10px 0,transparent 10px,#5ab4e8 11px) repeat-x;background-size:20px 20px}
+  .dock{position:absolute;left:0;top:calc(26% - 26px);width:34%;height:30px;background:#a0612f;border-radius:0 8px 8px 0;box-shadow:0 6px 0 #7a4520}
+  .dock::after{content:"";position:absolute;left:18%;top:30px;width:12px;height:60px;background:#7a4520}
+  .fcat{position:absolute;left:6%;top:calc(26% - 92px);font-size:clamp(54px,15vw,76px);line-height:1}
+  .bucket{position:absolute;right:12px;top:calc(26% - 84px);background:#fff;border-radius:20px;padding:4px 12px;font-size:clamp(30px,8vw,42px);font-weight:900;box-shadow:0 4px 0 #ecd9c4;display:flex;align-items:center;gap:6px}
+  .bucket span{font-size:clamp(22px,6vw,30px);color:#3b82f6}
+  .fish{position:absolute;width:clamp(78px,22vw,110px);height:clamp(46px,13vw,64px);cursor:pointer;z-index:2}
+  .fish svg{width:100%;height:100%;overflow:visible}
+  .fish.hooked{animation:wiggle .25s infinite}
+  .ripple{position:absolute;width:20px;height:20px;border-radius:50%;border:3px solid #fff;opacity:.9;animation:rip .7s ease-out forwards;pointer-events:none}
+  @keyframes rip{to{width:90px;height:90px;margin:-35px 0 0 -35px;opacity:0}}
+  #rodline{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:3}
   /* start */
   #start{position:absolute;top:0;left:0;right:0;bottom:0;z-index:20;background:rgba(253,241,227,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:20px}
   #start h1{margin:0;font-size:clamp(30px,8vw,56px)}
@@ -305,6 +319,7 @@
     <button data-game="shadow" style="background:#4a3428">👤<small>Bayangan</small></button>
     <button data-game="peek" style="background:#e8a33d">🙈<small>Cilukba</small></button>
     <button data-game="puzzle" style="background:#7c6fe0">🧩<small>Puzzle</small></button>
+    <button data-game="fishing" style="background:#3b82f6">🎣<small>Mancing</small></button>
   </div></div>
   <div id="meal"><div class="sheet">
     <div class="mt" id="mealTitle">Makan bareng Kucing Mecca</div>
@@ -663,7 +678,7 @@
     if(g==='ball') runAct('fun'); else if(g==='yarn') runAct('yarn'); else if(g==='bubble') startBubbles();
     else if(g==='color') startTarget('color'); else if(g==='shape') startTarget('shape');
     else if(g==='count') startCount(); else if(g==='animal') startAnimals(); else if(g==='pop2') startTarget('fish');
-    else if(g==='piano') startPiano(); else if(g==='draw') startDraw(); else if(g==='shadow') startShadow(); else if(g==='peek') startPeek(); else if(g==='puzzle') startPuzzle();
+    else if(g==='piano') startPiano(); else if(g==='draw') startDraw(); else if(g==='shadow') startShadow(); else if(g==='peek') startPeek(); else if(g==='puzzle') startPuzzle(); else if(g==='fishing') startFishing();
   }));
 
   /* bubble mini game */
@@ -969,6 +984,66 @@
       });
     }
     round();
+  }
+
+  /* Mancing */
+  function fishSVG(c){ return `<svg viewBox="0 0 120 70"><path d="M86 35 L118 10 L111 35 L118 60 Z" fill="${c}"/><ellipse cx="50" cy="35" rx="42" ry="25" fill="${c}"/><path d="M40 14 q14 -12 30 0" fill="${c}"/><ellipse cx="54" cy="40" rx="22" ry="11" fill="#fff" opacity=".25"/><circle cx="26" cy="30" r="7" fill="#fff"/><circle cx="24" cy="30" r="3.5" fill="#222"/><path d="M12 40 q5 4 10 0" stroke="#222" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`; }
+  function startFishing(){
+    openLearn(); const TARGET=10; let got=0, busyHook=false;
+    lhead.textContent='Mancing Ikan 🎣';
+    larea.innerHTML=`<div class="pond-sky"></div><div class="pond-water"></div><div class="dock"></div><div class="fcat">🐱</div>
+      <div class="bucket">🪣<span id="fcount">0/${TARGET}</span></div>
+      <svg id="rodline"><line id="rod" stroke="#7a4520" stroke-width="6" stroke-linecap="round"/><line id="line" stroke="#fff" stroke-width="2"/><path id="hook" d="" stroke="#555" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`;
+    say('Ayo mancing! Ketuk ikannya, nanti Kucing Mecca tangkap.');
+    const W=learn.clientWidth, H=learn.clientHeight, waterTop=H*.26;
+    const cat=larea.querySelector('.fcat').getBoundingClientRect(), R=learn.getBoundingClientRect();
+    const base=[cat.left-R.left+cat.width*.75, cat.top-R.top+cat.height*.55], tip=[Math.min(W*.48, base[0]+150), waterTop-90];
+    const rod=document.getElementById('rod'), line=document.getElementById('line'), hook=document.getElementById('hook');
+    rod.setAttribute('x1',base[0]); rod.setAttribute('y1',base[1]); rod.setAttribute('x2',tip[0]); rod.setAttribute('y2',tip[1]);
+    let hx=tip[0], hy=waterTop+20;
+    function drawHook(){ line.setAttribute('x1',tip[0]); line.setAttribute('y1',tip[1]); line.setAttribute('x2',hx); line.setAttribute('y2',hy);
+      hook.setAttribute('d',`M${hx} ${hy} v10 q0 10 -9 10 q-7 0 -7 -7`); }
+    drawHook();
+    const fishes=[];
+    function addFish(){
+      const c=rnd(COLORS); const f=document.createElement('div'); f.className='fish'; f.innerHTML=fishSVG(c.c); larea.appendChild(f);
+      const fw=f.clientWidth||90, fh=f.clientHeight||55;
+      const o={el:f,c,x:Math.random()*(W-fw),y:waterTop+30+Math.random()*(H-waterTop-fh-50),v:(.6+Math.random()*1.1)*(Math.random()<.5?-1:1),fw,fh,hooked:false,ph:Math.random()*6};
+      fishes.push(o);
+      onTap(f,()=>catchFish(o));
+    }
+    for(let i=0;i<5;i++) addFish();
+    function loop(t){ if(!L.alive) return;
+      fishes.forEach(o=>{ if(o.hooked) return; o.x+=o.v; if(o.x<-10||o.x>W-o.fw+10){ o.v*=-1; }
+        const yy=o.y+Math.sin(t/600+o.ph)*6; o.el.style.left=o.x+'px'; o.el.style.top=yy+'px'; o.el.style.transform=o.v>0?'scaleX(-1)':'none'; o.cy=yy; });
+      requestAnimationFrame(loop); }
+    requestAnimationFrame(loop);
+    function tween(x0,y0,x1,y1,ms,step,done){ const st=performance.now(); (function f(t){ if(!L.alive) return; const k=Math.min(1,(t-st)/ms), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      step(x0+(x1-x0)*e,y0+(y1-y0)*e); if(k<1) requestAnimationFrame(f); else done&&done(); })(st); }
+    function catchFish(o){
+      if(busyHook||o.hooked) return; busyHook=true; o.hooked=true; ctx();
+      const fx2=o.x+(o.v>0?o.fw*.85:o.fw*.15), fy2=o.cy+o.fh*.45;
+      tone(700,300,.25,'sine',.15);
+      tween(hx,hy,fx2,fy2-20,450,(x,y)=>{hx=x;hy=y;drawHook();},()=>{
+        o.el.classList.add('hooked'); sfx.splash();
+        const sx=o.x, sy=o.cy;
+        tween(hx,hy,tip[0],tip[1]+40,800,(x,y)=>{ hx=x;hy=y;drawHook(); o.el.style.left=(sx+(x-fx2))+'px'; o.el.style.top=(sy+(y-fy2+20))+'px'; },()=>{
+          got++; document.getElementById('fcount').textContent=`${got}/${TARGET}`;
+          const bk=larea.querySelector('.bucket').getBoundingClientRect();
+          o.el.style.transition='left .5s, top .5s, transform .5s, opacity .5s';
+          o.el.style.left=(bk.left-R.left)+'px'; o.el.style.top=(bk.top-R.top)+'px'; o.el.style.transform='scale(.3)'; o.el.style.opacity='0';
+          sfx.pop(); tone(880,1320,.15,'triangle',.18,.1);
+          say(`Dapat ikan ${o.c.k}! ${got<=10?NUM[got]:got}`);
+          setTimeout(()=>{ o.el.remove(); fishes.splice(fishes.indexOf(o),1); if(got<TARGET) addFish(); },550);
+          hx=tip[0]; hy=waterTop+20; drawHook(); busyHook=false;
+          if(got%3===0) L.earned++;
+          if(got>=TARGET){ busyHook=true; later(()=>finishLearn('Hore! Dapat sepuluh ikan! Kucing Mecca senang sekali!'),1400); }
+        });
+      });
+    }
+    // tapping the water makes a ripple
+    larea.querySelector('.pond-water').addEventListener('click',e=>{ const rp=document.createElement('div'); rp.className='ripple';
+      rp.style.left=(e.clientX-R.left-10)+'px'; rp.style.top=(e.clientY-R.top-10)+'px'; larea.appendChild(rp); setTimeout(()=>rp.remove(),800); tone(500,250,.12,'sine',.08); });
   }
 
   /* Hewan */
