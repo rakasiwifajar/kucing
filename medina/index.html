@@ -619,7 +619,7 @@
   #learn[data-g="animal"],#learn[data-g="safe"],#learn[data-g="move"],#learn[data-g="share"]{background:radial-gradient(circle at 84% 12%,#fff7b0 0 26px,rgba(255,240,150,.45) 27px,transparent 70px),radial-gradient(ellipse at 20% 72%,#b6e88f 0 30%,transparent 31%),linear-gradient(#a9dcff 0 66%,#a6dc7f 66%,#6fbf55)}
   #learn[data-g="story"],#learn[data-g="adv"],#learn[data-g="family"],#learn[data-g="doa"],#learn[data-g="quran"],#learn[data-g="talk"],#learn[data-g="post"],#learn[data-g="meet"],#learn[data-g="tricks"]{background:repeating-linear-gradient(90deg,#f28b82 0 14px,#fbbc04 14px 26px,#81c995 26px 40px,#8ab4f8 40px 52px,#c58af9 52px 64px) 0 100%/100% 9% no-repeat,linear-gradient(#a8743d,#a8743d) 0 91%/100% 1.2% no-repeat,radial-gradient(circle at 50% 30%,#fffaf0,#ffe9cc)}
   #learn[data-cat="0"] .head{box-shadow:0 4px 0 #f06b8f}#learn[data-cat="1"] .head{box-shadow:0 4px 0 #3b82f6}#learn[data-cat="2"] .head{box-shadow:0 4px 0 #22a06b}#learn[data-cat="3"] .head{box-shadow:0 4px 0 #e8a33d}#learn[data-cat="4"] .head{box-shadow:0 4px 0 #9b7be0}
-  #guide{position:absolute;left:4px;top:56px;width:64px;height:64px;z-index:4;pointer-events:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.15));animation:float 3s ease-in-out infinite}
+  #guide{position:absolute;left:8px;top:6px;width:54px;height:54px;z-index:4;pointer-events:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.15));animation:float 3s ease-in-out infinite}
   #guide svg{width:100%;height:100%;overflow:visible}
   #guide.g-ok{animation:gok .9s ease}#guide.g-hm{animation:ghm .9s ease}
   @keyframes gok{30%{transform:translateY(-18px) scale(1.15)}60%{transform:translateY(0) scale(.95)}}
@@ -652,6 +652,11 @@
   #ptabs{display:flex;flex-direction:column;gap:6px}
   .pgrp{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 8px;border-radius:14px;background:#fbf5ee}
   .pgl{width:100%;font-weight:900;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;opacity:.55;margin-bottom:-2px}
+
+  .slist{bottom:12px;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+  .stabs{position:absolute;left:10px;right:10px;top:74px;display:flex;gap:6px}
+  .stabs button{flex:1;border:none;border-radius:16px;padding:10px 2px;font:inherit;font-weight:800;font-size:clamp(12px,3.6vw,16px);background:#fff;box-shadow:0 4px 0 #ecd9c4;color:#4a3428}
+  .stabs button.on{background:#e8a33d;color:#fff;box-shadow:0 4px 0 #c9821a}
 </style>
 </head>
 <body>
@@ -2044,7 +2049,7 @@
   function startSize(){
     openLearn(); let r=0; const N=6; const ITEMS=['🐘','🍎','⭐','🐟','🎈','🚗','🐱','🌸'];
     function round(){
-      larea.innerHTML=''; const it=rnd(ITEMS); const type=r%3===2?'many':(Math.random()<.5?'big':'small');
+      larea._nx=0; larea.innerHTML=''; const it=rnd(ITEMS); const type=r%3===2?'many':(Math.random()<.5?'big':'small');
       if(type==='many'){
         lhead.textContent='Mana yang lebih banyak?'; say('Mana yang lebih banyak?');
         const a=1+Math.floor(Math.random()*2), b=a+2+Math.floor(Math.random()*3); const bigLeft=Math.random()<.5;
@@ -2057,7 +2062,7 @@
           b.addEventListener('click',()=>{ const ok= type==='big'? z===130 : z===46; if(ok){ b.animate([{transform:'scale(1)'},{transform:'scale(1.3)'},{transform:'scale(1)'}],{duration:500}); sfx.star(); L.earned++; say(type==='big'?'Betul! Ini yang paling besar!':'Betul! Ini yang paling kecil!'); next(); }
             else { b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); say(z===82?'Itu sedang. Coba lagi':(z===130?'Itu yang besar':'Itu yang kecil')+'. Coba lagi'); } }); });
       }
-      function next(){ r++; if(r>=N) later(()=>finishLearn('Hebat! Sudah tahu besar, kecil, dan banyak!'),1600); else later(round,1800); }
+      function next(){ if(larea._nx) return; larea._nx=1; r++; if(r>=N) later(()=>finishLearn('Hebat! Sudah tahu besar, kecil, dan banyak!'),1600); else later(round,1800); }
     }
     round();
   }
@@ -2148,7 +2153,7 @@
       const opts=shuffle([t,...shuffle(F.filter(x=>x!==t)).slice(0,2)]); const row=document.createElement('div'); row.className='feelopts'; larea.appendChild(row);
       const msg=document.createElement('div'); msg.className='bigmsg'; msg.style.top='66%'; larea.appendChild(msg);
       opts.forEach(o=>{ const b=document.createElement('button'); b.textContent=o[0]; row.appendChild(b);
-        b.addEventListener('click',()=>{ if(o===t){ sfx.star(); L.earned++; msg.textContent=`${o[0]} ${o[1]}`; emitAt('💖',2); say(`Betul, ini ${o[1]}. ${o[2]}`); r++; if(r>=order.length) later(()=>finishLearn('Hebat! Sudah kenal perasaan!'),3800); else later(round,3800); }
+        b.addEventListener('click',()=>{ if(row._done) return; if(o===t){ row._done=1; sfx.star(); L.earned++; msg.textContent=`${o[0]} ${o[1]}`; emitAt('💖',2); say(`Betul, ini ${o[1]}. ${o[2]}`); r++; if(r>=order.length) later(()=>finishLearn('Hebat! Sudah kenal perasaan!'),3800); else later(round,3800); }
           else { b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); say(`Itu ${o[1]}. Cari yang ${t[1]}`); } }); });
     }
     round();
@@ -2169,7 +2174,7 @@
       const g=document.createElement('div'); g.className='famgrid'; if(k<=2) g.style.gridTemplateColumns='repeat(2,1fr)'; if(larea.querySelector('.bigmsg')) g.style.top='118px'; larea.appendChild(g);
       opts.forEach(m=>{ const b=document.createElement('button'); if(m.img) b.style.backgroundImage=`url(${m.img})`; else { b.style.fontSize='clamp(60px,18vw,96px)'; b.textContent=m.emo; }
         const sp=document.createElement('span'); sp.textContent=m.name; b.appendChild(sp); g.appendChild(b);
-        b.addEventListener('click',()=>{ if(m===t){ b.classList.add('ok'); sfx.star(); L.earned++; say(`Betul! Ini ${m.name}!`); r++; if(r>=N) later(()=>finishLearn(`Pintar! ${CHILD} kenal semua keluarga!`),1800); else later(round,2000); }
+        b.addEventListener('click',()=>{ if(g._done) return; if(m===t){ g._done=1; b.classList.add('ok'); sfx.star(); L.earned++; say(`Betul! Ini ${m.name}!`); r++; if(r>=N) later(()=>finishLearn(`Pintar! ${CHILD} kenal semua keluarga!`),1800); else later(round,2000); }
           else { b.classList.add('ok'); b.classList.add('nope'); say(`Ini ${m.name}. Cari ${t.name}`); setTimeout(()=>b.classList.remove('ok','nope'),1400); } }); });
     }
     round();
@@ -2177,6 +2182,98 @@
 
   /* Cerita Sebelum Tidur */
   const STORIES=[
+
+    {g:'rakyat',t:'Si Kancil dan Buaya',e:'🦌',end:'Tamat. Kancil memang cerdik! Tapi ingat, kita harus jujur ya.',p:[
+      ['🦌🌊','Si Kancil ingin menyeberang sungai. Di seberang ada buah-buahan yang enak.'],
+      ['🐊🐊🐊','Tapi di sungai banyak buaya yang lapar! "Wah, bagaimana caranya ya?" pikir Kancil.'],
+      ['🦌💡','Kancil punya ide. "Hai, Buaya! Raja ingin tahu ada berapa buaya di sungai ini. Ayo berbaris!"'],
+      ['🐊🐊🐊🐊','Buaya-buaya berbaris rapi dari ujung ke ujung sungai.'],
+      ['🦌🐊','Kancil melompat di punggung buaya sambil berhitung. "Satu, dua, tiga, empat, lima!"'],
+      ['🦌🍎','Hap! Kancil sampai di seberang. "Terima kasih, Buaya!" Buaya baru sadar, mereka sudah dikerjai.']]},
+    {g:'rakyat',t:'Kura-kura dan Monyet',e:'🐢',end:'Tamat. Kalau berbagi, semua jadi senang!',p:[
+      ['🐢🐵','Kura-kura dan Monyet menemukan pohon pisang kecil di pinggir sungai.'],
+      ['🌱🐢','Kura-kura menanamnya dan menyiramnya setiap hari dengan sabar.'],
+      ['🍌🌳','Pohonnya tumbuh besar dan berbuah banyak! Tapi Kura-kura tidak bisa memanjat.'],
+      ['🐵🍌','Monyet memanjat dan makan pisangnya sendiri. "Hmm, enak!" Kura-kura sedih.'],
+      ['🐵💭','Monyet melihat Kura-kura yang sedih. "Maaf ya, Kura-kura. Pohon ini kita rawat bersama."'],
+      ['🐵🍌🐢','Monyet melempar pisang ke bawah. Mereka makan bersama. "Terima kasih, sahabatku!"']]},
+    {g:'rakyat',t:'Bawang Putih yang Baik Hati',e:'🧄',end:'Tamat. Anak yang baik hati disayang semua orang.',p:[
+      ['👧🧺','Bawang Putih anak yang rajin. Setiap hari ia mencuci baju di sungai.'],
+      ['👕🌊','Suatu hari, baju kesayangan ibunya hanyut terbawa arus. "Aduh, harus kucari!"'],
+      ['👵🏠','Bawang Putih bertemu nenek baik hati. "Nenek melihat baju itu. Bantu Nenek beres-beres dulu ya."'],
+      ['🧹✨','Bawang Putih membantu dengan senang hati. Menyapu, mencuci piring, sampai bersih!'],
+      ['🎁👕','Nenek mengembalikan bajunya dan memberi hadiah kecil. "Kamu anak yang baik."'],
+      ['👧💖','Bawang Putih pulang dengan gembira. Kebaikan selalu membawa kebahagiaan.']]},
+    {g:'rakyat',t:'Timun Mas',e:'🥒',end:'Tamat. Timun Mas berani dan pintar!',p:[
+      ['👵🥒','Dulu ada nenek yang menanam timun. Dari timun emas, lahirlah bayi perempuan. Namanya Timun Mas.'],
+      ['👧💛','Timun Mas tumbuh jadi anak yang pintar dan berani. Nenek sangat sayang padanya.'],
+      ['👣🌳','Suatu hari, raksasa besar datang. "Timun Mas, ikut aku!" Timun Mas lari secepatnya.'],
+      ['🌰🌳','Ia melempar biji ajaib dari Nenek. Wuss! Tumbuh hutan lebat. Raksasa jadi bingung.'],
+      ['💧🌊','Lalu ia melempar garam ajaib. Byur! Muncul laut. Raksasa tidak bisa lewat.'],
+      ['👧👵🏠','Timun Mas pulang ke Nenek dengan selamat. Mereka berpelukan erat.']]},
+    {g:'islami',t:'Kapal Nabi Nuh',e:'🚢',end:'Tamat. Kita selalu percaya pada Allah ya.',p:[
+      ['🌳🔨','Nabi Nuh diperintah Allah membuat kapal yang besar sekali.'],
+      ['🚢😄','Ada orang yang tertawa. "Untuk apa kapal di daratan?" Tapi Nabi Nuh tetap sabar bekerja.'],
+      ['🐘🦒🐰','Hewan-hewan datang berpasangan. Gajah, jerapah, kelinci, semua naik ke kapal.'],
+      ['🌧️🌊','Hujan turun lama sekali. Air naik tinggi. Kapal Nabi Nuh berlayar dengan aman.'],
+      ['☀️⛰️','Akhirnya hujan berhenti. Kapal berlabuh di atas gunung. Matahari bersinar lagi.'],
+      ['🚢🤲','Nabi Nuh dan semua yang di kapal bersyukur. "Alhamdulillah, terima kasih ya Allah."']]},
+    {g:'islami',t:'Nabi Yunus dan Ikan Besar',e:'🐳',end:'Tamat. Kalau sedih atau takut, kita berdoa kepada Allah.',p:[
+      ['🚢🌊','Nabi Yunus naik kapal. Tiba-tiba datang ombak besar.'],
+      ['🐳🌊','Nabi Yunus jatuh ke laut, lalu ditelan ikan yang sangat besar.'],
+      ['🌑🤲','Di dalam perut ikan gelap sekali. Nabi Yunus berdoa dan minta ampun kepada Allah.'],
+      ['🐳💙','Allah mendengar doanya. Ikan besar berenang ke pantai.'],
+      ['🏖️🌳','Ikan mengeluarkan Nabi Yunus di pantai. Ada pohon yang daunnya lebar untuk berteduh.'],
+      ['🤲💛','Nabi Yunus bersyukur. Allah selalu mendengar doa kita.']]},
+    {g:'islami',t:'Anjing yang Kehausan',e:'🐶',end:'Tamat. Allah sayang kepada orang yang sayang binatang.',p:[
+      ['☀️🚶','Siang itu panas sekali. Seorang laki-laki berjalan jauh dan sangat haus.'],
+      ['💧🕳️','Ia menemukan sumur, turun, lalu minum. "Alhamdulillah, segar sekali!"'],
+      ['🐶😓','Di atas ada anjing yang menjulurkan lidahnya. Anjing itu juga sangat haus.'],
+      ['👟💧','Laki-laki itu turun lagi ke sumur. Ia mengisi sepatunya dengan air.'],
+      ['🐶💧','Lalu ia memberi minum anjing itu. Glek, glek! Anjingnya senang sekali.'],
+      ['💖🤲','Allah sayang kepada laki-laki itu karena ia baik kepada binatang.']]},
+    {g:'islami',t:'Abu Hurairah Sayang Kucing',e:'🐱',end:'Tamat. Ayo sayangi kucing seperti Abu Hurairah!',p:[
+      ['🕌👳','Dulu ada sahabat Nabi yang sangat baik. Ia sering menemani Nabi Muhammad.'],
+      ['🐱💖','Ia sangat sayang kucing. Ia sering bermain dan merawat kucing kecil.'],
+      ['🐱👕','Kucing kecil itu kadang ia bawa ke mana-mana. Kucingnya senang sekali.'],
+      ['😺🏷️','Karena itu orang memanggilnya Abu Hurairah. Artinya bapaknya kucing kecil.'],
+      ['🐱🥛','Kita juga harus sayang kucing. Kasih makan, kasih minum, jangan disakiti.'],
+      ['🐱🤗','Seperti '+CHILD+' yang sayang sama kucingnya. Pintar!']]},
+    {g:'islami',t:'Semut dan Nabi Sulaiman',e:'🐜',end:'Tamat. Semut kecil saja saling menjaga. Kita juga ya!',p:[
+      ['👑🐴','Nabi Sulaiman berjalan bersama pasukannya yang sangat banyak.'],
+      ['🐜🐜🐜','Di jalan ada rumah semut. Semut-semut kecil sedang bekerja.'],
+      ['🐜📣','Seekor semut berteriak, "Ayo masuk ke rumah, nanti kita terinjak!"'],
+      ['👑😊','Nabi Sulaiman bisa mendengar semut. Beliau tersenyum.'],
+      ['✋🐜','Nabi Sulaiman berhenti dan menunggu semut-semut masuk rumah dengan aman.'],
+      ['🤲💛','Nabi Sulaiman bersyukur kepada Allah. Kita harus sayang semua makhluk, walau kecil.']]},
+    {g:'lucu',t:'Kaus Kaki yang Hilang',e:'🧦',end:'Tamat. Hihihi! Kaus kakinya ada di ekor!',p:[
+      ['🐱🧦','Pagi ini Kucing mau pakai kaus kaki. Satu ada… satu lagi hilang!'],
+      ['🐱🛏️','Kucing mencari di bawah kasur. Tidak ada. Yang ada cuma boneka.'],
+      ['🐱📦','Kucing mencari di dalam kotak. Tidak ada. Yang ada cuma bola.'],
+      ['🐱🌀','Kucing berputar-putar mencari. Muter, muter, muter… sampai pusing!'],
+      ['🐱👀','Lho? Ada yang menempel di ekornya. Ternyata… kaus kaki!'],
+      ['🐱😂','"Hahaha! Dari tadi kamu ikut aku ya?" Kucing tertawa sampai guling-guling.']]},
+    {g:'lucu',t:'Bebek Mau Jadi Ayam',e:'🦆',end:'Tamat. Jadi diri sendiri itu hebat!',p:[
+      ['🐔☀️','Setiap pagi Ayam berkokok, "Kukuruyuuuk!" Semua bangun.'],
+      ['🦆🤩','Bebek kagum. "Aku juga mau berkokok seperti Ayam!"'],
+      ['🦆🎤','Bebek menarik napas panjang… "Kukuru… KWEK!"'],
+      ['🐔😂','Ayam tertawa. Bebek mencoba lagi. "Kuku… KWEK KWEK!" Semua tertawa.'],
+      ['🦆🌊','Ayam bilang, "Tapi Bebek bisa berenang. Aku tidak bisa!" Bebek berenang dengan gaya.'],
+      ['🦆🐔💖','Bebek senang jadi bebek, Ayam senang jadi ayam. Semua punya kehebatan sendiri.']]},
+    {g:'lucu',t:'Gajah Bersin',e:'🐘',end:'Tamat. Kalau bersin, tutup mulut pakai siku ya!',p:[
+      ['🐘🌸','Gajah mencium bunga. Hmm, wangi… Tapi hidungnya jadi geli.'],
+      ['🐘😖','"Ha… haa… HAAA…" Semua hewan menahan napas.'],
+      ['🐘💨','"HAAACIIIH!" Wuuuush! Angin kencang sekali!'],
+      ['🐵🧢🌳','Topi Monyet terbang ke pohon. Daun-daun beterbangan.'],
+      ['🐰🌀','Kelinci berputar-putar seperti gasing. Hihihi!'],
+      ['🐘🙏','"Maaf, maaf!" kata Gajah. "Lain kali aku tutup pakai belalai." Semua tertawa.']]},
+    {g:'lucu',t:'Ayam Kesiangan',e:'🐔',end:'Tamat. Jangan tidur terlalu malam ya!',p:[
+      ['🐔😴','Ayam tidur nyenyak sekali. Ngorok, ngorok, zzz…'],
+      ['☀️⏰','Matahari sudah tinggi. Tapi Ayam belum berkokok!'],
+      ['🐮🐑','Sapi bilang "Mooo!" Domba bilang "Mbeek!" Ayam masih tidur.'],
+      ['🐱🪶','Kucing menggelitik kaki Ayam pakai bulu. Kiki-kiki!'],
+      ['🐔😲','Ayam terbangun kaget. "KUKURUYUK… eh, sudah siang ya?"'],
+      ['🐔😂','Semua tertawa. "Selamat siang, Ayam!" Besok Ayam mau tidur lebih cepat.']]},
     {t:'Kucing Belajar Sikat Gigi',e:'🪥',p:[
       ['🐱🍪','Suatu malam, Kucing Medina habis makan kue yang manis sekali.'],
       ['🦠😟','Di giginya ada kuman kecil. "Hihihi, kami suka gigi yang kotor!" kata kuman.'],
@@ -2198,8 +2295,11 @@
   ];
   function startStory(){
     openLearn(); lhead.textContent='Cerita 📖'; say('Mau dengar cerita apa?');
-    const list=document.createElement('div'); list.className='slist'; larea.appendChild(list);
-    STORIES.forEach(st=>{ const b=document.createElement('button'); b.innerHTML=`<b>${st.e}</b>${st.t}`; list.appendChild(b); b.addEventListener('click',()=>{ sfx.click(); read(st); }); });
+    const GR=[['kucing','🐱 Kucing'],['rakyat','🏝️ Rakyat'],['islami','🕌 Islami'],['lucu','😂 Lucu']].filter(g=>g[0]!=='islami'||document.querySelector('#picker [data-game="doa"]'));
+    const tabs=document.createElement('div'); tabs.className='stabs'; larea.appendChild(tabs); const list=document.createElement('div'); list.className='slist'; list.style.top='132px'; larea.appendChild(list);
+    function showG(g){ tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.g===g)); list.innerHTML=''; STORIES.filter(st=>(st.g||'kucing')===g).forEach(st=>{ const b=document.createElement('button'); b.innerHTML=`<b>${st.e}</b>${st.t}`; list.appendChild(b); b.addEventListener('click',()=>{ sfx.click(); read(st); }); }); }
+    GR.forEach(([g,n])=>{ const b=document.createElement('button'); b.dataset.g=g; b.textContent=n; b.onclick=()=>{ sfx.click(); showG(g); say({kucing:'Cerita kucing',rakyat:'Cerita rakyat',islami:'Kisah islami',lucu:'Cerita lucu'}[g]); }; tabs.appendChild(b); });
+    showG('kucing');
     function read(st){
       let i=0; larea.innerHTML=`<div class="story"><div class="pic" id="spic"></div><div class="txt" id="stxt"></div><div class="nav"><button id="sprev">◀</button><button id="sagain">🔁</button><button id="snext">▶</button></div></div>`;
       lhead.textContent=st.t; const pic=document.getElementById('spic'), txt=document.getElementById('stxt');
@@ -2207,7 +2307,7 @@
         say(tx); document.getElementById('snext').textContent= i===st.p.length-1 ? 'Tamat ⭐' : '▶'; }
       document.getElementById('sprev').onclick=()=>{ if(i>0){ i--; show(); } };
       document.getElementById('sagain').onclick=()=>show();
-      document.getElementById('snext').onclick=()=>{ if(i<st.p.length-1){ i++; show(); } else { L.earned++; finishLearn('Tamat. Selamat tidur, '+CHILD+'!'); } };
+      document.getElementById('snext').onclick=()=>{ if(i<st.p.length-1){ i++; show(); } else { L.earned++; finishLearn(st.end||('Tamat. Selamat tidur, '+CHILD+'!')); } };
       show();
     }
   }
@@ -2439,7 +2539,7 @@
       const g=document.createElement('div'); g.className='famgrid'; larea.appendChild(g);
       opts.forEach(m=>{ const b=document.createElement('button'); if(m.img) b.style.backgroundImage=`url(${m.img})`; else { b.style.fontSize='clamp(60px,18vw,96px)'; b.textContent=m.emo; }
         const sp=document.createElement('span'); sp.textContent=m.name; b.appendChild(sp); g.appendChild(b);
-        b.onclick=()=>{ if(m===t){ b.classList.add('ok'); sfx.star(); L.earned++; say(`Betul! Ini ${m.name}!`); r++; if(r>=N) later(()=>finishLearn(`Pintar! ${CHILD} kenal benda-benda di rumah!`),1800); else later(round,1900); }
+        b.onclick=()=>{ if(g._done) return; if(m===t){ g._done=1; b.classList.add('ok'); sfx.star(); L.earned++; say(`Betul! Ini ${m.name}!`); r++; if(r>=N) later(()=>finishLearn(`Pintar! ${CHILD} kenal benda-benda di rumah!`),1800); else later(round,1900); }
           else { b.classList.add('ok','nope'); say(`Ini ${m.name}. Cari ${t.name}`); setTimeout(()=>b.classList.remove('ok','nope'),1400); } }; });
     }
     round();
@@ -2490,7 +2590,7 @@
       recButton(document.getElementById('pMic'),st,15000,b=>{ blob=b; url=URL.createObjectURL(b); st.textContent='Sudah terekam! Dengar dulu, lalu kirim.'; document.getElementById('pAct').style.display='flex'; sfx.star(); L.earned=Math.max(L.earned,1); },['🎤','⏹️']);
       document.getElementById('pPlay').onclick=()=>{ if(url) playURL(url); };
       document.getElementById('pShare').onclick=async()=>{ if(!blob) return;
-        const ok=await shareAudio(blob,`💌 Pesan suara dari ${CHILD} untuk ${TWIN}. Simpan filenya, lalu buka game Kucing ${TWIN} → Main → Kotak Pos → Pesan dari ${CHILD} → Masukkan pesan.`);
+        const ok=await shareAudio(blob,`💌 Pesan suara dari ${CHILD} untuk ${TWIN}. Simpan filenya, lalu buka game Kucing ${TWIN} → Keluarga → Kotak Pos → Pesan dari ${CHILD} → Masukkan pesan.`);
         if(ok){ st.textContent='Terkirim! 💌'; confetti(); say(`Hore! Pesannya dikirim ke ${TWIN}!`); L.earned=2; } };
     }
     async function inbox(){
@@ -2677,8 +2777,8 @@
     function huruf(qb){ qb.innerHTML=`<div class="hija">${HIJ.map((h,i)=>`<button data-i="${i}">${h[0]}<small>${h[1]}</small></button>`).join('')}</div>`; say('Ketuk hurufnya!');
       let seen=new Set(); qb.querySelectorAll('.hija button').forEach(b=>b.onclick=()=>{ const h=HIJ[+b.dataset.i]; b.animate([{transform:'scale(1)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:400}); say(h[1]); seen.add(h[0]); if(seen.size%6===0) L.earned=Math.max(L.earned,seen.size/6|0); }); }
     function tebak(qb){ let r=0; const N=6; const pool=shuffle(HIJ.slice(0,14));
-      function round(){ const opts=shuffle(pool).slice(0,3), t=rnd(opts); qb.innerHTML=`<div class="bigmsg" style="top:130px">Mana huruf ${t[1]}?</div><div class="seqcards" style="bottom:14%">${opts.map(o=>`<button style="font-family:serif;color:#2a6b4f">${o[0]}</button>`).join('')}</div>`; say(`Mana huruf ${t[1]}?`);
-        qb.querySelectorAll('.seqcards button').forEach(b=>b.onclick=()=>{ if(b.textContent===t[0]){ sfx.star(); L.earned++; say(`Betul! Ini huruf ${t[1]}!`); r++; if(r>=N) finishLearn(`Masya Allah! ${CHILD} pintar mengenal huruf hijaiyah!`); else later(round,1700); } else { wig(b); const o=HIJ.find(h=>h[0]===b.textContent); say(`Ini huruf ${o?o[1]:''}. Cari ${t[1]}`); } }); }
+      function round(){ qb._done=0; const opts=shuffle(pool).slice(0,3), t=rnd(opts); qb.innerHTML=`<div class="bigmsg" style="top:130px">Mana huruf ${t[1]}?</div><div class="seqcards" style="bottom:14%">${opts.map(o=>`<button style="font-family:serif;color:#2a6b4f">${o[0]}</button>`).join('')}</div>`; say(`Mana huruf ${t[1]}?`);
+        qb.querySelectorAll('.seqcards button').forEach(b=>b.onclick=()=>{ if(qb._done) return; if(b.textContent===t[0]){ qb._done=1; sfx.star(); L.earned++; say(`Betul! Ini huruf ${t[1]}!`); r++; if(r>=N) finishLearn(`Masya Allah! ${CHILD} pintar mengenal huruf hijaiyah!`); else later(round,1700); } else { wig(b); const o=HIJ.find(h=>h[0]===b.textContent); say(`Ini huruf ${o?o[1]:''}. Cari ${t[1]}`); } }); }
       round(); }
     function surat(qb){ qb.innerHTML=`<div class="doalist" style="top:130px">${SURAH.map((s,i)=>`<button data-i="${i}"><b>📖</b>Surat ${s.t}${surURL[s.k]?' 🎙️':''}</button>`).join('')}</div>`; say('Mau belajar surat apa?');
       qb.querySelectorAll('button').forEach(b=>b.onclick=()=>{ sfx.click(); showS(SURAH[+b.dataset.i]); }); }
@@ -2708,7 +2808,7 @@
       const c=document.getElementById('mvc'), d=document.getElementById('mvDone');
       say(m[3],()=>{ if(!L.alive) return; if(m[2]){ let k=0; const iv=every(()=>{ k++; c.textContent=k; c.animate([{transform:'scale(1.5)'},{transform:'scale(1)'}],{duration:400}); tone(440+k*70,440+k*70,.18,'triangle',.12); say(numWord(k)); if(k>=m[2]){ clearInterval(iv); later(()=>{ d.style.display=''; },700); } },1400); }
         else { let k=0; every(()=>{ if(k++<10) tone(k%2?392:523,k%2?392:523,.15,'triangle',.1); },500); later(()=>{ d.style.display=''; },5500); } });
-      d.onclick=()=>{ sfx.star(); L.earned++; r++; say(rnd(['Hebat!','Kuat sekali!','Keren!'])); if(r>=Q.length) finishLearn(`Hore! ${CHILD} sudah olahraga. Badannya sehat dan kuat!`); else later(round,1300); };
+      d.onclick=()=>{ if(d._c) return; d._c=1; sfx.star(); L.earned++; r++; say(rnd(['Hebat!','Kuat sekali!','Keren!'])); if(r>=Q.length) finishLearn(`Hore! ${CHILD} sudah olahraga. Badannya sehat dan kuat!`); else later(round,1300); };
     }
     round();
   }
@@ -2761,10 +2861,10 @@
   }
   function pTwin(body){
     const n=daysTo(state.meet);
-    body.innerHTML=`<div class="muted">Tanggal ${CHILD} ketemu ${TWIN} lagi. Di game: Main → 👯 Ketemu ${TWIN}, nanti kucingnya hitung mundur pakai "berapa kali tidur lagi".</div>
+    body.innerHTML=`<div class="muted">Tanggal ${CHILD} ketemu ${TWIN} lagi. Di game: Keluarga → 👯 Ketemu ${TWIN}, nanti kucingnya hitung mundur pakai "berapa kali tidur lagi".</div>
       <div class="row2">Tanggal ketemu: <input type="date" id="mt" value="${state.meet||''}" style="padding:8px;border-radius:12px;border:1px solid #ddd;font-size:15px"><button class="pbtn green" id="mtS">💾 Simpan</button>${state.meet?'<button class="pbtn gray" id="mtD">Hapus</button>':''}</div>
       <div class="muted">${n===null?'Belum diatur.':n<0?'Tanggalnya sudah lewat.':n===0?'Hari ini! 🎉':`Tinggal ${n} hari lagi.`}</div>
-      <div style="border-top:1px solid #eee;margin-top:12px;padding-top:10px" class="muted"><b>📮 Kotak Pos Kembar.</b> Cara kirim: ${CHILD} rekam pesan di Main → Kotak Pos → Kirim, lalu tekan "Kirim ke WhatsApp" ke HP Opa/Oma atau yang pegang HP ${TWIN}. Cara terima: simpan file suaranya dari WhatsApp, lalu buka Kotak Pos → Pesan dari ${TWIN} → tombol biru. Paling lancar kalau file dikirim dari game ini, bukan voice note biasa.</div>`;
+      <div style="border-top:1px solid #eee;margin-top:12px;padding-top:10px" class="muted"><b>📮 Kotak Pos Kembar.</b> Cara kirim: ${CHILD} rekam pesan di Keluarga → Kotak Pos → Kirim, lalu tekan "Kirim ke WhatsApp" ke HP Opa/Oma atau yang pegang HP ${TWIN}. Cara terima: simpan file suaranya dari WhatsApp, lalu buka Kotak Pos → Pesan dari ${TWIN} → tombol biru. Paling lancar kalau file dikirim dari game ini, bukan voice note biasa.</div>`;
     body.querySelector('#mtS').onclick=()=>{ state.meet=body.querySelector('#mt').value||null; save(); renderParent(); };
     const d=body.querySelector('#mtD'); if(d) d.onclick=()=>{ state.meet=null; save(); renderParent(); };
   }
@@ -3146,7 +3246,7 @@
       document.getElementById('spAgain').onclick=hear;
       if(mic) recButton(document.getElementById('spMic'),st,4000,b=>{ if(url) URL.revokeObjectURL(url); url=URL.createObjectURL(b); st.textContent='Dengar suaramu! 👂'; playURL(url,()=>{ say(rnd(['Pintar! ','Bagus sekali! ','Hebat! '])+w+'!'); sparkleIn('⭐',4); }); L.earned++; },['🎤','⏹️']);
       else st.textContent='Bilang kata ini ke '+'Mami'+' ya!';
-      document.getElementById('spOk').onclick=()=>{ sfx.star(); r++; if(r>=Q.length) finishLearn(`Hebat! ${CHILD} sudah bisa bilang banyak kata!`); else round(); }; }
+      document.getElementById('spOk').onclick=function(){ if(this._c) return; this._c=1; sfx.star(); r++; if(r>=Q.length) finishLearn(`Hebat! ${CHILD} sudah bisa bilang banyak kata!`); else round(); }; }
     round();
   }
 
@@ -3246,6 +3346,10 @@
     PGROUPS.forEach(([gn,ks])=>{ const list=ks.filter(k=>have.has(k)); if(!list.length) return; const row=document.createElement('div'); row.className='pgrp'; row.innerHTML=`<span class="pgl">${gn}</span>`;
       list.forEach(k=>{ const b=document.createElement('button'); b.textContent=have.get(k); if(k===ptab) b.className='on'; b.onclick=()=>{ ptab=k; renderParent(); }; row.appendChild(b); }); tabs.appendChild(row); });
     const body=document.getElementById('pbody'); body.innerHTML=''; (MAP[ptab]||pVoice)(body); };
+
+
+  (function(){ const C={"🦌": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><radialGradient id=\"f\" cx=\"35%\" cy=\"30%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#e8b980\"/><stop offset=\".55\" stop-color=\"#c98a4a\"/><stop offset=\"1\" stop-color=\"#8f5a2a\"/></radialGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><path d=\"M22 14 l-6 -10 M22 14 l-10 -4 M42 14 l6 -10 M42 14 l10 -4\" stroke=\"#6b4510\" stroke-width=\"3\" stroke-linecap=\"round\"/><ellipse cx=\"16\" cy=\"22\" rx=\"7\" ry=\"4\" fill=\"url(#f)\" transform=\"rotate(-20 16 22)\"/><ellipse cx=\"48\" cy=\"22\" rx=\"7\" ry=\"4\" fill=\"url(#f)\" transform=\"rotate(20 48 22)\"/><path d=\"M18 22 q14 -12 28 0 q2 16 -10 26 q-4 3 -8 0 q-12 -10 -10 -26z\" fill=\"url(#f)\"/><ellipse cx=\"32\" cy=\"42\" rx=\"7\" ry=\"6\" fill=\"#f4dcc0\"/><ellipse cx=\"32\" cy=\"40\" rx=\"3\" ry=\"2\" fill=\"#2b1a10\"/><circle cx=\"25\" cy=\"28\" r=\"2.6\" fill=\"#2b1a10\"/><circle cx=\"26\" cy=\"26.8\" r=\"0.99\" fill=\"#fff\"/><circle cx=\"39\" cy=\"28\" r=\"2.6\" fill=\"#2b1a10\"/><circle cx=\"40\" cy=\"26.8\" r=\"0.99\" fill=\"#fff\"/><circle cx=\"26\" cy=\"20\" r=\"1.6\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"38\" cy=\"20\" r=\"1.6\" fill=\"#fff\" opacity=\".7\"/></svg>", "🐊": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><radialGradient id=\"f\" cx=\"35%\" cy=\"30%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#b6f08a\"/><stop offset=\".55\" stop-color=\"#5cb83a\"/><stop offset=\"1\" stop-color=\"#2f7a22\"/></radialGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><path d=\"M4 40 q2 -12 18 -12 h22 q10 -6 16 2 q2 8 -6 10 h-30 q-14 6 -20 0z\" fill=\"url(#f)\"/><path d=\"M6 40 q16 4 32 0 q10 -2 16 -6\" stroke=\"#2f7a22\" stroke-width=\"1.5\" fill=\"none\"/><path d=\"M10 40 l2 3 2 -3 2 3 2 -3 2 3 2 -3 2 3 2 -3\" stroke=\"#fff\" stroke-width=\"1.5\" fill=\"none\"/><circle cx=\"46\" cy=\"28\" r=\"5\" fill=\"url(#f)\"/><circle cx=\"54\" cy=\"29\" r=\"4.5\" fill=\"url(#f)\"/><circle cx=\"46\" cy=\"27\" r=\"2.2\" fill=\"#2b1a10\"/><circle cx=\"47\" cy=\"25.8\" r=\"0.84\" fill=\"#fff\"/><circle cx=\"54\" cy=\"28\" r=\"2\" fill=\"#2b1a10\"/><circle cx=\"55\" cy=\"26.8\" r=\"0.76\" fill=\"#fff\"/><path d=\"M24 46 v8 M36 46 v8\" stroke=\"#2f7a22\" stroke-width=\"4\" stroke-linecap=\"round\"/><path d=\"M22 30 l4 -3 4 3 4 -3 4 3\" stroke=\"#2f7a22\" stroke-width=\"2\" fill=\"none\"/></svg>", "🥒": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#9fe07f\"/><stop offset=\"1\" stop-color=\"#3f962a\"/></linearGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><path d=\"M14 50 q-6 -8 6 -20 q14 -16 28 -20 q8 -2 6 6 q-4 14 -20 28 q-12 10 -20 6z\" fill=\"url(#f)\"/><circle cx=\"22\" cy=\"40\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"30\" cy=\"32\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"38\" cy=\"24\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"44\" cy=\"18\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"28\" cy=\"44\" r=\"1.4\" fill=\"#d8ffb0\"/><circle cx=\"36\" cy=\"36\" r=\"1.4\" fill=\"#d8ffb0\"/><path d=\"M52 8 q4 -4 6 0\" stroke=\"#6b4510\" stroke-width=\"2\" fill=\"none\"/></svg>", "🚢": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#e8a86a\"/><stop offset=\"1\" stop-color=\"#a8652a\"/></linearGradient></defs><path d=\"M0 54 q8 -4 16 0 q8 4 16 0 q8 -4 16 0 q8 4 16 0 v10 h-64z\" fill=\"#4fb3ec\"/><path d=\"M6 38 h52 l-8 16 h-36z\" fill=\"url(#f)\"/><rect x=\"14\" y=\"22\" width=\"34\" height=\"16\" rx=\"3\" fill=\"#fff4dc\" stroke=\"#c98a4a\" stroke-width=\"2\"/><rect x=\"18\" y=\"26\" width=\"6\" height=\"6\" rx=\"1\" fill=\"#7ad0ff\"/><rect x=\"28\" y=\"26\" width=\"6\" height=\"6\" rx=\"1\" fill=\"#7ad0ff\"/><rect x=\"38\" y=\"26\" width=\"6\" height=\"6\" rx=\"1\" fill=\"#7ad0ff\"/><path d=\"M30 22 v-14 l14 8z\" fill=\"#ff8a8a\"/><path d=\"M10 44 h44\" stroke=\"#8a5428\" stroke-width=\"2\"/></svg>", "🐜": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><radialGradient id=\"f\" cx=\"35%\" cy=\"30%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#8a6a5a\"/><stop offset=\".55\" stop-color=\"#4a3428\"/><stop offset=\"1\" stop-color=\"#2a1a10\"/></radialGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><path d=\"M18 40 l-8 10 M24 42 l-4 12 M36 42 l4 12 M44 40 l8 10 M20 34 l-10 -4 M44 34 l10 -4\" stroke=\"#4a3428\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><ellipse cx=\"48\" cy=\"34\" rx=\"12\" ry=\"9\" fill=\"url(#f)\"/><ellipse cx=\"31\" cy=\"36\" rx=\"7\" ry=\"6\" fill=\"url(#f)\"/><circle cx=\"16\" cy=\"30\" r=\"9\" fill=\"url(#f)\"/><path d=\"M12 22 q-4 -10 -8 -10 M18 21 q2 -10 6 -12\" stroke=\"#4a3428\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"12\" cy=\"29\" r=\"2.3\" fill=\"#2b1a10\"/><circle cx=\"13\" cy=\"27.8\" r=\"0.87\" fill=\"#fff\"/><circle cx=\"19\" cy=\"29\" r=\"2.3\" fill=\"#2b1a10\"/><circle cx=\"20\" cy=\"27.8\" r=\"0.87\" fill=\"#fff\"/><ellipse cx=\"47\" cy=\"34\" rx=\"4.5\" ry=\"3\" fill=\"#ff8fa6\" opacity=\".55\"/><ellipse cx=\"17\" cy=\"34\" rx=\"4.5\" ry=\"3\" fill=\"#ff8fa6\" opacity=\".55\"/></svg>", "🕌": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#ffffff\"/><stop offset=\"1\" stop-color=\"#e6e0f0\"/></linearGradient></defs><ellipse cx=\"32\" cy=\"60\" rx=\"18\" ry=\"3\" fill=\"#000\" opacity=\".12\"/><rect x=\"6\" y=\"20\" width=\"6\" height=\"36\" fill=\"url(#f)\" stroke=\"#c8bfe0\"/><path d=\"M5 20 l4 -10 4 10z\" fill=\"#3fb07a\"/><rect x=\"52\" y=\"20\" width=\"6\" height=\"36\" fill=\"url(#f)\" stroke=\"#c8bfe0\"/><path d=\"M51 20 l4 -10 4 10z\" fill=\"#3fb07a\"/><rect x=\"14\" y=\"34\" width=\"36\" height=\"22\" fill=\"url(#f)\" stroke=\"#c8bfe0\"/><path d=\"M16 34 q16 -26 32 0z\" fill=\"#3fb07a\"/><path d=\"M32 8 v6\" stroke=\"#ffd23f\" stroke-width=\"2\"/><circle cx=\"32\" cy=\"6\" r=\"2.5\" fill=\"#ffd23f\"/><path d=\"M27 56 v-10 q5 -6 10 0 v10z\" fill=\"#a8743d\"/></svg>"}; Object.keys(C).forEach(k=>{ ART[k]=C[k]; ARTURL[k]='url("data:image/svg+xml;charset=utf-8,'+encodeURIComponent(C[k])+'")'; });
+    ARTRE=new RegExp('('+Object.keys(ART).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')\uFE0F?','gu'); })();
 
   try{ if(state.meals) document.getElementById('mealsBadge').textContent='🍽️ Piring bersih: '+state.meals+' kali'; }catch(e){}
   render();
