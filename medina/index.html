@@ -34,7 +34,7 @@
   body.night .window .sun{background:#fff6c9;box-shadow:inset -10px -4px 0 #26306b}
 
   /* stars */
-  #stars{position:absolute;top:10px;left:50%;transform:translateX(-50%);background:#fff;border-radius:40px;padding:6px 18px;font-size:clamp(22px,5vw,34px);font-weight:800;box-shadow:0 4px 0 #ecd9c4;z-index:5;display:flex;gap:6px;align-items:center}
+  #stars{position:absolute;top:10px;right:76px;background:#fff;border-radius:40px;padding:6px 18px;font-size:clamp(22px,5vw,34px);font-weight:800;box-shadow:0 4px 0 #ecd9c4;z-index:5;display:flex;gap:6px;align-items:center}
   #stars .s{display:inline-block;transition:transform .3s}
   #stars.pop .s{transform:scale(1.6) rotate(20deg)}
   #sound{position:absolute;top:10px;right:10px;z-index:6;width:56px;height:56px;border-radius:50%;border:none;background:#fff;font-size:28px;box-shadow:0 4px 0 #ecd9c4}
@@ -48,7 +48,7 @@
   .meter.low .ic{animation:wiggle .8s infinite}
 
   /* cat */
-  #catWrap{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);width:62vw;height:62vw;max-width:46vh;max-height:46vh;width:min(62vw,46vh,360px);height:min(62vw,46vh,360px);z-index:3;cursor:pointer}
+  #catWrap{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);width:62vw;height:62vw;max-width:46vh;max-height:46vh;width:calc(min(62vw,46vh,360px) * var(--g,1));height:calc(min(62vw,46vh,360px) * var(--g,1));z-index:3;cursor:pointer}
   #cat{width:100%;height:100%;overflow:visible;transform-origin:50% 90%;animation:breathe 3s ease-in-out infinite}
   #cat .tail{transform-origin:228px 230px;animation:tail 2.2s ease-in-out infinite}
   #cat .eyesOpen ellipse.pupil{animation:blink 4.5s infinite;transform-box:fill-box;transform-origin:center}
@@ -211,6 +211,96 @@
   .songs button b{font-size:clamp(24px,6.5vw,32px)}
   .songs button.on{background:#ffd34d;box-shadow:0 5px 0 #c9a12a}
   .note2{position:absolute;font-size:30px;animation:rise 1.4s ease-out forwards;pointer-events:none}
+  #picker .box{display:block;max-height:88%;overflow-y:auto;-webkit-overflow-scrolling:touch;width:min(94vw,600px);padding:0 14px 16px}
+  #picker .phead{position:sticky;top:0;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 2px 8px;z-index:2;font-size:clamp(20px,5.4vw,28px)}
+  #picker .phead .x{position:static}
+  #picker .sec{font-weight:900;font-size:clamp(16px,4.4vw,20px);margin:10px 2px 8px}
+  #picker .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(76px,22vw,104px),1fr));gap:10px}
+  #picker .pgrid button{width:100%!important;height:auto!important;aspect-ratio:1/1;min-height:76px}
+  #tl{position:absolute;top:10px;left:10px;display:flex;gap:6px;z-index:6}
+  #tl button{width:48px;height:48px;border-radius:50%;border:none;background:#fff;font-size:24px;box-shadow:0 4px 0 #ecd9c4;position:relative;padding:0}
+  #gear .ring{position:absolute;inset:-4px;top:-4px;left:-4px;right:-4px;bottom:-4px;border-radius:50%;border:4px solid #f06b8f;opacity:0;transform:scale(.6)}
+  #gear.hold .ring{animation:holdring 2s linear forwards}
+  @keyframes holdring{0%{opacity:1;transform:scale(.6)}100%{opacity:1;transform:scale(1.1)}}
+  .tiny{position:absolute;bottom:-6px;right:-6px;background:#f06b8f;color:#fff;border-radius:10px;font-size:11px;font-weight:900;padding:1px 5px}
+  .panel{position:absolute;top:0;left:0;right:0;bottom:0;z-index:30;background:rgba(74,52,40,.4);display:none;align-items:center;justify-content:center}
+  .panel.show{display:flex}
+  .panel .card{background:#fff;border-radius:26px;width:min(94vw,560px);max-height:90%;overflow:auto;box-shadow:0 8px 0 #ecd9c4;padding:0 16px 18px;position:relative}
+  .panel .ph{position:sticky;top:0;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 0 8px;font-size:clamp(19px,5vw,26px);font-weight:900;z-index:2}
+  .panel .ph .x{position:static}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .tabs button{border:none;border-radius:16px;background:#f3ece4;padding:8px 10px;font-weight:800;font-size:14px;color:#4a3428}
+  .tabs button.on{background:#4a3428;color:#fff}
+  .row2{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0;font-size:15px}
+  .row2 button,.pbtn{border:none;border-radius:14px;background:#f06b8f;color:#fff;font-weight:800;padding:8px 12px;font-size:14px}
+  .pbtn.gray{background:#b9a99a} .pbtn.blue{background:#5ab4e8} .pbtn.green{background:#58c39a}
+  .muted{opacity:.7;font-size:13px}
+  .stat{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:15px}
+  .stat b{text-align:right}
+  .rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .rgrid button{border:none;border-radius:20px;background:#f7f2ec;padding:12px 8px;display:flex;align-items:center;gap:10px;font-size:clamp(14px,3.8vw,17px);font-weight:800;color:#4a3428;box-shadow:0 4px 0 #ecd9c4;text-align:left}
+  .rgrid button b{font-size:clamp(30px,8vw,40px)}
+  .rgrid button.done{background:#d9f5e6;box-shadow:0 4px 0 #9fd9bb}
+  .rgrid button.done::after{content:'✅';margin-left:auto}
+  .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:8px}
+  .sgrid div{aspect-ratio:1;border-radius:16px;background:#f7f2ec;display:flex;align-items:center;justify-content:center;font-size:34px}
+  .sgrid div.lock{filter:grayscale(1);opacity:.35;font-size:22px}
+  .pbar{height:14px;background:#eee;border-radius:10px;overflow:hidden;margin:6px 0 12px}.pbar div{height:100%;background:#ffd34d}
+  .mgrid{position:absolute;left:12px;right:12px;top:80px;bottom:12px;display:grid;gap:10px;align-content:center;justify-content:center}
+  .mcard{perspective:600px;cursor:pointer}
+  .mcard .in{position:relative;width:100%;height:100%;transition:transform .4s;transform-style:preserve-3d}
+  .mcard.flip .in{transform:rotateY(180deg)}
+  .mcard .f,.mcard .b{position:absolute;inset:0;top:0;left:0;right:0;bottom:0;border-radius:18px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 5px 0 #ecd9c4}
+  .mcard .f{background:linear-gradient(135deg,#f29b5a,#f06b8f);font-size:40px;color:#fff}
+  .mcard .b{background:#fff;transform:rotateY(180deg);font-size:clamp(44px,13vw,70px)}
+  .mcard.match .b{background:#d9f5e6}
+  .szrow{position:absolute;left:0;right:0;top:34%;display:flex;justify-content:space-evenly;align-items:flex-end}
+  .szrow button{border:none;background:none;line-height:1;padding:6px}
+  .grp{position:absolute;top:24%;width:42%;height:46%;border-radius:24px;background:#fff;box-shadow:0 6px 0 #ecd9c4;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:4px;font-size:clamp(30px,9vw,46px);padding:8px;border:none}
+  .grp.nope,.szrow button.nope{animation:wiggle .4s 2}
+  .teethbox{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:min(92vw,58vh,420px);height:min(70vw,44vh,320px);touch-action:none}
+  .germ{position:absolute;font-size:clamp(28px,8vw,40px);transition:opacity .2s, transform .2s;pointer-events:none}
+  .brushc{position:absolute;font-size:56px;pointer-events:none;z-index:5;transform:translate(-50%,-60%) rotate(-30deg);display:none}
+  .foam{position:absolute;border-radius:50%;background:#fff;opacity:.9;pointer-events:none;animation:bubbleUp 1.4s ease-out forwards}
+  .steps{position:absolute;left:0;right:0;top:66px;display:flex;justify-content:center;gap:6px}
+  .steps span{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;opacity:.45;box-shadow:0 3px 0 #ecd9c4}
+  .steps span.cur{opacity:1;transform:scale(1.15);box-shadow:0 0 0 3px #f06b8f}
+  .steps span.ok{opacity:1;background:#d9f5e6}
+  .hands{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:clamp(120px,36vw,190px);touch-action:none;line-height:1}
+  .tools{position:absolute;left:0;right:0;bottom:16px;display:flex;justify-content:center;gap:14px}
+  .tools button{width:clamp(76px,21vw,100px);height:clamp(76px,21vw,100px);border:none;border-radius:24px;background:#fff;font-size:clamp(40px,11vw,56px);box-shadow:0 6px 0 #ecd9c4;opacity:.45}
+  .tools button.act{opacity:1;animation:pulse 1s infinite}
+  .bigmsg{position:absolute;left:0;right:0;top:20%;text-align:center;font-size:clamp(20px,5.5vw,28px);font-weight:900}
+  .doll{position:absolute;left:50%;top:64px;transform:translateX(-50%);width:220px;height:220px}
+  .doll svg{position:absolute;inset:0;top:0;left:0;width:100%;height:100%;overflow:visible}
+  .wardrobe{position:absolute;left:8px;right:8px;bottom:8px;display:flex;flex-direction:column;gap:6px}
+  .wardrobe .wr{display:flex;align-items:center;gap:6px;background:#fff;border-radius:16px;padding:5px 8px;box-shadow:0 3px 0 #ecd9c4}
+  .wardrobe .wr b{width:62px;font-size:14px}
+  .wardrobe .wr button{flex:1;height:38px;border-radius:14px;border:3px solid #fff;box-shadow:0 0 0 2px #ddd;font-size:24px}
+  .wardrobe .wr button.sel{box-shadow:0 0 0 4px #4a3428}
+  .feelopts{position:absolute;left:0;right:0;top:30%;display:flex;justify-content:center;gap:clamp(10px,4vw,22px)}
+  .feelopts button{width:clamp(96px,27vw,140px);height:clamp(96px,27vw,140px);border:none;border-radius:28px;background:#fff;box-shadow:0 7px 0 #ecd9c4;font-size:clamp(60px,17vw,90px)}
+  .feelopts button.nope{animation:wiggle .4s 2}
+  .famgrid{position:absolute;left:12px;right:12px;top:86px;bottom:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-content:center}
+  .famgrid button{border:none;border-radius:24px;aspect-ratio:1;background:#fff center/cover no-repeat;box-shadow:0 6px 0 #ecd9c4;position:relative;overflow:hidden}
+  .famgrid button span{position:absolute;left:0;right:0;bottom:0;background:#0006;color:#fff;font-weight:900;padding:4px;font-size:15px;opacity:0;transition:opacity .3s}
+  .famgrid button.ok span{opacity:1}.famgrid button.ok{box-shadow:0 0 0 5px #58c39a}
+  .famgrid button.nope{animation:wiggle .4s 2}
+  .story{position:absolute;left:0;right:0;top:60px;bottom:0;display:flex;flex-direction:column;align-items:center;padding:10px 16px;gap:12px}
+  .story .pic{font-size:clamp(70px,20vw,110px);line-height:1.1;text-align:center;min-height:30%;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}
+  .story .txt{background:#fff;border-radius:20px;padding:14px 16px;font-size:clamp(17px,4.6vw,22px);line-height:1.45;box-shadow:0 4px 0 #ecd9c4;text-align:center}
+  .story .nav{display:flex;gap:12px;margin-top:auto;margin-bottom:12px}
+  .story .nav button{border:none;border-radius:20px;background:#4f6fd1;color:#fff;font-weight:900;font-size:18px;padding:12px 18px;box-shadow:0 5px 0 #33509f}
+  .slist{position:absolute;left:12px;right:12px;top:80px;display:flex;flex-direction:column;gap:12px}
+  .slist button{border:none;border-radius:22px;background:#fff;box-shadow:0 5px 0 #ecd9c4;padding:14px;font-size:clamp(17px,4.6vw,22px);font-weight:900;display:flex;align-items:center;gap:12px;color:#4a3428;text-align:left}
+  .slist button b{font-size:44px}
+  .twinstage{position:absolute;left:0;right:0;top:60px;bottom:120px;display:flex;justify-content:center;align-items:flex-end;gap:2%}
+  .twinstage .tc{width:min(44vw,34vh,240px);height:min(44vw,34vh,240px);position:relative;transition:transform .3s}
+  .twinstage .tc svg{width:100%;height:100%;overflow:visible}
+  .twinstage .tc .nm{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-weight:900;color:#4a3428;font-size:clamp(12px,3.4vw,16px)}
+  .tbtns{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 8px}
+  .tbtns button{border:none;border-radius:20px;background:#fff;box-shadow:0 5px 0 #ecd9c4;font-size:clamp(14px,3.8vw,17px);font-weight:900;padding:8px 12px;display:flex;flex-direction:column;align-items:center;color:#4a3428}
+  .tbtns button b{font-size:32px}
   /* start */
   #start{position:absolute;top:0;left:0;right:0;bottom:0;z-index:20;background:rgba(253,241,227,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:20px}
   #start h1{margin:0;font-size:clamp(30px,8vw,56px)}
@@ -238,6 +328,7 @@
     <div class="rug"></div>
     <div id="dark"></div>
 
+    <div id="tl"><button id="gear" aria-label="Menu orang tua (tahan)">⚙️<span class="ring"></span></button><button id="btnRoutine" aria-label="Rutinitas">📋<span class="tiny" id="rtBadge"></span></button><button id="btnStickers" aria-label="Buku stiker">📒</button></div>
     <div id="stars"><span class="s">⭐</span><span id="starCount">0</span></div>
     <button id="sound" aria-label="Suara">🔊</button>
 
@@ -328,22 +419,39 @@
   </div>
 
   <div id="picker"><div class="box">
-    <button class="x" id="pickX" aria-label="Tutup">✕</button>
-    <button data-game="ball" style="background:var(--fun)">⚽<small>Bola</small></button>
-    <button data-game="yarn" style="background:#e8a33d">🧶<small>Benang</small></button>
-    <button data-game="bubble" style="background:var(--water)">🫧<small>Gelembung</small></button>
-    <button data-game="color" style="background:#ef6b6b">🎨<small>Warna</small></button>
-    <button data-game="shape" style="background:#7c6fe0">🔺<small>Bentuk</small></button>
-    <button data-game="count" style="background:#58c39a">🔢<small>Hitung</small></button>
-    <button data-game="animal" style="background:#e8a33d">🐮<small>Hewan</small></button>
-    <button data-game="pop2" style="background:#5ab4e8">🐟<small>Tangkap Ikan</small></button>
-    <button data-game="piano" style="background:#f06b8f">🎹<small>Musik</small></button>
-    <button data-game="draw" style="background:#58c39a">🖍️<small>Gambar</small></button>
-    <button data-game="shadow" style="background:#4a3428">👤<small>Bayangan</small></button>
-    <button data-game="peek" style="background:#e8a33d">🙈<small>Cilukba</small></button>
-    <button data-game="puzzle" style="background:#7c6fe0">🧩<small>Puzzle</small></button>
-    <button data-game="fishing" style="background:#3b82f6">🎣<small>Mancing</small></button>
-    <button data-game="dance" style="background:#e86fc4">💃<small>Joget</small></button>
+    <div class="phead"><b>Mau main apa?</b><button class="x" id="pickX" aria-label="Tutup">✕</button></div>
+    <div class="sec">🎉 Main</div><div class="pgrid">
+      <button data-game="ball" style="background:var(--fun)">⚽<small>Bola</small></button>
+      <button data-game="yarn" style="background:#e8a33d">🧶<small>Benang</small></button>
+      <button data-game="bubble" style="background:var(--water)">🫧<small>Gelembung</small></button>
+      <button data-game="fishing" style="background:#3b82f6">🎣<small>Mancing</small></button>
+      <button data-game="dance" style="background:#e86fc4">💃<small>Joget</small></button>
+      <button data-game="piano" style="background:#f06b8f">🎹<small>Musik</small></button>
+      <button data-game="draw" style="background:#58c39a">🖍️<small>Gambar</small></button>
+      <button data-game="peek" style="background:#e8a33d">🙈<small>Cilukba</small></button>
+      <button data-game="twins" style="background:#9b7be0">👯<small>Si Kembar</small></button>
+    </div>
+    <div class="sec">📚 Belajar</div><div class="pgrid">
+      <button data-game="color" style="background:#ef6b6b">🎨<small>Warna</small></button>
+      <button data-game="shape" style="background:#7c6fe0">🔺<small>Bentuk</small></button>
+      <button data-game="count" style="background:#58c39a">🔢<small>Hitung</small></button>
+      <button data-game="animal" style="background:#e8a33d">🐮<small>Hewan</small></button>
+      <button data-game="pop2" style="background:#5ab4e8">🐟<small>Tangkap Ikan</small></button>
+      <button data-game="shadow" style="background:#4a3428">👤<small>Bayangan</small></button>
+      <button data-game="puzzle" style="background:#7c6fe0">🧩<small>Puzzle</small></button>
+      <button data-game="memory" style="background:#f29b5a">🃏<small>Kartu Kembar</small></button>
+      <button data-game="size" style="background:#22a06b">🐘<small>Besar Kecil</small></button>
+      <button data-game="feel" style="background:#f06b8f">😺<small>Perasaan</small></button>
+    </div>
+    <div class="sec">🌟 Kebiasaan Baik</div><div class="pgrid">
+      <button data-game="teeth" style="background:#5ab4e8">🪥<small>Sikat Gigi</small></button>
+      <button data-game="hands" style="background:#58c39a">🧼<small>Cuci Tangan</small></button>
+      <button data-game="clothes" style="background:#e86fc4">👕<small>Pakai Baju</small></button>
+    </div>
+    <div class="sec">👨‍👩‍👧 Keluarga & Cerita</div><div class="pgrid">
+      <button data-game="family" style="background:#e8a33d">👨‍👩‍👧<small>Siapa Ini?</small></button>
+      <button data-game="story" style="background:#4f6fd1">📖<small>Cerita</small></button>
+    </div>
   </div></div>
   <div id="meal"><div class="sheet">
     <div class="mt" id="mealTitle">Makan bareng Kucing Medina</div>
@@ -354,6 +462,10 @@
     <div class="chew" id="chew"></div>
     <div class="mini-btns"><button id="mealDrink">💧 Minum</button><button class="end" id="mealEnd">✕ Selesai</button></div>
   </div></div>
+  <div class="panel" id="parentP"><div class="card"><div class="ph"><span>👨‍👩‍👧 Menu Orang Tua</span><button class="x" data-close="parentP">✕</button></div><div class="tabs" id="ptabs"></div><div id="pbody"></div></div></div>
+  <div class="panel" id="routineP"><div class="card"><div class="ph"><span>📋 Kegiatan Hari Ini</span><button class="x" data-close="routineP">✕</button></div><div id="rbody"></div></div></div>
+  <div class="panel" id="stickerP"><div class="card"><div class="ph"><span>📒 Buku Stiker</span><button class="x" data-close="stickerP">✕</button></div><div id="sbody"></div></div></div>
+  <div class="panel" id="sleepLock" style="background:#1d2350;z-index:40"><div style="text-align:center;color:#fff;padding:20px"><div style="font-size:90px">😴</div><div style="font-size:26px;font-weight:900;margin:10px 0">Kucing Medina sudah tidur</div><div style="font-size:17px;opacity:.85">Main lagi nanti ya. Papa atau Mami bisa tahan tombol ⚙️ untuk membuka.</div><button id="lockGear" style="margin-top:22px;width:64px;height:64px;border-radius:50%;border:none;font-size:30px;position:relative">⚙️<span class="ring" style="position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;border-radius:50%;border:4px solid #f06b8f;opacity:0"></span></button></div></div>
   <div id="choose"><div class="box" id="chooseBox"></div></div>
   <div id="start">
     <svg viewBox="0 0 120 100" width="140" aria-hidden="true">
@@ -380,8 +492,10 @@
     {k:'sleep', ic:'🌙', col:'var(--sleep)'}
   ];
   const state = {food:70, water:70, clean:80, fun:60, sleep:80, stars:0, acc:0};
-  try{ const s = JSON.parse(localStorage.getItem('siMeong')||'null'); if(s) Object.assign(state, s); }catch(e){}
-  const save = () => { try{ localStorage.setItem('siMeong', JSON.stringify(state)); }catch(e){} };
+  const CHILD='Medina';
+  const STORE_KEY='siMeong';
+  try{ const s = JSON.parse(localStorage.getItem(STORE_KEY)||'null'); if(s) Object.assign(state, s); }catch(e){}
+  const save = () => { try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} };
 
   const $ = s => document.querySelector(s);
   const meters = $('#meters'), fx = $('#fx'), wrap = $('#catWrap'), bubble = $('#bubble');
@@ -458,29 +572,233 @@
     sparkle(){ [1319,1568,1760,2093].forEach((f,i)=>tone(f,f,.12,'sine',.12,i*.1)); },
     yay(){ [523,659,784,1047].forEach((f,i)=>tone(f,f,.18,'triangle',.2,i*.12)); }
   };
-  let idVoice=null;
-  function pickVoice(){ try{ const v=speechSynthesis.getVoices(); idVoice=v.find(x=>/^id|^in/i.test(x.lang))||null; }catch(e){} }
+  let idVoice=null, enVoice=null;
+  function pickVoice(){ try{ const v=speechSynthesis.getVoices(); idVoice=v.find(x=>/^id|^in/i.test(x.lang))||null; enVoice=v.find(x=>/^en/i.test(x.lang))||null; }catch(e){} }
   if('speechSynthesis' in window){ pickVoice(); try{ speechSynthesis.onvoiceschanged=pickVoice; }catch(e){} }
-  function say(text,after){
+  function say(text,after,lang){
     let fired=false; const go=()=>{ if(!fired){ fired=true; if(after) after(); } };
     if(!soundOn || !('speechSynthesis' in window)){ if(after) setTimeout(go,300); return; }
-    try{ const u=new SpeechSynthesisUtterance(text); u.lang='id-ID'; if(idVoice) u.voice=idVoice; u.rate=.92; u.pitch=1.45;
+    try{ const u=new SpeechSynthesisUtterance(text); if(lang==='en'){ u.lang='en-US'; if(enVoice) u.voice=enVoice; } else { u.lang='id-ID'; if(idVoice) u.voice=idVoice; } u.rate=.92; u.pitch=1.45;
       u.onend=go; u.onerror=go; if(after) setTimeout(go, 600+text.length*85);
       if(speechSynthesis.speaking) speechSynthesis.cancel(); setTimeout(()=>{ try{ speechSynthesis.speak(u); }catch(e){ go(); } },30);
     }catch(e){ go(); }
   }
   $('#sound').addEventListener('click',()=>{ soundOn=!soundOn; $('#sound').textContent=soundOn?'🔊':'🔇'; if(soundOn) sfx.meow(); });
 
-  const ACC=[null,['🎀',96,58,64],['👑',150,30,70],['🕶️',150,116,74],['🎩',150,20,78],['🌸',212,62,56],['🧢',150,34,82]];
-  const ACCNAME=['','pita','mahkota','kacamata hitam','topi pesulap','bunga','topi'];
+  const ACC_ALL=[[null,0,'',0],[['🎀',96,58,64],0,'pita'],[['👑',150,30,70],0,'mahkota'],[['🕶️',150,116,74],0,'kacamata hitam'],[['🎩',150,20,78],0,'topi pesulap'],[['🌸',212,62,56],0,'bunga'],[['🧢',150,34,82],0,'topi'],
+    [['🦋',212,58,58],15,'kupu-kupu'],[['🎓',150,26,78],30,'topi wisuda'],[['🌟',150,22,62],45,'bintang'],[['🍀',96,60,56],60,'daun semanggi'],[['👒',150,30,86],80,'topi bunga'],[['🪽',150,40,70],100,'sayap']];
+  const accList=()=>ACC_ALL.filter(a=>state.stars>=a[1]);
+  const ACC={get length(){ return accList().length; }};
+  const ACCNAME=new Proxy({},{get:(t,i)=>{ const a=accList()[i]; return a?a[2]:''; }});
   const accG=document.getElementById('acc');
   function drawAcc(){
-    accG.innerHTML=''; const a=ACC[state.acc%ACC.length]; if(!a) return;
+    accG.innerHTML=''; const L2=accList(); const a=(L2[state.acc%L2.length]||[])[0]; if(!a) return;
     const t=document.createElementNS('http://www.w3.org/2000/svg','text');
     t.setAttribute('x',a[1]); t.setAttribute('y',a[2]); t.setAttribute('font-size',a[3]); t.setAttribute('dominant-baseline','middle'); t.textContent=a[0];
     accG.appendChild(t);
   }
   drawAcc();
+  /* ---------- storage (IndexedDB for photos/voices) ---------- */
+  const IDB=(()=>{ let dbp=null; const mem=new Map();
+    function db(){ if(dbp) return dbp; dbp=new Promise((res)=>{ try{ const r=indexedDB.open('kucingDB-'+CHILD,1);
+      r.onupgradeneeded=()=>r.result.createObjectStore('kv'); r.onsuccess=()=>res(r.result); r.onerror=()=>res(null); }catch(e){ res(null); } }); return dbp; }
+    async function get(k){ const d=await db(); if(!d) return mem.get(k); return new Promise(res=>{ try{ const q=d.transaction('kv').objectStore('kv').get(k); q.onsuccess=()=>res(q.result); q.onerror=()=>res(mem.get(k)); }catch(e){ res(mem.get(k)); } }); }
+    async function set(k,v){ mem.set(k,v); const d=await db(); if(!d) return; return new Promise(res=>{ try{ const t=d.transaction('kv','readwrite'); t.objectStore('kv').put(v,k); t.oncomplete=()=>res(); t.onerror=()=>res(); }catch(e){ res(); } }); }
+    async function del(k){ mem.delete(k); const d=await db(); if(!d) return; try{ d.transaction('kv','readwrite').objectStore('kv').delete(k); }catch(e){} }
+    return {get,set,del};
+  })();
+  const today=()=>{ const d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); };
+  state.stats=state.stats||{games:{},minutes:{},routines:{}};
+  state.settings=Object.assign({lang:'id',limit:0,parentVoice:true},state.settings||{});
+  function track(g){ state.stats.games[g]=(state.stats.games[g]||0)+1; save(); }
+  setInterval(()=>{ if(document.hidden || $('#start').style.display!=='none') return; const k=today(); state.stats.minutes[k]=(state.stats.minutes[k]||0)+1; save(); },60000);
+
+  /* ---------- panels ---------- */
+  function openPanel(id){ document.getElementById(id).classList.add('show'); }
+  function closePanel(id){ document.getElementById(id).classList.remove('show'); }
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>{ sfx.click(); closePanel(b.dataset.close); }));
+  /* parent gate: hold 2 seconds */
+  function holdGate(btn,onOpen){
+    let t=null; const ring=btn.querySelector('.ring');
+    const start=e=>{ e.preventDefault(); btn.classList.add('hold'); if(ring){ ring.style.animation='none'; void ring.offsetWidth; ring.style.animation='holdring 2s linear forwards'; }
+      t=setTimeout(()=>{ btn.classList.remove('hold'); if(ring) ring.style.animation='none'; sfx.star(); onOpen(); },2000); };
+    const stop=()=>{ clearTimeout(t); btn.classList.remove('hold'); if(ring) ring.style.animation='none'; };
+    if(window.PointerEvent){ btn.addEventListener('pointerdown',start); btn.addEventListener('pointerup',stop); btn.addEventListener('pointerleave',stop); btn.addEventListener('pointercancel',stop); }
+    else { btn.addEventListener('touchstart',start,{passive:false}); btn.addEventListener('touchend',stop); }
+    btn.addEventListener('click',()=>{ if(!btn._hinted){ btn._hinted=1; } });
+  }
+
+  /* ---------- language ---------- */
+  const DICT={
+    num:{id:['nol','satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','sepuluh'],
+         en:['zero','one','two','three','four','five','six','seven','eight','nine','ten'],
+         mak:['nol',"se're",'rua','tallu',"appa'",'lima','annang','tuju','sagantujua','salapang','sampulo']},
+    color:{merah:'red',kuning:'yellow',biru:'blue',hijau:'green',ungu:'purple',oranye:'orange'},
+    shape:{lingkaran:'circle',kotak:'square',segitiga:'triangle',bintang:'star',hati:'heart'},
+    animal:{sapi:'cow',ayam:'chicken',kambing:'goat',bebek:'duck',anjing:'dog',kucing:'cat',katak:'frog',gajah:'elephant',domba:'sheep'},
+    thing:{ikan:'fish',apel:'apples',bintang:'stars','anak ayam':'chicks',balon:'balloons',bunga:'flowers'}
+  };
+  const LANG=()=>state.settings.lang;
+  function numWord(n){ const l=LANG(); const a=DICT.num[l]||DICT.num.id; return n<a.length?a[n]:String(n); }
+  function en(type,k){ return (DICT[type]&&DICT[type][k])||k; }
+  function sayT(idText,enText,after){ if(LANG()==='en') say(enText,after,'en'); else say(idText,after); }
+
+  /* ---------- parent voices ---------- */
+  const VSLOTS=[['praise','Pujian','"Pintar, Nak!" / "Hebat sekali!"'],['eat','Ayo makan','"Ayo aaam, Nak!"'],['hello','Sapaan','"Halo, Nak! Ayo main!"'],['night','Selamat tidur','"Selamat tidur, Nak"'],['love','Sayang','"Papa dan Mami sayang kamu"']];
+  const vURL={};
+  VSLOTS.forEach(([k])=>IDB.get('voice_'+k).then(b=>{ if(b) vURL[k]=URL.createObjectURL(b); }));
+  let parentAudio=null;
+  function playParent(k,chance){ if(!soundOn||!state.settings.parentVoice||!vURL[k]) return false; if(chance!==undefined && Math.random()>chance) return false;
+    try{ if('speechSynthesis' in window) speechSynthesis.cancel(); if(parentAudio) parentAudio.pause(); parentAudio=new Audio(vURL[k]); const r=parentAudio.play(); if(r&&r.catch) r.catch(()=>{}); return true; }catch(e){ return false; } }
+
+  /* ---------- screen time ---------- */
+  let sessionStart=Date.now();
+  function checkLimit(){
+    const lim=state.settings.limit; if(state.lockUntil && Date.now()<state.lockUntil){ showLock(); return; }
+    if(!lim || $('#start').style.display!=='none') return;
+    if(Date.now()-sessionStart >= lim*60000){ state.lockUntil=Date.now()+60*60000; save();
+      try{ if(typeof closeLearn==='function') closeLearn(); }catch(e){}
+      document.body.classList.add('night'); eyes(true); say('Huaaam. Kucing Medina sudah ngantuk. Main lagi nanti ya!'); if(!playParent('night')) {}
+      setTimeout(showLock,3500); }
+  }
+  function showLock(){ openPanel('sleepLock'); }
+  holdGate(document.getElementById('lockGear'),()=>{ state.lockUntil=0; sessionStart=Date.now(); save(); closePanel('sleepLock'); document.body.classList.remove('night'); eyes(false); say('Halo lagi!'); });
+  setInterval(checkLimit,15000);
+
+  /* ---------- parent menu ---------- */
+  const PT=[['voice','🎙️ Suara'],['family','📷 Foto Keluarga'],['time','⏰ Waktu Layar'],['lang','🌐 Bahasa'],['report','📊 Laporan']];
+  let ptab='voice';
+  function openParent(){ renderParent(); openPanel('parentP'); }
+  holdGate(document.getElementById('gear'),openParent);
+  document.getElementById('gear').addEventListener('click',()=>{ if(!document.getElementById('parentP').classList.contains('show')) say('Untuk Papa dan Mami: tahan tombol ini dua detik'); });
+  function renderParent(){
+    const tabs=document.getElementById('ptabs'); tabs.innerHTML='';
+    PT.forEach(([k,n])=>{ const b=document.createElement('button'); b.textContent=n; if(k===ptab) b.className='on'; b.onclick=()=>{ ptab=k; renderParent(); }; tabs.appendChild(b); });
+    const body=document.getElementById('pbody'); body.innerHTML='';
+    ({voice:pVoice,family:pFamily,time:pTime,lang:pLang,report:pReport})[ptab](body);
+  }
+  function pVoice(body){
+    const canRec=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder);
+    body.innerHTML=`<div class="muted">Rekam suara Papa atau Mami. Suara ini diputar sebagai pengganti suara robot di saat-saat tertentu. ${canRec?'':'Perekam tidak tersedia di sini, jadi gunakan tombol Unggah (rekam dulu pakai aplikasi perekam suara di HP).'}</div>
+      <div class="row2"><label><input type="checkbox" id="pvOn" ${state.settings.parentVoice?'checked':''}> Pakai suara Papa/Mami</label></div><div id="vlist"></div>`;
+    body.querySelector('#pvOn').onchange=e=>{ state.settings.parentVoice=e.target.checked; save(); };
+    const list=body.querySelector('#vlist');
+    VSLOTS.forEach(([k,name,hint])=>{
+      const d=document.createElement('div'); d.style.cssText='border-top:1px solid #eee;padding:8px 0';
+      d.innerHTML=`<b>${name}</b> <span class="muted">${hint}</span><div class="row2">
+        ${canRec?'<button class="rec">🔴 Rekam</button>':''}<label class="pbtn blue" style="cursor:pointer">⬆️ Unggah<input type="file" accept="audio/*" style="display:none"></label>
+        <button class="pbtn green play" ${vURL[k]?'':'disabled'}>▶️ Putar</button><button class="pbtn gray del" ${vURL[k]?'':'disabled'}>🗑️</button>
+        <span class="muted st">${vURL[k]?'✅ sudah ada':'belum ada'}</span></div>`;
+      list.appendChild(d);
+      const setBlob=async b=>{ await IDB.set('voice_'+k,b); if(vURL[k]) URL.revokeObjectURL(vURL[k]); vURL[k]=URL.createObjectURL(b); renderParent(); };
+      d.querySelector('input[type=file]').onchange=e=>{ const f=e.target.files[0]; if(f) setBlob(f); };
+      d.querySelector('.play').onclick=()=>{ const keep=state.settings.parentVoice; state.settings.parentVoice=true; playParent(k); state.settings.parentVoice=keep; };
+      d.querySelector('.del').onclick=async()=>{ await IDB.del('voice_'+k); if(vURL[k]) URL.revokeObjectURL(vURL[k]); delete vURL[k]; renderParent(); };
+      const rb=d.querySelector('.rec');
+      if(rb) rb.onclick=async()=>{
+        if(rb._rec){ rb._rec.stop(); return; }
+        try{ const stream=await navigator.mediaDevices.getUserMedia({audio:true}); const chunks=[]; const mr=new MediaRecorder(stream);
+          mr.ondataavailable=e=>chunks.push(e.data); mr.onstop=()=>{ stream.getTracks().forEach(t=>t.stop()); rb._rec=null; setBlob(new Blob(chunks,{type:mr.mimeType||'audio/mp4'})); };
+          rb._rec=mr; mr.start(); rb.textContent='⏹️ Berhenti'; d.querySelector('.st').textContent='merekam… (maks 8 detik)'; setTimeout(()=>{ if(rb._rec===mr) mr.stop(); },8000);
+        }catch(e){ d.querySelector('.st').textContent='Mikrofon tidak diizinkan. Pakai tombol Unggah.'; }
+      };
+    });
+  }
+  function pTime(body){
+    const opts=[0,10,15,20,30,45];
+    body.innerHTML=`<div class="muted">Setelah waktu habis, kucingnya menguap lalu tidur, dan game terkunci 1 jam. Papa atau Mami bisa membuka lebih cepat dengan menahan tombol ⚙️.</div><div class="row2" id="lims"></div>
+      <div class="muted" id="limInfo"></div>`;
+    const box=body.querySelector('#lims');
+    opts.forEach(m=>{ const b=document.createElement('button'); b.className='pbtn '+(state.settings.limit===m?'':'gray'); b.textContent=m?m+' menit':'Tanpa batas';
+      b.onclick=()=>{ state.settings.limit=m; sessionStart=Date.now(); save(); renderParent(); }; box.appendChild(b); });
+    const left=state.settings.limit? Math.max(0,Math.round((state.settings.limit*60000-(Date.now()-sessionStart))/60000)) : null;
+    body.querySelector('#limInfo').textContent= left===null?'Saat ini tanpa batas waktu.':`Sisa waktu main sesi ini: ±${left} menit.`;
+  }
+  function pLang(body){
+    const L3=[['id','🇮🇩 Bahasa Indonesia'],['en','🇬🇧 English (kata-kata belajar)'],['mak','Bahasa Makassar (angka)']];
+    body.innerHTML=`<div class="muted">Mengatur bahasa di permainan belajar: Warna, Bentuk, Hitung, Hewan, Mancing, dan Makan Bareng. Bahasa Makassar dipakai untuk angka (se're, rua, tallu…).</div><div class="row2" id="langs"></div>`;
+    const box=body.querySelector('#langs');
+    L3.forEach(([k,n])=>{ const b=document.createElement('button'); b.className='pbtn '+(LANG()===k?'':'gray'); b.textContent=n;
+      b.onclick=()=>{ state.settings.lang=k; save(); renderParent(); if(k==='en') say('Hello! Let us learn together!',null,'en'); else if(k==='mak') say("Se're, rua, tallu!"); else say('Halo! Ayo belajar!'); }; box.appendChild(b); });
+  }
+  function pReport(body){
+    const st=state.stats, t=today(); let week=0; const now=Date.now();
+    for(let i=0;i<7;i++){ const d=new Date(now-i*864e5); const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); week+=st.minutes[k]||0; }
+    const NAMES={ball:'Bola',yarn:'Benang',bubble:'Gelembung',color:'Warna',shape:'Bentuk',count:'Hitung',animal:'Hewan',pop2:'Tangkap Ikan',piano:'Musik',draw:'Gambar',shadow:'Bayangan',peek:'Cilukba',puzzle:'Puzzle',fishing:'Mancing',dance:'Joget',memory:'Kartu Kembar',size:'Besar Kecil',feel:'Perasaan',teeth:'Sikat Gigi',hands:'Cuci Tangan',clothes:'Pakai Baju',family:'Siapa Ini',story:'Cerita',twins:'Si Kembar'};
+    const top=Object.entries(st.games).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([g,n])=>`<span>${NAMES[g]||g}</span><b>${n}x</b>`).join('');
+    const rt=(st.routines[t]||[]).length;
+    body.innerHTML=`<div class="stat">
+      <span>⭐ Total bintang</span><b>${state.stars}</b>
+      <span>🍽️ Piring bersih</span><b>${state.meals||0} kali</b>
+      <span>📋 Kegiatan hari ini</span><b>${rt} dari ${ROUTINES.length}</b>
+      <span>⏱️ Main hari ini</span><b>${st.minutes[t]||0} menit</b>
+      <span>📅 Main 7 hari terakhir</span><b>${week} menit</b>
+      <span>🐱 Ukuran kucing</span><b>${growthName()}</b></div>
+      <div style="margin-top:12px;font-weight:900">Permainan favorit</div><div class="stat">${top||'<span class="muted">Belum ada data</span><b></b>'}</div>
+      <div class="row2" style="margin-top:14px"><button class="pbtn gray" id="resetAll">Hapus semua data game</button></div>`;
+    body.querySelector('#resetAll').onclick=()=>{ if(body._sure){ try{ localStorage.removeItem(STORE_KEY); }catch(e){} location.reload(); } else { body._sure=1; body.querySelector('#resetAll').textContent='Ketuk sekali lagi untuk yakin'; } };
+  }
+
+  /* ---------- family photos ---------- */
+  const TWIN = CHILD==='Medina' ? 'Mecca' : 'Medina';
+  const FAM_DEFAULT=['Papa','Mami','Opa','Oma','Ibu',TWIN,CHILD];
+  let FAM=[]; IDB.get('fam').then(v=>{ FAM=v||FAM_DEFAULT.map(n=>({name:n,img:null})); });
+  function saveFam(){ IDB.set('fam',FAM); }
+  function resizeImg(file){ return new Promise(res=>{ const fr=new FileReader(); fr.onload=()=>{ const im=new Image(); im.onload=()=>{ const S=320, c=document.createElement('canvas'); c.width=c.height=S;
+      const k=Math.max(S/im.width,S/im.height), w=im.width*k, h=im.height*k; const g=c.getContext('2d'); g.drawImage(im,(S-w)/2,(S-h)/2,w,h); res(c.toDataURL('image/jpeg',.82)); }; im.onerror=()=>res(null); im.src=fr.result; }; fr.readAsDataURL(file); }); }
+  function pFamily(body){
+    body.innerHTML=`<div class="muted">Unggah foto wajah anggota keluarga untuk permainan "Siapa Ini?". Foto hanya disimpan di HP ini, tidak dikirim ke mana-mana.</div><div id="famList"></div>
+      <div class="row2"><input id="famNew" placeholder="Nama lain (mis. Tante)" style="flex:1;padding:8px;border-radius:12px;border:1px solid #ddd;font-size:15px"><button class="pbtn" id="famAdd">+ Tambah</button></div>`;
+    const list=body.querySelector('#famList');
+    FAM.forEach((m,i)=>{ const d=document.createElement('div'); d.style.cssText='display:flex;align-items:center;gap:10px;border-top:1px solid #eee;padding:8px 0';
+      d.innerHTML=`<div style="width:56px;height:56px;border-radius:14px;background:#f3ece4 center/cover no-repeat;${m.img?`background-image:url(${m.img})`:''};display:flex;align-items:center;justify-content:center;font-size:24px">${m.img?'':'👤'}</div>
+        <b style="flex:1">${m.name}</b><label class="pbtn blue" style="cursor:pointer">📷 Foto<input type="file" accept="image/*" style="display:none"></label><button class="pbtn gray">🗑️</button>`;
+      d.querySelector('input').onchange=async e=>{ const f=e.target.files[0]; if(!f) return; m.img=await resizeImg(f); saveFam(); renderParent(); };
+      d.querySelector('.gray').onclick=()=>{ if(m.img){ m.img=null; } else { FAM.splice(i,1); } saveFam(); renderParent(); };
+      list.appendChild(d); });
+    body.querySelector('#famAdd').onclick=()=>{ const v=body.querySelector('#famNew').value.trim(); if(!v) return; FAM.push({name:v,img:null}); saveFam(); renderParent(); };
+  }
+
+  /* ---------- routines ---------- */
+  const ROUTINES=[['🌅','Bangun tidur'],['🪥','Sikat gigi pagi'],['🧼','Cuci tangan'],['👕','Pakai baju'],['🍽️','Makan'],['😴','Tidur siang'],['🛁','Mandi sore'],['🪥','Sikat gigi malam']];
+  function rDone(){ const t=today(); return state.stats.routines[t]||(state.stats.routines[t]=[]); }
+  function rBadge(){ const left=ROUTINES.length-rDone().length; const b=document.getElementById('rtBadge'); b.textContent=left>0?left:'✓'; b.style.background=left>0?'#f06b8f':'#58c39a'; }
+  function renderRoutine(){
+    const done=rDone(); const body=document.getElementById('rbody');
+    body.innerHTML=`<div class="muted" style="margin-bottom:8px">Ketuk kalau ${CHILD} sudah melakukannya. Kucing Medina ikut juga!</div><div class="rgrid"></div>`;
+    const g=body.querySelector('.rgrid');
+    ROUTINES.forEach(([e,n],i)=>{ const b=document.createElement('button'); b.innerHTML=`<b>${e}</b>${n}`; if(done.includes(i)) b.classList.add('done'); g.appendChild(b);
+      b.onclick=()=>{ const d=rDone(); if(d.includes(i)){ d.splice(d.indexOf(i),1); save(); renderRoutine(); rBadge(); return; }
+        d.push(i); save(); renderRoutine(); rBadge(); sfx.yay(); happy(); emitAt(e,3); addStar();
+        if(!playParent('praise',.5)) say(`Hore! ${CHILD} sudah ${n.toLowerCase()}! Kucing Medina juga!`);
+        if(d.length===ROUTINES.length) setTimeout(()=>{ confetti(); say(`Hebat! Semua kegiatan hari ini selesai. ${CHILD} anak pintar!`); },1800);
+      }; });
+  }
+  document.getElementById('btnRoutine').addEventListener('click',()=>{ sfx.click(); renderRoutine(); openPanel('routineP'); say('Hari ini '+CHILD+' sudah ngapain saja?'); });
+  rBadge();
+
+  /* ---------- stickers ---------- */
+  const STICKERS='🐱🐶🐰🐻🐼🐨🦁🐯🐸🐵🐥🦄🐳🐬🐠🦋🐞🌸🌻🌈⭐🌙☀️🍎🍓🍉🍦🧁🍭🚗🚀✈️🚂⚽🎈🎁🎀👑💎🏆'.match(/./gu);
+  const owned=()=>Math.min(STICKERS.length,Math.floor(state.stars/5));
+  function renderStickers(){
+    const n=owned(), into=state.stars%5; const body=document.getElementById('sbody');
+    body.innerHTML=`<div class="muted">Setiap 5 bintang dapat 1 stiker baru. Sudah punya <b>${n}</b> dari ${STICKERS.length} stiker.</div>
+      <div class="pbar"><div style="width:${into/5*100}%"></div></div><div class="sgrid"></div>
+      <div class="muted" style="margin-top:12px">🎁 Aksesori baru terbuka di 15, 30, 45, 60, 80, dan 100 bintang. Pakai lewat tombol Dandan.</div>`;
+    const g=body.querySelector('.sgrid');
+    STICKERS.forEach((e,i)=>{ const d=document.createElement('div'); if(i<n){ d.textContent=e; d.onclick=()=>{ sfx.pop(); d.animate([{transform:'scale(1)'},{transform:'scale(1.4)'},{transform:'scale(1)'}],{duration:400}); }; } else { d.className='lock'; d.textContent='❔'; } g.appendChild(d); });
+  }
+  document.getElementById('btnStickers').addEventListener('click',()=>{ sfx.click(); renderStickers(); openPanel('stickerP'); say('Buku stiker '+CHILD); });
+
+  /* ---------- growth ---------- */
+  function growthLevel(){ return state.stars<20?0:state.stars<60?1:2; }
+  function growthName(){ return ['Anak kucing','Kucing remaja','Kucing dewasa'][growthLevel()]; }
+  let lastLevel=null;
+  function applyGrowth(announce){ const lv=growthLevel(); document.body.style.setProperty('--g',[.78,.9,1][lv]);
+    if(announce && lastLevel!==null && lv>lastLevel){ setTimeout(()=>{ confetti(); say('Wah! Kucing Medina sudah tumbuh besar! Sekarang jadi '+growthName().toLowerCase()+'!'); },1200); }
+    lastLevel=lv; }
+  applyGrowth(false);
+
   /* ---------- render ---------- */
   function render(){
     let lowest=null;
@@ -544,7 +862,11 @@
   function happy(){ wrap.classList.remove('happy'); void wrap.offsetWidth; wrap.classList.add('happy'); setTimeout(()=>wrap.classList.remove('happy'),1600); }
   function addStar(){
     state.stars++; $('#starCount').textContent=state.stars; sfx.star(); const st=$('#stars'); st.classList.add('pop'); setTimeout(()=>st.classList.remove('pop'),350);
-    if(state.stars%10===0){ setTimeout(()=>{ confetti(); sfx.yay(); say('Hore! Kucing Medina senang sekali!'); },400); }
+    if(state.stars%5===0 && owned()<=STICKERS.length){ setTimeout(()=>{ emitAt(STICKERS[owned()-1]||'⭐',3); say('Dapat stiker baru! Lihat di buku stiker.'); },500); }
+    else if(state.stars%10===0){ setTimeout(()=>{ confetti(); sfx.yay(); say('Hore! Kucing Medina senang sekali!'); },400); }
+    else playParent('praise',.15);
+    const un=ACC_ALL.find(a=>a[1]===state.stars); if(un) setTimeout(()=>{ confetti(); say('Aksesori baru terbuka: '+un[2]+'! Coba tekan Dandan.'); },1800);
+    applyGrowth(true);
   }
 
   /* ---------- actions ---------- */
@@ -590,7 +912,6 @@
       return ()=>{ clearInterval(iv); document.body.classList.remove('night'); pil.style.display='none'; bl.style.display='none'; if(toy) toy.remove(); if(lamp) lamp.remove(); document.getElementById('dark').style.background=''; };
     }
   };
-  const CHILD='Medina';
   const OPTS = {
     food:{t:'Mau makan apa?', o:[['🐟','ikan'],['🥣','sereal'],['🍗','ayam'],['🍤','udang'],['🥚','telur'],['🍪','biskuit']]},
     water:{t:'Mau minum apa?', o:[['💧','air putih'],['🍼','dot susu'],['🥛','susu'],['🧃','jus'],['🍉','semangka'],['🥥','air kelapa']]},
@@ -627,7 +948,7 @@
   const mealEl=document.getElementById('meal'), plate=document.getElementById('plate'), aam=document.getElementById('aamBtn'),
         chewEl=document.getElementById('chew'), mealCnt=document.getElementById('mealCnt');
   let M=null;
-  const num=n=> n<=10 ? NUM[n] : String(n);
+  const num=n=> numWord(n);
   function openMealSetup(){
     choice('Hari ini makan apa?', [['🍚','nasi'],['🥣','bubur'],['🐟','ikan'],['🍗','ayam'],['🥦','sayur'],['🍌','buah']], food=>{
       setTimeout(()=>choice('Berapa suap?', [['🖐️','5 suap',5],['🔟','10 suap',10],['💪','15 suap',15]], b=>startMeal(food,b[2]),
@@ -649,7 +970,7 @@
   }
   function armIdle(){ clearTimeout(M&&M.idle); if(!M) return;
     M.idle=setTimeout(()=>{ if(!M) return; aam.classList.add('nudge'); openMouth(true); setTimeout(()=>openMouth(false),900);
-      say(rnd([`${CHILD}, ayo aaam! Kucing Medina tunggu ya`,`Aaa... buka mulutnya, ${CHILD}!`,`Kucing Medina mau makan bareng ${CHILD}. Ayo aaam!`,`Satu suap lagi yuk, ${CHILD}!`]));
+      if(!playParent('eat')) say(rnd([`${CHILD}, ayo aaam! Kucing Medina tunggu ya`,`Aaa... buka mulutnya, ${CHILD}!`,`Kucing Medina mau makan bareng ${CHILD}. Ayo aaam!`,`Satu suap lagi yuk, ${CHILD}!`]));
       armIdle(); }, 35000); }
   function catEats(){ eyes(true); let k=0; const iv=setInterval(()=>{ openMouth(k++%2===0); if(k>6){ clearInterval(iv); openMouth(false); eyes(false); } },220); sfx.nom(); }
   aam.addEventListener('click',()=>{
@@ -660,7 +981,7 @@
     // chew guidance
     M.chewing=true; aam.disabled=true;
     const praise = rnd([`Pintar! ${CHILD} sudah makan ${num(M.b)} suap`,`Hebat, ${CHILD}! Nyam nyam`,`Enak ya! Kunyah-kunyah dulu`,`Wah, ${CHILD} pintar makan!`]);
-    say(praise+'. Kunyah... kunyah...');
+    if(!playParent('praise',.5)) say(praise+'. Kunyah... kunyah...');
     let c=3; chewEl.textContent='Kunyah-kunyah… 🦷';
     const t1=setTimeout(function tick(){ if(!M) return; chewEl.textContent=`Kunyah… ${c}`; tone(500+c*80,500+c*80,.12,'triangle',.15); c--;
       if(c>=0) M.timers.push(setTimeout(tick,1000)); else { chewEl.textContent='Siap suap berikutnya! 🥄'; M.chewing=false; aam.disabled=false;
@@ -698,11 +1019,14 @@
   document.getElementById('pickX').addEventListener('click',()=>{ sfx.click(); picker.classList.remove('show'); });
   picker.addEventListener('click',e=>{ if(e.target===picker) picker.classList.remove('show'); });
   picker.querySelectorAll('[data-game]').forEach(b=>b.addEventListener('click',()=>{
-    sfx.click(); picker.classList.remove('show'); const g=b.dataset.game;
+    sfx.click(); picker.classList.remove('show'); const g=b.dataset.game; track(g);
     if(g==='ball') runAct('fun'); else if(g==='yarn') runAct('yarn'); else if(g==='bubble') startBubbles();
     else if(g==='color') startTarget('color'); else if(g==='shape') startTarget('shape');
     else if(g==='count') startCount(); else if(g==='animal') startAnimals(); else if(g==='pop2') startTarget('fish');
     else if(g==='piano') startPiano(); else if(g==='draw') startDraw(); else if(g==='shadow') startShadow(); else if(g==='peek') startPeek(); else if(g==='puzzle') startPuzzle(); else if(g==='fishing') startFishing(); else if(g==='dance') startDance();
+    else if(g==='memory') startMemory(); else if(g==='size') startSize(); else if(g==='feel') startFeel();
+    else if(g==='teeth') startTeeth(); else if(g==='hands') startHands(); else if(g==='clothes') startClothes();
+    else if(g==='family') startFamily(); else if(g==='story') startStory(); else if(g==='twins') startTwins();
   }));
 
   /* bubble mini game */
@@ -754,7 +1078,7 @@
     happy(); sfx.meow(); emitAt('⭐',3); save(); render();
   }
   document.getElementById('learnX').addEventListener('click',()=>{ sfx.click(); closeLearn(); });
-  function finishLearn(msg){ say(msg); confetti(); sfx.yay(); later(closeLearn,2600); }
+  function finishLearn(msg){ if(!playParent('praise')) say(msg); confetti(); sfx.yay(); later(closeLearn,2600); }
   function onTap(el,fn){ const h=ev=>{ ev.preventDefault(); fn(); }; if(window.PointerEvent) el.addEventListener('pointerdown',h); else el.addEventListener('touchstart',h,{passive:false}); el.addEventListener('click',ev=>{ if(!window.PointerEvent) fn(); }); }
 
   const COLORS=[{k:'merah',c:'#ef4444'},{k:'kuning',c:'#facc15'},{k:'biru',c:'#3b82f6'},{k:'hijau',c:'#22c55e'},{k:'ungu',c:'#a855f7'},{k:'oranye',c:'#f97316'}];
@@ -778,8 +1102,8 @@
     function setTarget(){
       if(kind==='fish'){ target={k:'ikan'}; lhead.innerHTML=`Tangkap 🐟 <span id="lc">0</span>/8`; say('Kucing Medina lapar. Tangkap ikannya ya, jangan yang lain!'); return; }
       target=order[round%order.length];
-      if(kind==='color'){ lhead.innerHTML=`Cari <span class="sw" style="background:${target.c}"></span> <span id="lc">0</span>/${per}`; say('Cari yang warna '+target.k+'!'); }
-      else { lhead.innerHTML=`Cari ${shapeSVG(target.k,'#7c6fe0')} <span id="lc">0</span>/${per}`; say('Cari bentuk '+target.k+'!'); }
+      if(kind==='color'){ lhead.innerHTML=`Cari <span class="sw" style="background:${target.c}"></span> <span id="lc">0</span>/${per}`; sayT('Cari yang warna '+target.k+'!','Find the '+en('color',target.k)+' one!'); }
+      else { lhead.innerHTML=`Cari ${shapeSVG(target.k,'#7c6fe0')} <span id="lc">0</span>/${per}`; sayT('Cari bentuk '+target.k+'!','Find the '+en('shape',target.k)+'!'); }
     }
     const need = kind==='fish'?8:per;
     function spawn(){
@@ -807,11 +1131,11 @@
             L.earned++; round++; found=0;
             if(round>=rounds){ larea.querySelectorAll('.tb').forEach(b=>b.remove()); finishLearn(kind==='fish'?'Nyam nyam! Kucing Medina kenyang. Terima kasih!':'Hebat sekali! Pintar!'); clearInterval(spawner); }
             else { sfx.star(); later(setTarget,600); }
-          } else say(kind==='color'?target.k:(kind==='shape'?target.k:NUM[found]));
+          } else { if(kind==='fish') sayT(numWord(found),numWord(found)); else sayT(target.k, en(kind==='color'?'color':'shape',target.k)); }
         } else {
           e.classList.remove('nope'); void e.offsetWidth; e.classList.add('nope'); tone(220,160,.18,'square',.1);
-          if(kind==='color') say('Itu '+it.k+'. Cari yang '+target.k);
-          else if(kind==='shape') say('Itu '+it.k+'. Cari '+target.k);
+          if(kind==='color') sayT('Itu '+it.k+'. Cari yang '+target.k,'That is '+en('color',it.k)+'. Find '+en('color',target.k));
+          else if(kind==='shape') sayT('Itu '+it.k+'. Cari '+target.k,'That is a '+en('shape',it.k)+'. Find the '+en('shape',target.k));
           else say('Itu '+it.k+', bukan ikan!');
         }
       });
@@ -828,7 +1152,7 @@
     function round(){
       larea.innerHTML=''; larea.appendChild(big); big.classList.remove('show');
       const n=plan[r], it=rnd(SETS); let c=0;
-      lhead.innerHTML=`Hitung ${it.e}`; say('Ayo hitung '+it.k+'nya!');
+      lhead.innerHTML=`Hitung ${it.e}`; sayT('Ayo hitung '+it.k+'nya!','Let us count the '+en('thing',it.k)+'!');
       const W=learn.clientWidth, H=learn.clientHeight, sz=Math.min(110,W/3.4);
       const cols=n<=3?n:3, rows=Math.ceil(n/cols);
       for(let i=0;i<n;i++){
@@ -841,9 +1165,9 @@
         onTap(e,()=>{
           if(e.classList.contains('done')) return; c++; e.classList.add('done');
           const b=document.createElement('div'); b.className='num'; b.textContent=c; e.appendChild(b);
-          say(NUM[c]); tone(500+c*90,500+c*90,.15,'triangle',.18);
+          sayT(numWord(c),numWord(c)); tone(500+c*90,500+c*90,.15,'triangle',.18);
           if(c===n){ big.textContent=n; big.classList.add('show'); L.earned++;
-            later(()=>{ say('Ada '+NUM[n]+' '+it.k+'! Hebat!'); sfx.star(); },700);
+            later(()=>{ sayT('Ada '+numWord(n)+' '+it.k+'! Hebat!','There are '+numWord(n)+' '+en('thing',it.k)+'! Great job!'); sfx.star(); },700);
             r++; if(r>=plan.length) later(()=>finishLearn('Pintar! Sudah bisa berhitung!'),2600); else later(round,3000); }
         });
       }
@@ -1057,7 +1381,7 @@
           o.el.style.transition='left .5s, top .5s, transform .5s, opacity .5s';
           o.el.style.left=(bk.left-R.left)+'px'; o.el.style.top=(bk.top-R.top)+'px'; o.el.style.transform='scale(.3)'; o.el.style.opacity='0';
           sfx.pop(); tone(880,1320,.15,'triangle',.18,.1);
-          say(`Dapat ikan ${o.c.k}! ${got<=10?NUM[got]:got}`);
+          sayT(`Dapat ikan ${o.c.k}! ${numWord(got)}`,`A ${en('color',o.c.k)} fish! ${numWord(got)}`);
           setTimeout(()=>{ o.el.remove(); fishes.splice(fishes.indexOf(o),1); if(got<TARGET) addFish(); },550);
           hx=tip[0]; hy=waterTop+20; drawHook(); busyHook=false;
           if(got%3===0) L.earned++;
@@ -1154,6 +1478,223 @@
     L.earned=Math.max(L.earned,1);
   }
 
+  /* Kartu Kembar */
+  function startMemory(){
+    openLearn(); const LV=[2,3,4]; let lv=0;
+    const POOL=['🐱','🐶','🐰','🐻','🐸','🐥','🦋','🐟','🍎','🍌','⭐','🎈'];
+    function round(){
+      larea.innerHTML=''; const pairs=LV[lv]; lhead.textContent=`Kartu Kembar 🃏 ${pairs*2} kartu`;
+      say(lv===0?'Cari dua kartu yang sama ya!':'Kartunya tambah banyak. Ayo cari yang sama!');
+      const picks=shuffle(POOL).slice(0,pairs), deck=shuffle([...picks,...picks]);
+      const g=document.createElement('div'); g.className='mgrid'; const cols=pairs<=2?2:pairs===3?3:4; const W=learn.clientWidth-24, H=learn.clientHeight-92;
+      const sz=Math.min((W-(cols-1)*10)/cols, (H-(Math.ceil(deck.length/cols)-1)*10)/Math.ceil(deck.length/cols), 150);
+      g.style.gridTemplateColumns=`repeat(${cols},${sz}px)`; g.style.gridAutoRows=sz+'px'; larea.appendChild(g);
+      let open=[], matched=0, lock=false;
+      deck.forEach(e=>{ const c=document.createElement('div'); c.className='mcard'; c.innerHTML=`<div class="in"><div class="f">❓</div><div class="b">${e}</div></div>`; g.appendChild(c);
+        c.addEventListener('click',()=>{ if(lock||c.classList.contains('flip')) return; c.classList.add('flip'); tone(600,800,.08,'triangle',.12); open.push([c,e]);
+          if(open.length===2){ lock=true; const [[a,ea],[b,eb]]=open;
+            if(ea===eb){ setTimeout(()=>{ a.classList.add('match'); b.classList.add('match'); sfx.star(); say(rnd(['Sama!','Betul, sama!','Hebat!'])); open=[]; lock=false; matched++;
+                if(matched===pairs){ L.earned++; lv++; confetti(); if(lv>=LV.length) later(()=>finishLearn('Pintar! Semua kartu kembar ketemu!'),1600); else later(round,2200); } },350); }
+            else { setTimeout(()=>{ a.classList.remove('flip'); b.classList.remove('flip'); open=[]; lock=false; say(rnd(['Belum sama, coba lagi','Hmm, beda'])); },1000); } } }); });
+    }
+    round();
+  }
+
+  /* Besar Kecil, Banyak Sedikit */
+  function startSize(){
+    openLearn(); let r=0; const N=6; const ITEMS=['🐘','🍎','⭐','🐟','🎈','🚗','🐱','🌸'];
+    function round(){
+      larea.innerHTML=''; const it=rnd(ITEMS); const type=r%3===2?'many':(Math.random()<.5?'big':'small');
+      if(type==='many'){
+        lhead.textContent='Mana yang lebih banyak?'; say('Mana yang lebih banyak?');
+        const a=1+Math.floor(Math.random()*2), b=a+2+Math.floor(Math.random()*3); const bigLeft=Math.random()<.5;
+        [[bigLeft?b:a,'5%'],[bigLeft?a:b,'53%']].forEach(([n,left])=>{ const g=document.createElement('button'); g.className='grp'; g.style.left=left; g.textContent=it.repeat(n); larea.appendChild(g);
+          g.addEventListener('click',()=>{ if(n===Math.max(a,b)){ sfx.star(); L.earned++; say(`Betul! Yang ini ada ${numWord(n)}, lebih banyak!`); next(); } else { g.classList.remove('nope'); void g.offsetWidth; g.classList.add('nope'); say(`Yang ini cuma ${numWord(n)}. Coba yang lain`); } }); });
+      } else {
+        lhead.textContent=type==='big'?'Mana yang paling besar?':'Mana yang paling kecil?'; say(type==='big'?'Ketuk yang paling besar!':'Ketuk yang paling kecil!');
+        const sizes=shuffle([46,82,130]); const row=document.createElement('div'); row.className='szrow'; larea.appendChild(row);
+        sizes.forEach(z=>{ const b=document.createElement('button'); b.style.fontSize=z+'px'; b.textContent=it; row.appendChild(b);
+          b.addEventListener('click',()=>{ const ok= type==='big'? z===130 : z===46; if(ok){ b.animate([{transform:'scale(1)'},{transform:'scale(1.3)'},{transform:'scale(1)'}],{duration:500}); sfx.star(); L.earned++; say(type==='big'?'Betul! Ini yang paling besar!':'Betul! Ini yang paling kecil!'); next(); }
+            else { b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); say(z===82?'Itu sedang. Coba lagi':(z===130?'Itu yang besar':'Itu yang kecil')+'. Coba lagi'); } }); });
+      }
+      function next(){ r++; if(r>=N) later(()=>finishLearn('Hebat! Sudah tahu besar, kecil, dan banyak!'),1600); else later(round,1800); }
+    }
+    round();
+  }
+
+  /* Sikat Gigi */
+  function startTeeth(){
+    openLearn(); lhead.textContent='Sikat Gigi 🪥'; say('Gigi kucing ada kumannya! Ayo sikat pakai jari, gosok-gosok!');
+    larea.innerHTML=`<div class="bigmsg" id="tmsg" style="top:70px">Gosok kumannya sampai hilang!</div><div class="teethbox" id="tbox"><svg viewBox="0 0 400 300" width="100%" height="100%">
+      <ellipse cx="200" cy="150" rx="190" ry="140" fill="#f0a24b"/><ellipse cx="200" cy="155" rx="160" ry="112" fill="#a2324a"/><ellipse cx="200" cy="215" rx="90" ry="40" fill="#ff7b95"/>
+      ${[0,1,2,3,4,5].map(i=>`<rect x="${74+i*43}" y="52" width="38" height="56" rx="12" fill="#fff"/>`).join('')}
+      ${[0,1,2,3,4,5].map(i=>`<rect x="${74+i*43}" y="196" width="38" height="50" rx="12" fill="#fff"/>`).join('')}
+    </svg></div><div class="brushc" id="brushc">🪥</div>`;
+    const box=document.getElementById('tbox'), bc=document.getElementById('brushc'), R=learn.getBoundingClientRect();
+    const bw=box.clientWidth, bh=box.clientHeight; const germs=[];
+    const spots=[[0,0],[2,0],[4,0],[5,0],[1,1],[3,1],[5,1],[0,1]];
+    spots.forEach(([i,row])=>{ const g=document.createElement('div'); g.className='germ'; g.textContent='🦠';
+      const x=(74+i*43+19)/400*bw, y=(row?220:80)/300*bh; g.style.left=(x-18)+'px'; g.style.top=(y-20)+'px'; box.appendChild(g); germs.push({el:g,x,y,life:1}); });
+    let left=germs.length, saidBottom=false;
+    function scrub(cx,cy){ const br=box.getBoundingClientRect(); const x=cx-br.left, y=cy-br.top;
+      bc.style.display='block'; bc.style.left=(cx-R.left)+'px'; bc.style.top=(cy-R.top)+'px';
+      germs.forEach(g=>{ if(g.life<=0) return; if(Math.hypot(g.x-x,g.y-y)<46){ g.life-=.06; g.el.style.opacity=Math.max(.15,g.life); g.el.style.transform=`scale(${.6+g.life*.4}) rotate(${Math.random()*30-15}deg)`;
+        if(Math.random()<.35){ const f=document.createElement('div'); f.className='foam'; const z=8+Math.random()*14; f.style.width=f.style.height=z+'px'; f.style.left=(br.left-R.left+x+Math.random()*30-15)+'px'; f.style.top=(br.top-R.top+y+Math.random()*20-10)+'px'; larea.appendChild(f); setTimeout(()=>f.remove(),1400); }
+        if(g.life<=0){ g.el.remove(); left--; sfx.pop(); tone(1200,1500,.1,'sine',.12);
+          if(left===4&&!saidBottom){ saidBottom=true; say('Bagus! Sekarang gigi yang lain'); }
+          if(left===0){ document.getElementById('tmsg').textContent='Giginya bersih! ✨'; bc.style.display='none'; L.earned+=2;
+            finishLearn(`Giginya bersih dan putih! ${CHILD} juga sikat gigi dua kali sehari ya, pagi dan malam.`); } } } }); }
+    let down=false;
+    const mv=e=>{ if(!down) return; e.preventDefault(); const P=e.touches?e.touches[0]:e; scrub(P.clientX,P.clientY); if(Math.random()<.08) tone(2400,1800,.05,'triangle',.04); };
+    if(window.PointerEvent){ box.addEventListener('pointerdown',e=>{ down=true; mv(e); }); box.addEventListener('pointermove',mv); window.addEventListener('pointerup',()=>{ down=false; bc.style.display='none'; }); }
+    else { box.addEventListener('touchstart',e=>{ down=true; mv(e); },{passive:false}); box.addEventListener('touchmove',mv,{passive:false}); box.addEventListener('touchend',()=>{ down=false; }); }
+  }
+
+  /* Cuci Tangan */
+  function startHands(){
+    openLearn(); lhead.textContent='Cuci Tangan 🧼';
+    const STEPS=[['🚰','Basahi tangan dengan air'],['🧴','Pakai sabun'],['👐','Gosok-gosok tangan sampai berbusa'],['🚿','Bilas dengan air'],['🧻','Keringkan tangan']];
+    larea.innerHTML=`<div class="steps">${STEPS.map(s=>`<span>${s[0]}</span>`).join('')}</div><div class="bigmsg" id="hmsg" style="top:118px"></div><div class="hands" id="hands">🤲</div>
+      <div class="tools"><button data-t="0">🚰</button><button data-t="1">🧴</button><button data-t="4">🧻</button></div>`;
+    let st=0, rub=0; const hands=document.getElementById('hands'), msg=document.getElementById('hmsg'), dots=larea.querySelectorAll('.steps span'), R=learn.getBoundingClientRect();
+    function show(){ dots.forEach((d,i)=>{ d.className=i<st?'ok':i===st?'cur':''; });
+      if(st>=STEPS.length) return; msg.textContent=(st+1)+'. '+STEPS[st][1]; say(STEPS[st][1]);
+      larea.querySelectorAll('.tools button').forEach(b=>{ const t=+b.dataset.t; b.classList.toggle('act', (st===0&&t===0)||(st===1&&t===1)||(st===3&&t===0)||(st===4&&t===4)); }); }
+    function fx2(ch,n){ const hr=hands.getBoundingClientRect(); for(let i=0;i<n;i++){ const e=document.createElement('div'); e.className='fx'; e.textContent=ch; e.style.left=(hr.left-R.left+Math.random()*hr.width)+'px'; e.style.top=(hr.top-R.top+Math.random()*hr.height*.6)+'px'; e.style.animationDelay=(i*.08)+'s'; larea.appendChild(e); setTimeout(()=>e.remove(),2000); } }
+    function next(){ st++; sfx.star(); if(st>=STEPS.length){ show(); msg.textContent='Tangannya bersih! ✨'; L.earned+=2; finishLearn(`Hore! Tangannya bersih. ${CHILD} juga cuci tangan sebelum makan ya!`); } else setTimeout(show,700); }
+    larea.querySelectorAll('.tools button').forEach(b=>b.addEventListener('click',()=>{ const t=+b.dataset.t;
+      if(t===0&&(st===0||st===3)){ sfx.drink(); fx2('💧',8); if(st===3) larea.querySelectorAll('.foam').forEach(f=>f.remove()); next(); }
+      else if(t===1&&st===1){ tone(300,500,.2,'sine',.15); fx2('🫧',6); next(); }
+      else if(t===4&&st===4){ fx2('✨',6); next(); }
+      else { b.animate([{transform:'rotate(0)'},{transform:'rotate(-10deg)'},{transform:'rotate(10deg)'},{transform:'rotate(0)'}],{duration:400}); say('Belum. '+STEPS[st][1]); } }));
+    let last=null;
+    const mv=e=>{ if(st!==2) return; e.preventDefault(); const P=e.touches?e.touches[0]:e; if(last){ rub+=Math.hypot(P.clientX-last[0],P.clientY-last[1]); } last=[P.clientX,P.clientY];
+      if(Math.random()<.4){ const f=document.createElement('div'); f.className='foam'; const z=10+Math.random()*22; f.style.width=f.style.height=z+'px'; f.style.left=(P.clientX-R.left-z/2)+'px'; f.style.top=(P.clientY-R.top-z/2)+'px'; larea.appendChild(f); setTimeout(()=>f.remove(),1400); }
+      hands.style.transform=`translate(-50%,-50%) rotate(${Math.sin(rub/40)*8}deg)`;
+      if(rub>1400){ rub=0; last=null; next(); } else if(Math.floor(rub/350)!==Math.floor((rub-30)/350)) say(['Gosok telapak tangan','Gosok punggung tangan','Sela-sela jari','Kuku juga'][Math.floor(rub/350)%4]); };
+    if(window.PointerEvent){ hands.addEventListener('pointermove',mv); hands.addEventListener('pointerdown',e=>{ last=null; mv(e); }); } else { hands.addEventListener('touchmove',mv,{passive:false}); }
+    say('Ayo cuci tangan bareng!', show);
+  }
+
+  /* Pakai Baju */
+  function startClothes(){
+    openLearn(); lhead.textContent='Pakai Baju 👕';
+    const catSvg=document.getElementById('cat').outerHTML.replace(/ id="[^"]*"/g,'');
+    const C=[['merah','#ef4444'],['biru','#3b82f6'],['kuning','#facc15'],['hijau','#22c55e'],['ungu','#a855f7']];
+    larea.innerHTML=`<div class="doll">${catSvg}<svg viewBox="0 0 300 300" id="cloth">
+      <g id="cShirt" style="display:none"><path d="M70 204 Q150 176 230 204 L238 252 Q150 266 62 252 Z"/><path d="M70 204 L40 232 L58 250 L78 232 Z M230 204 L260 232 L242 250 L222 232 Z"/><circle cx="150" cy="222" r="5" fill="#fff8"/><circle cx="150" cy="240" r="5" fill="#fff8"/></g>
+      <g id="cPants" style="display:none"><path d="M66 250 Q150 264 234 250 L236 284 L162 284 L150 270 L138 284 L64 284 Z"/></g>
+      <g id="cShoes" style="display:none"><ellipse cx="112" cy="284" rx="30" ry="15"/><ellipse cx="188" cy="284" rx="30" ry="15"/></g>
+      <g id="cHat" style="display:none"><ellipse cx="150" cy="44" rx="78" ry="16"/><path d="M96 44 Q100 4 150 2 Q200 4 204 44 Z"/></g></svg></div>
+      <div class="wardrobe" id="wd"></div>`;
+    const parts=[['cShirt','Baju','baju'],['cPants','Celana','celana'],['cShoes','Sepatu','sepatu'],['cHat','Topi','topi']];
+    const wd=document.getElementById('wd'), chosen={};
+    parts.forEach(([id,label,word])=>{ const row=document.createElement('div'); row.className='wr'; row.innerHTML=`<b>${label}</b>`; wd.appendChild(row);
+      C.slice(0,4).forEach(([cn,cc])=>{ const b=document.createElement('button'); b.style.background=cc; row.appendChild(b);
+        b.addEventListener('click',()=>{ row.querySelectorAll('button').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+          const g=document.getElementById(id); g.style.display=''; g.setAttribute('fill',cc); sfx.pop(); chosen[id]=1;
+          say(`Kucing pakai ${word} ${cn}!`);
+          if(Object.keys(chosen).length===parts.length && !L.doneC){ L.doneC=1; L.earned+=2; later(()=>{ confetti(); sfx.yay(); say('Wah, kucingnya sudah rapi dan keren! '+CHILD+' juga bisa pakai baju sendiri ya!'); },1400); } }); }); });
+    const dl=larea.querySelector('.doll'); const sz=Math.max(150,Math.min(learn.clientWidth*.66, learn.clientHeight-wd.offsetHeight-84, 320)); dl.style.width=dl.style.height=sz+'px';
+    say('Ayo pilih baju untuk kucing!');
+  }
+
+  /* Perasaan */
+  function startFeel(){
+    openLearn(); const F=[['😺','senang','Ayo tos! Senangnya!'],['😿','sedih','Kalau sedih, ayo dipeluk ya'],['😾','marah','Kalau marah, tarik napas pelan-pelan. Huuu… haaa…'],['🙀','takut','Tidak apa-apa, ada Papa dan Mami. Tenang ya'],['😻','sayang','Sayang! Ayo peluk cium']];
+    let r=0; const order=shuffle(F);
+    function round(){
+      larea.innerHTML=''; const t=order[r]; lhead.textContent='Perasaan 💗'; say(`Mana kucing yang ${t[1]}?`);
+      const opts=shuffle([t,...shuffle(F.filter(x=>x!==t)).slice(0,2)]); const row=document.createElement('div'); row.className='feelopts'; larea.appendChild(row);
+      const msg=document.createElement('div'); msg.className='bigmsg'; msg.style.top='66%'; larea.appendChild(msg);
+      opts.forEach(o=>{ const b=document.createElement('button'); b.textContent=o[0]; row.appendChild(b);
+        b.addEventListener('click',()=>{ if(o===t){ sfx.star(); L.earned++; msg.textContent=`${o[0]} ${o[1]}`; emitAt('💖',2); say(`Betul, ini ${o[1]}. ${o[2]}`); r++; if(r>=order.length) later(()=>finishLearn('Hebat! Sudah kenal perasaan!'),3800); else later(round,3800); }
+          else { b.classList.remove('nope'); void b.offsetWidth; b.classList.add('nope'); say(`Itu ${o[1]}. Cari yang ${t[1]}`); } }); });
+    }
+    round();
+  }
+
+  /* Siapa Ini? */
+  function startFamily(){
+    openLearn(); lhead.textContent='Siapa Ini? 👨‍👩‍👧';
+    let people=FAM.filter(m=>m.img);
+    const EMO={Papa:'👨',Mami:'👩',Opa:'👴',Oma:'👵',Ibu:'👩‍🦱'};
+    if(people.length<2){ people=['Papa','Mami','Opa','Oma'].map(n=>({name:n,emo:EMO[n]}));
+      larea.innerHTML=`<div class="bigmsg" style="top:62px;font-size:13px;padding:0 16px;font-weight:700">Papa atau Mami bisa memasang foto asli keluarga di Menu Orang Tua (tahan ⚙️ 2 detik) → Foto Keluarga.</div>`; }
+    let r=0; const N=Math.min(6,people.length*2);
+    function round(){
+      larea.querySelectorAll('.famgrid').forEach(x=>x.remove());
+      const k=Math.min(4,people.length), opts=shuffle(people).slice(0,k), t=rnd(opts);
+      say(`Mana ${t.name}?`); lhead.textContent=`Mana ${t.name}?`;
+      const g=document.createElement('div'); g.className='famgrid'; if(k<=2) g.style.gridTemplateColumns='repeat(2,1fr)'; if(larea.querySelector('.bigmsg')) g.style.top='118px'; larea.appendChild(g);
+      opts.forEach(m=>{ const b=document.createElement('button'); if(m.img) b.style.backgroundImage=`url(${m.img})`; else { b.style.fontSize='clamp(60px,18vw,96px)'; b.textContent=m.emo; }
+        const sp=document.createElement('span'); sp.textContent=m.name; b.appendChild(sp); g.appendChild(b);
+        b.addEventListener('click',()=>{ if(m===t){ b.classList.add('ok'); sfx.star(); L.earned++; say(`Betul! Ini ${m.name}!`); r++; if(r>=N) later(()=>finishLearn(`Pintar! ${CHILD} kenal semua keluarga!`),1800); else later(round,2000); }
+          else { b.classList.add('ok'); b.classList.add('nope'); say(`Ini ${m.name}. Cari ${t.name}`); setTimeout(()=>b.classList.remove('ok','nope'),1400); } }); });
+    }
+    round();
+  }
+
+  /* Cerita Sebelum Tidur */
+  const STORIES=[
+    {t:'Kucing Belajar Sikat Gigi',e:'🪥',p:[
+      ['🐱🍪','Suatu malam, Kucing Medina habis makan kue yang manis sekali.'],
+      ['🦠😟','Di giginya ada kuman kecil. "Hihihi, kami suka gigi yang kotor!" kata kuman.'],
+      ['🪥🫧','Kucing Medina ambil sikat gigi, lalu gosok-gosok. Atas, bawah, depan, belakang!'],
+      ['✨😁','Kumannya kabur! Gigi Kucing Medina jadi bersih dan putih berkilau.'],
+      ['🌙😴',`"Besok sikat gigi lagi ya," kata Mami. Kucing Medina tidur dengan senyum. Selamat tidur, ${CHILD}!`]]},
+    {t:'Kucing dan Ikan Kecil',e:'🐟',p:[
+      ['🐱🌊','Kucing Medina pergi ke pantai. Ombaknya kecil dan airnya biru.'],
+      ['🐟😢','Ada ikan kecil terdampar di pasir. "Tolong, aku mau pulang ke laut," katanya.'],
+      ['🐱🤲🐟','Kucing Medina pelan-pelan mengangkat ikan kecil, lalu membawanya ke air.'],
+      ['🐟💙🌊','Byur! Ikan kecil berenang lagi. "Terima kasih, Kucing baik!"'],
+      ['🐱💖',`Kucing Medina senang bisa menolong. ${CHILD} juga suka menolong ya!`]]},
+    {t:'Selamat Malam, Bulan',e:'🌙',p:[
+      ['🌅🐱','Matahari pulang ke balik gunung. Langit jadi oranye, lalu ungu.'],
+      ['🌙⭐','Bulan datang membawa bintang-bintang. Kelap-kelip, kelap-kelip.'],
+      ['🛁🪥👕','Kucing Medina mandi, sikat gigi, lalu pakai baju tidur.'],
+      ['🛏️🧸','Kucing Medina naik ke kasur, peluk boneka, tarik selimut sampai dagu.'],
+      ['😴💤',`"Selamat malam, Bulan. Selamat malam, Bintang. Selamat malam, ${CHILD}." Zzz…`]]}
+  ];
+  function startStory(){
+    openLearn(); lhead.textContent='Cerita 📖'; say('Mau dengar cerita apa?');
+    const list=document.createElement('div'); list.className='slist'; larea.appendChild(list);
+    STORIES.forEach(st=>{ const b=document.createElement('button'); b.innerHTML=`<b>${st.e}</b>${st.t}`; list.appendChild(b); b.addEventListener('click',()=>{ sfx.click(); read(st); }); });
+    function read(st){
+      let i=0; larea.innerHTML=`<div class="story"><div class="pic" id="spic"></div><div class="txt" id="stxt"></div><div class="nav"><button id="sprev">◀</button><button id="sagain">🔁</button><button id="snext">▶</button></div></div>`;
+      lhead.textContent=st.t; const pic=document.getElementById('spic'), txt=document.getElementById('stxt');
+      function show(){ const [pi,tx]=st.p[i]; pic.textContent=pi; txt.textContent=tx; pic.animate([{opacity:0,transform:'scale(.8)'},{opacity:1,transform:'scale(1)'}],{duration:500});
+        say(tx); document.getElementById('snext').textContent= i===st.p.length-1 ? 'Tamat ⭐' : '▶'; }
+      document.getElementById('sprev').onclick=()=>{ if(i>0){ i--; show(); } };
+      document.getElementById('sagain').onclick=()=>show();
+      document.getElementById('snext').onclick=()=>{ if(i<st.p.length-1){ i++; show(); } else { L.earned++; finishLearn('Tamat. Selamat tidur, '+CHILD+'!'); } };
+      show();
+    }
+  }
+
+  /* Si Kembar */
+  function startTwins(){
+    openLearn(); lhead.textContent='Si Kembar 👯';
+    const ORG='#f0a'+'24b', ORS='#d98'+'22e', GRY='#a3a'+'ec2', GRS='#7c8'+'79c';
+    const mine=document.getElementById('cat').outerHTML.replace(/ id="[^"]*"/g,'');
+    const isMed=CHILD==='Medina';
+    const twin=mine.split(isMed?ORG:GRY).join(isMed?GRY:ORG).split(isMed?ORS:GRS).join(isMed?GRS:ORS);
+    larea.innerHTML=`<div class="twinstage"><div class="tc" id="t1">${mine}<div class="nm">Kucing ${CHILD}</div></div><div class="tc" id="t2">${twin}<div class="nm">Kucing ${TWIN}</div></div></div>
+      <div class="tbtns"><button data-a="eat"><b>🍽️</b>Makan</button><button data-a="dance"><b>💃</b>Joget</button><button data-a="hug"><b>🤗</b>Peluk</button><button data-a="five"><b>✋</b>Tos</button><button data-a="sleep"><b>😴</b>Tidur</button></div>`;
+    const t1=document.getElementById('t1'), t2=document.getElementById('t2'), R=learn.getBoundingClientRect();
+    say(`Kucing ${CHILD} dan Kucing ${TWIN} main bareng! ${CHILD} dan ${TWIN} juga main bareng ya!`);
+    function burst(ch,n){ for(let i=0;i<n;i++){ const e=document.createElement('div'); e.className='fx'; e.textContent=ch; e.style.left=(20+Math.random()*60)+'%'; e.style.top=(30+Math.random()*30)+'%'; e.style.animationDelay=(i*.1)+'s'; larea.appendChild(e); setTimeout(()=>e.remove(),2000); } }
+    let acts=0;
+    larea.querySelectorAll('.tbtns button').forEach(b=>b.addEventListener('click',()=>{ const a=b.dataset.a; sfx.click(); acts++; if(acts%3===0) L.earned++;
+      if(a==='eat'){ sfx.nom(); burst('🐟',4); say(`Kucing ${CHILD} dan Kucing ${TWIN} makan bareng. Nyam nyam!`); }
+      if(a==='dance'){ [0,1,2,3,4,5].forEach(i=>setTimeout(()=>{ t1.style.transform=`translateY(${i%2?0:-14}%) rotate(${i%2?8:-8}deg)`; t2.style.transform=`translateY(${i%2?-14:0}%) rotate(${i%2?-8:8}deg)`; tone([523,659,784,659,523,784][i],0,.25,'triangle',.18); },i*300)); setTimeout(()=>{ t1.style.transform=t2.style.transform=''; },2000); burst('🎵',5); say('Joget bareng!'); }
+      if(a==='hug'){ t1.style.transform='translateX(18%)'; t2.style.transform='translateX(-18%)'; burst('💖',6); say(`Peluk! Kucing ${CHILD} sayang Kucing ${TWIN}`); setTimeout(()=>{ t1.style.transform=t2.style.transform=''; },2200); }
+      if(a==='five'){ t1.style.transform='translateX(10%) rotate(10deg)'; t2.style.transform='translateX(-10%) rotate(-10deg)'; voice({noise:.9,dur:.12,formants:[[2500,1,1.5]],vol:.4,attack:.002}); burst('✨',5); say('Tos! Hebat!'); setTimeout(()=>{ t1.style.transform=t2.style.transform=''; },700); }
+      if(a==='sleep'){ larea.style.background='#26306b'; burst('💤',4); sfx.sleep(); say('Si kembar tidur. Selamat tidur!'); setTimeout(()=>{ larea.style.background=''; },3000); }
+    }));
+    L.earned=Math.max(L.earned,1);
+  }
+
   /* Hewan */
   function startAnimals(){
     openLearn();
@@ -1165,7 +1706,7 @@
       const b=document.createElement('button'); b.innerHTML=`${e}<small>${k}</small>`; z.appendChild(b);
       b.addEventListener('click',()=>{
         b.classList.remove('go'); void b.offsetWidth; b.classList.add('go'); sfx.click();
-        say('Ini '+k, ()=>{ if(ANIMAL[k]) ANIMAL[k](); });
+        sayT('Ini '+k, 'This is a '+en('animal',k), ()=>{ if(ANIMAL[k]) ANIMAL[k](); });
         if(!seen.has(k)){ seen.add(k); if(seen.size%3===0){ L.earned++; sfx.star(); } if(seen.size===Z.length) later(()=>finishLearn('Hebat! Sudah kenal semua hewan!'),1800); }
       });
     });
@@ -1190,7 +1731,7 @@
       state.fun=Math.min(100,state.fun+2); clearTimeout(petOn);
       petOn=setTimeout(()=>{ wrap.classList.remove('petting'); eyes(false); },700);
       if(!wrap._petCount) wrap._petCount=0; wrap._petCount++;
-      if(wrap._petCount%12===0){ say(rnd(['Kucing Medina senang dielus!','Enaknya dielus!','Meong, terima kasih!'])); addStar(); save(); render(); }
+      if(wrap._petCount%12===0){ if(!playParent('love',.5)) say(rnd(['Kucing Medina senang dielus!','Enaknya dielus!','Meong, terima kasih!'])); addStar(); save(); render(); }
     }
   }
   function petEnd(){ if(stroking && wrap.classList.contains('petting')) setTimeout(()=>sfx.meow(),300); stroking=false; }
@@ -1218,7 +1759,7 @@
   },5000);
 
   $('#go').addEventListener('click',()=>{
-    ctx(); $('#start').style.display='none'; sfx.meow(); say('Halo! Aku Kucing Medina'); render();
+    ctx(); $('#start').style.display='none'; sfx.meow(); if(!playParent('hello')) say('Halo! Aku Kucing Medina'); render(); sessionStart=Date.now(); checkLimit();
     try{ const el=document.documentElement; const f=el.requestFullscreen||el.webkitRequestFullscreen; if(f){ const r=f.call(el); if(r&&r.catch) r.catch(()=>{}); } }catch(e){}
   });
 
