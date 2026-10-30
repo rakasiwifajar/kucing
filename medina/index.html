@@ -21,13 +21,14 @@
   html,body{margin:0;height:100%;height:-webkit-fill-available;overflow:hidden;background:var(--wall);font-family:"Baloo 2","Comic Sans MS","Trebuchet MS",system-ui,sans-serif;color:var(--ink);touch-action:manipulation}
   #app{position:fixed;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top)}
   /* room */
-  #room{position:relative;flex:1;overflow:hidden;background:linear-gradient(var(--wall) 0 64%, var(--floor) 64% 100%)}
+  #room{position:relative;flex:1;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(255,255,255,.65),transparent 60%),linear-gradient(var(--wall) 0 64%, var(--floor) 64% 100%)}
+  #room::before{content:'';position:absolute;left:0;right:0;top:64%;bottom:0;background:linear-gradient(rgba(0,0,0,.10),rgba(0,0,0,0) 30%,rgba(0,0,0,.08));pointer-events:none}
   #room::after{content:"";position:absolute;left:0;right:0;top:64%;height:6px;background:#d4ad82}
   .window{position:absolute;top:24%;top:max(24%,150px);left:7%;width:22vw;height:24vw;max-width:150px;max-height:165px;background:#bfe6ff;border:8px solid #fff;border-radius:14px;box-shadow:0 3px 0 #e6d2bd;overflow:hidden;transition:background 1s}
   .window .sun{position:absolute;width:38%;padding-top:38%;height:0;border-radius:50%;background:#ffd34d;top:14%;left:18%;transition:all 1s}
   .window .cloud{position:absolute;width:55%;height:18%;background:#fff;border-radius:20px;bottom:22%;right:-8%}
   .frame{position:absolute;top:26%;top:max(26%,156px);right:8%;width:16vw;height:13vw;max-width:110px;max-height:92px;background:#fff;border:6px solid #c98f5c;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:clamp(20px,5vw,44px)}
-  .rug{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);width:min(78%,520px);height:16%;border-radius:50%;background:#f7a8b8;box-shadow:inset 0 0 0 10px #f48ba1}
+  .rug{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);width:min(78%,520px);height:16%;border-radius:50%;background:radial-gradient(ellipse at 45% 35%,#ffd0da,#f7a8b8 55%,#e98aa0);box-shadow:inset 0 0 0 10px #f48ba1, 0 10px 18px rgba(0,0,0,.12)}
   #dark{position:absolute;top:0;left:0;right:0;bottom:0;background:#1d2350;opacity:0;pointer-events:none;transition:opacity 1.2s}
   body.night #dark{opacity:.55}
   body.night .window{background:#26306b}
@@ -68,8 +69,8 @@
 
   /* buttons */
   #bar{display:grid;grid-template-columns:repeat(5,minmax(0,100px));justify-content:center;gap:clamp(8px,2.2vw,16px);padding:12px 10px calc(14px + env(safe-area-inset-bottom));background:#fff7ee;box-shadow:0 -4px 0 #ecd9c4}
-  .btn{width:100%;height:clamp(60px,16vw,88px);border:none;border-radius:22px;font-size:clamp(26px,7.4vw,46px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff;box-shadow:0 7px 0 rgba(0,0,0,.18);transition:transform .1s, box-shadow .1s, opacity .3s;cursor:pointer;padding:0}
-  .btn small{font-size:clamp(11px,2.6vw,16px);font-weight:800;letter-spacing:.3px}
+  .btn{background-image:linear-gradient(rgba(255,255,255,.38),rgba(255,255,255,0) 55%);width:100%;height:clamp(60px,16vw,88px);border:none;border-radius:22px;font-size:clamp(26px,7.4vw,46px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff;box-shadow:0 7px 0 rgba(0,0,0,.18);transition:transform .1s, box-shadow .1s, opacity .3s;cursor:pointer;padding:0}
+  .btn{text-shadow:0 2px 2px rgba(0,0,0,.15)} .btn small{font-size:clamp(11px,2.6vw,16px);font-weight:800;letter-spacing:.3px}
   .btn:active{transform:translateY(5px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
   .btn[disabled]{opacity:.45}
   .btn.hint{animation:pulse 1s ease-in-out infinite}
@@ -195,7 +196,7 @@
   .ball::before{content:"";position:absolute;left:50%;top:-60px;width:2px;height:60px;background:#ccc}
   @keyframes spinb{to{transform:rotate(360deg)}}
   .dancers{position:absolute;left:0;right:0;bottom:calc(var(--songsH,200px) + 40px);display:flex;justify-content:center;align-items:flex-end;gap:2%}
-  .dancer{width:min(42vw,30vh,230px);height:min(42vw,30vh,230px);transform-origin:50% 100%;transition:transform .18s ease-out}
+  .dancer{position:relative;width:min(42vw,30vh,230px);height:min(42vw,30vh,230px);transform-origin:50% 100%;transition:transform .18s ease-out}
   .dancer svg{width:100%;height:100%;overflow:visible}
   .dancer.up{transform:translateY(-12%) scale(1.04,.97)}
   .dancer.left{transform:rotate(-10deg)}
@@ -382,19 +383,34 @@
     <div id="catWrap" aria-label="Kucing, ketuk untuk mengelus">
       <div id="bubble"></div>
       <svg id="cat" viewBox="0 0 300 300">
+        <defs id="catDefs">
+          <radialGradient id="gBody" cx="40%" cy="28%" r="78%"><stop offset="0" stop-color="#ffc982"/><stop offset=".55" stop-color="#f0a24b"/><stop offset="1" stop-color="#c97225"/></radialGradient>
+          <radialGradient id="gHead" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#ffc982"/><stop offset=".5" stop-color="#f0a24b"/><stop offset="1" stop-color="#c97225"/></radialGradient>
+          <radialGradient id="gBelly" cx="45%" cy="30%" r="75%"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#fff3e2"/><stop offset="1" stop-color="#ead2b6"/></radialGradient>
+          <radialGradient id="gEar" cx="50%" cy="60%" r="70%"><stop offset="0" stop-color="#ffd3dc"/><stop offset="1" stop-color="#f28aa0"/></radialGradient>
+          <radialGradient id="gIris" cx="42%" cy="35%" r="70%"><stop offset="0" stop-color="#ffe08b"/><stop offset=".55" stop-color="#e0a13e"/><stop offset="1" stop-color="#8a5a13"/></radialGradient>
+          <radialGradient id="gNose" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#ffc0cc"/><stop offset="1" stop-color="#e2557a"/></radialGradient>
+          <radialGradient id="gCheek" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff8fa6" stop-opacity=".75"/><stop offset="1" stop-color="#ff8fa6" stop-opacity="0"/></radialGradient>
+          <linearGradient id="gTail" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffc982"/><stop offset="1" stop-color="#c97225"/></linearGradient>
+          <filter id="fSoft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+        <ellipse cx="150" cy="290" rx="100" ry="13" fill="#3b2a20" opacity=".22" filter="url(#fSoft)"/>
         <g id="pillow" style="display:none"><ellipse cx="150" cy="150" rx="140" ry="62" fill="#fff" stroke="#d8e6f7" stroke-width="6"/><path d="M40 150 q110 30 220 0" stroke="#e3edf9" stroke-width="5" fill="none"/></g>
         <!-- tail -->
         <g class="tail">
-          <path d="M228 230 C 290 220, 290 140, 262 120" fill="none" stroke="#f0a24b" stroke-width="22" stroke-linecap="round"/>
+          <path d="M228 230 C 290 220, 290 140, 262 120" fill="none" stroke="url(#gTail)" stroke-width="24" stroke-linecap="round"/>
+          <path d="M236 222 C 280 212, 280 150, 260 132" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="6" stroke-linecap="round"/>
           <path d="M262 120 l-2 -4" stroke="#fff3e2" stroke-width="22" stroke-linecap="round"/>
         </g>
         <!-- body -->
-        <ellipse cx="150" cy="222" rx="88" ry="62" fill="#f0a24b"/>
-        <ellipse cx="150" cy="236" rx="54" ry="42" fill="#fff3e2"/>
-        <path d="M95 190 q10 -6 20 0 M98 210 q10 -6 20 0 M185 190 q10 -6 20 0 M182 210 q10 -6 20 0" stroke="#d9822e" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <ellipse cx="150" cy="222" rx="88" ry="62" fill="url(#gBody)"/>
+        <ellipse cx="150" cy="236" rx="54" ry="42" fill="url(#gBelly)"/>
+        <ellipse cx="112" cy="196" rx="26" ry="12" fill="#fff" opacity=".22" transform="rotate(-20 112 196)"/>
+        <path d="M95 190 q10 -6 20 0 M98 210 q10 -6 20 0 M185 190 q10 -6 20 0 M182 210 q10 -6 20 0" stroke="#d9822e" stroke-width="6" fill="none" stroke-linecap="round" opacity=".75"/>
         <!-- paws -->
-        <ellipse cx="112" cy="280" rx="24" ry="14" fill="#fff3e2"/>
-        <ellipse cx="188" cy="280" rx="24" ry="14" fill="#fff3e2"/>
+        <ellipse cx="112" cy="280" rx="25" ry="15" fill="url(#gBelly)"/>
+        <ellipse cx="188" cy="280" rx="25" ry="15" fill="url(#gBelly)"/>
+        <path d="M104 286 v-6 M112 287 v-7 M120 286 v-6 M180 286 v-6 M188 287 v-7 M196 286 v-6" stroke="#d8bfa3" stroke-width="2.5" stroke-linecap="round"/>
         <g id="blanket" style="display:none">
           <path d="M44 214 q106 -36 212 0 l12 82 q-118 22 -236 0 z" fill="#8ec5ff" stroke="#6aa9ea" stroke-width="5"/>
           <path d="M44 214 q106 -36 212 0" stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round" opacity=".8"/>
@@ -402,31 +418,39 @@
         </g>
         <!-- head -->
         <g id="head">
-          <path d="M72 92 L84 22 L132 62 Z" fill="#f0a24b"/>
-          <path d="M228 92 L216 22 L168 62 Z" fill="#f0a24b"/>
-          <path d="M86 78 L92 40 L118 62 Z" fill="#ffb7c5"/>
-          <path d="M214 78 L208 40 L182 62 Z" fill="#ffb7c5"/>
-          <ellipse cx="150" cy="112" rx="92" ry="80" fill="#f0a24b"/>
+          <path d="M70 94 Q72 40 84 20 Q110 36 134 62 Z" fill="url(#gHead)"/>
+          <path d="M230 94 Q228 40 216 20 Q190 36 166 62 Z" fill="url(#gHead)"/>
+          <path d="M86 78 Q88 50 93 38 Q108 48 120 62 Z" fill="url(#gEar)"/>
+          <path d="M214 78 Q212 50 207 38 Q192 48 180 62 Z" fill="url(#gEar)"/>
+          <ellipse cx="150" cy="112" rx="94" ry="82" fill="url(#gHead)"/>
+          <path d="M58 128 l-10 8 l14 2 M242 128 l10 8 l-14 2" fill="#f0a24b" stroke="#f0a24b" stroke-width="6" stroke-linejoin="round"/>
+          <ellipse cx="112" cy="62" rx="34" ry="16" fill="#fff" opacity=".25" transform="rotate(-18 112 62)"/>
           <path d="M132 42 q18 -8 36 0 M136 56 q14 -6 28 0" stroke="#d9822e" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <ellipse cx="150" cy="140" rx="52" ry="40" fill="#fff3e2"/>
+          <ellipse cx="150" cy="142" rx="54" ry="40" fill="url(#gBelly)"/>
           <!-- eyes -->
           <g class="eyesOpen">
-            <ellipse cx="112" cy="110" rx="17" ry="20" fill="#fff"/>
-            <ellipse cx="188" cy="110" rx="17" ry="20" fill="#fff"/>
-            <ellipse class="pupil" cx="114" cy="113" rx="11" ry="14" fill="#3b2a20"/>
-            <ellipse class="pupil" cx="190" cy="113" rx="11" ry="14" fill="#3b2a20"/>
-            <circle cx="118" cy="107" r="4" fill="#fff"/>
-            <circle cx="194" cy="107" r="4" fill="#fff"/>
+            <ellipse cx="111" cy="109" rx="21" ry="24" fill="#fff" stroke="#3b2a20" stroke-opacity=".25" stroke-width="2"/>
+            <ellipse cx="189" cy="109" rx="21" ry="24" fill="#fff" stroke="#3b2a20" stroke-opacity=".25" stroke-width="2"/>
+            <ellipse class="pupil" cx="112" cy="111" rx="18" ry="21" fill="url(#gIris)"/>
+            <ellipse class="pupil" cx="190" cy="111" rx="18" ry="21" fill="url(#gIris)"/>
+            <ellipse class="pupil" cx="112" cy="113" rx="11" ry="15" fill="#1f140d"/>
+            <ellipse class="pupil" cx="190" cy="113" rx="11" ry="15" fill="#1f140d"/>
+            <ellipse cx="119" cy="102" rx="7" ry="8" fill="#fff"/>
+            <ellipse cx="197" cy="102" rx="7" ry="8" fill="#fff"/>
+            <circle cx="107" cy="122" r="2.6" fill="#fff" opacity=".9"/>
+            <circle cx="185" cy="122" r="2.6" fill="#fff" opacity=".9"/>
+            <path d="M92 94 q18 -12 38 -2 M170 92 q20 -10 38 2" stroke="#3b2a20" stroke-opacity=".35" stroke-width="3" fill="none" stroke-linecap="round"/>
           </g>
           <g class="eyesClosed" style="display:none">
             <path d="M96 112 q16 14 32 0" stroke="#3b2a20" stroke-width="6" fill="none" stroke-linecap="round"/>
             <path d="M172 112 q16 14 32 0" stroke="#3b2a20" stroke-width="6" fill="none" stroke-linecap="round"/>
           </g>
           <!-- cheeks -->
-          <ellipse cx="92" cy="142" rx="14" ry="9" fill="#ff9fb2" opacity=".7"/>
-          <ellipse cx="208" cy="142" rx="14" ry="9" fill="#ff9fb2" opacity=".7"/>
+          <ellipse cx="90" cy="144" rx="20" ry="13" fill="url(#gCheek)"/>
+          <ellipse cx="210" cy="144" rx="20" ry="13" fill="url(#gCheek)"/>
           <!-- nose + mouth -->
-          <path d="M142 130 h16 l-8 9 z" fill="#ff7b95"/>
+          <path d="M140 129 Q150 125 160 129 Q156 138 150 140 Q144 138 140 129 Z" fill="url(#gNose)"/>
+          <ellipse cx="146" cy="130" rx="3.5" ry="2" fill="#fff" opacity=".7"/>
           <path id="mouth" d="M150 139 q-10 14 -20 4 M150 139 q10 14 20 4" stroke="#3b2a20" stroke-width="5" fill="none" stroke-linecap="round"/>
           <ellipse id="mouthOpen" cx="150" cy="152" rx="10" ry="9" fill="#a2324a" style="display:none"/>
           <!-- whiskers -->
@@ -1572,7 +1596,7 @@
   ];
   function startDance(){
     openLearn(); lhead.textContent='Joget bareng Wulan 💃';
-    const catSvg=document.getElementById('cat').outerHTML.replace(/ id="[^"]*"/g,'').replace('<svg','<svg class="dcat"');
+    const catSvg=cloneCat().replace('<svg','<svg class="dcat"');
     larea.innerHTML=`<div class="stage"><div class="floor"></div><div class="ball"></div>
       <div class="light" style="left:8%;background:linear-gradient(#ff7bd5,transparent);transform:rotate(-18deg)"></div>
       <div class="light" style="right:8%;background:linear-gradient(#7bdcff,transparent);transform:rotate(18deg)"></div>
@@ -1728,7 +1752,7 @@
   /* Pakai Baju */
   function startClothes(){
     openLearn(); lhead.textContent='Pakai Baju 👕';
-    const catSvg=document.getElementById('cat').outerHTML.replace(/ id="[^"]*"/g,'');
+    const catSvg=cloneCat();
     const C=[['merah','#ef4444'],['biru','#3b82f6'],['kuning','#facc15'],['hijau','#22c55e'],['ungu','#a855f7']];
     larea.innerHTML=`<div class="doll">${catSvg}<svg viewBox="0 0 300 300" id="cloth">
       <g id="cShirt" style="display:none"><path d="M70 204 Q150 176 230 204 L238 252 Q150 266 62 252 Z"/><path d="M70 204 L40 232 L58 250 L78 232 Z M230 204 L260 232 L242 250 L222 232 Z"/><circle cx="150" cy="222" r="5" fill="#fff8"/><circle cx="150" cy="240" r="5" fill="#fff8"/></g>
@@ -1821,13 +1845,17 @@
     }
   }
 
+  let _cc=0;
+  function cloneCat(pre){ let h=document.getElementById('cat').outerHTML; if(pre) h=pre(h); const k='c'+(++_cc);
+    return h.replace(/ id="(g[A-Z]\w*|fSoft)"/g,(m,i)=>` id="${i}_${k}"`).replace(/url\(#(g[A-Z]\w*|fSoft)\)/g,(m,i)=>`url(#${i}_${k})`).replace(/ id="(?!g[A-Z]|fSoft)[^"]*"/g,''); }
   /* Si Kembar */
   function startTwins(){
     openLearn(); lhead.textContent='Si Kembar 👯';
     const ORG='#f0a'+'24b', ORS='#d98'+'22e', GRY='#a3a'+'ec2', GRS='#7c8'+'79c';
-    const mine=document.getElementById('cat').outerHTML.replace(/ id="[^"]*"/g,'');
     const isMed=CHILD==='Medina';
-    const twin=mine.split(isMed?ORG:GRY).join(isMed?GRY:ORG).split(isMed?ORS:GRS).join(isMed?GRS:ORS);
+    const PAIRS=[[ORG,GRY],[ORS,GRS],['#ffc'+'982','#cfd'+'6e4'],['#c97'+'225','#6f7'+'a90']];
+    const mine=cloneCat();
+    const twin=cloneCat(h=>{ PAIRS.forEach(([o,g])=>{ h=h.split(isMed?o:g).join(isMed?g:o); }); return h; });
     larea.innerHTML=`<div class="twinstage"><div class="tc" id="t1">${mine}<div class="nm">Kucing ${CHILD}</div></div><div class="tc" id="t2">${twin}<div class="nm">Kucing ${TWIN}</div></div></div>
       <div class="tbtns"><button data-a="eat"><b>🍽️</b>Makan</button><button data-a="dance"><b>💃</b>Joget</button><button data-a="hug"><b>🤗</b>Peluk</button><button data-a="five"><b>✋</b>Tos</button><button data-a="sleep"><b>😴</b>Tidur</button></div>`;
     const t1=document.getElementById('t1'), t2=document.getElementById('t2'), R=learn.getBoundingClientRect();
@@ -1847,7 +1875,7 @@
   /* Kucing Ngomong */
   function startTalk(){
     openLearn(); lhead.textContent='Kucing Ngomong 🎤';
-    const catSvg=document.getElementById('cat').outerHTML.replace(/ id="mouthOpen"/,' class="tmouth"').replace(/ id="[^"]*"/g,'');
+    const catSvg=cloneCat(h=>h.replace(/ id="mouthOpen"/,' class="tmouth"'));
     larea.innerHTML=`<div class="bigmsg" id="tkmsg" style="top:66px">Tahan tombol merah, lalu bicara!</div><div class="talkcat" id="tcat">${catSvg}</div><button class="mic" id="mic">🎤</button>`;
     const mic=document.getElementById('mic'), msg=document.getElementById('tkmsg'), tc=document.getElementById('tcat'), mo=tc.querySelector('.tmouth');
     const ok=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder);
