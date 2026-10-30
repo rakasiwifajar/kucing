@@ -774,6 +774,78 @@
   body.lessmo .scp{display:none}
   body.hicon{--hc:1}body.hicon .muted{opacity:1!important;color:#3a2a20}body.hicon .pbtn,body.hicon .pgrid button,body.hicon .ach,body.hicon .story .txt,body.hicon .atxt,body.hicon .sgln{outline:3px solid #2a1a10;outline-offset:-3px}
   body.hicon .story .txt,body.hicon .atxt,body.hicon #cap{color:#000}body.hicon .pgrid button small{text-shadow:0 1px 2px #000,0 0 4px #000}
+
+  /* ===== v18 tampilan ===== */
+  #learn .head{white-space:nowrap;overflow:hidden;line-height:1.2;max-width:calc(100% - 150px);padding:6px 16px}
+  #learn .head>span.em:last-child{order:-1}
+  /* 2. cerita mengisi layar */
+  .story .pic.hasScn{flex:1 1 auto;min-height:150px;display:flex;align-items:stretch}
+  .story .pic.hasScn .scn{height:auto;flex:1;min-height:150px}
+  .story .txt{width:100%;max-width:640px}
+  .adv .apic.hasScn{flex:1 1 auto;min-height:150px;max-height:52vh;display:flex}
+  .adv .apic.hasScn .scn{height:auto;flex:1}
+  .adv .atxt{width:100%;max-width:640px}
+  /* 3. tab orang tua satu baris geser */
+  .pgrp{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:6px 8px}
+  .pgrp::-webkit-scrollbar{display:none}
+  .pgrp button{flex:none;white-space:nowrap}
+  .pgl{width:54px;flex:none;font-size:9px;letter-spacing:.6px;line-height:1.15;white-space:normal;margin:0 2px 0 0}
+  #cap{left:50%;width:max-content;max-width:92vw;font-size:clamp(15px,4vw,19px);box-sizing:border-box}
+  #ptabs{position:sticky;top:0;z-index:2;background:#fff;padding-bottom:6px;gap:4px}
+  /* 4. kartu perasaan */
+  .rcard.sheet{align-items:flex-end;background:rgba(40,28,22,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:fade7 .3s ease both}
+  .rcard.sheet .rc-in{width:100%;max-width:600px;border-radius:30px 30px 0 0;padding:22px 16px calc(22px + env(safe-area-inset-bottom,0px));animation:sheetUp .45s cubic-bezier(.2,1.15,.4,1) both;box-shadow:0 -6px 24px rgba(0,0,0,.18)}
+  @keyframes fade7{from{opacity:0}to{opacity:1}}
+  @keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
+  /* 5. sampul tile */
+  #picker .pgrid button{position:relative;overflow:hidden;isolation:isolate}
+  #picker .pgrid button::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+  #picker .pgrid button::after{content:'';position:absolute;left:50%;top:42%;width:68%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(255,255,255,.6),rgba(255,255,255,.18) 55%,rgba(255,255,255,0) 72%);pointer-events:none}
+  #picker .pgrid button>span.em{filter:drop-shadow(0 4px 3px rgba(0,0,0,.18))}
+  #picker .pgrid button small{position:relative;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+  #picker .pc0 button::before{background:radial-gradient(circle,#fff 0 2px,transparent 3px) 0 0/18px 18px,radial-gradient(circle,#fff6a0 0 2px,transparent 3px) 9px 9px/18px 18px}
+  #picker .pc1 button::before{background:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px) 0 0/14px 14px,linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px) 0 0/14px 14px}
+  #picker .pc2 button::before{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 3px,transparent 4px) 0 0/26px 26px,radial-gradient(circle,rgba(255,255,255,.6) 0 5px,transparent 6px) 13px 13px/26px 26px}
+  #picker .pc3 button::before{background:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 6px,transparent 6px 14px)}
+  #picker .pc4 button::before{background:radial-gradient(ellipse at 50% 120%,rgba(255,255,255,.7),transparent 45%),repeating-linear-gradient(0deg,rgba(255,255,255,.22) 0 2px,transparent 2px 12px)}
+  /* 6. transisi */
+  #learn.show{animation:learnIn .5s cubic-bezier(.3,.8,.3,1)}
+  @keyframes learnIn{from{clip-path:circle(0px at var(--ox,50%) var(--oy,50%))}to{clip-path:circle(150vmax at var(--ox,50%) var(--oy,50%))}}
+  .leavefx{position:fixed;z-index:50;pointer-events:none;background:linear-gradient(#fff7d6,#ffeef5);animation:learnOut .45s cubic-bezier(.5,0,.8,.4) forwards}
+  @keyframes learnOut{from{clip-path:circle(150vmax at var(--ox) var(--oy))}to{clip-path:circle(0px at var(--ox) var(--oy))}}
+  body.lessmo #learn.show{animation:fade7 .25s ease}
+  /* 7. cahaya kamar */
+  #light7{position:absolute;inset:0;pointer-events:none;transition:background 2s,opacity 2s;opacity:0}
+  body.tmorn #light7{opacity:1;background:linear-gradient(118deg,transparent 6%,rgba(255,240,180,.42) 12%,rgba(255,240,180,.12) 26%,transparent 38%),linear-gradient(118deg,transparent 18%,rgba(255,240,180,.3) 22%,transparent 34%);mix-blend-mode:screen}
+  body.tdusk #light7{opacity:1;background:linear-gradient(rgba(255,150,70,.22),rgba(255,110,90,.14)),radial-gradient(circle at 15% 32%,rgba(255,190,110,.35),transparent 40%);mix-blend-mode:soft-light}
+  body.tnight #light7,body.night #light7{opacity:1;background:radial-gradient(circle at calc(7% + min(22vw,150px) + 35px) calc(max(24%,150px) + 20px),rgba(255,210,120,.32),rgba(255,210,120,.08) 22%,transparent 38%),radial-gradient(ellipse at 50% 62%,transparent 45%,rgba(18,20,60,.35))}
+  /* 8. reaksi kucing */
+  #peek{position:absolute;right:-6px;bottom:-140px;width:120px;height:130px;z-index:6;pointer-events:none}
+  #peek .pkcat{width:100%;height:100%}#peek .pkcat>*{width:100%!important;height:100%!important}
+  #peek .pkb{position:absolute;left:-6px;top:-10px;font-size:34px;opacity:0}
+  #peek.pk-ok{animation:pkOk 1.25s ease both}#peek.pk-ok .pkb{animation:pkB 1.25s ease both}
+  #peek.pk-hm{animation:pkHm 1.25s ease both}#peek.pk-hm .pkb{animation:pkB 1.25s ease both}
+  @keyframes pkOk{0%{transform:translateY(0)}25%{transform:translateY(-175px) rotate(-6deg)}38%{transform:translateY(-140px)}50%{transform:translateY(-165px) rotate(6deg)}75%{transform:translateY(-140px)}100%{transform:translateY(0)}}
+  @keyframes pkHm{0%{transform:translateY(0)}22%{transform:translateY(-130px) rotate(-14deg)}40%{transform:translateY(-130px) rotate(10deg)}58%{transform:translateY(-130px) rotate(-10deg)}78%{transform:translateY(-130px) rotate(0)}100%{transform:translateY(0)}}
+  @keyframes pkB{0%,15%{opacity:0;transform:scale(.3)}30%,80%{opacity:1;transform:scale(1)}100%{opacity:0}}
+  /* 9. tablet */
+  @media (min-width:700px){
+    .story .txt,.adv .atxt{font-size:clamp(20px,2.6vw,28px)}
+    .sing{left:max(10px,calc(50% - 380px));right:max(10px,calc(50% - 380px))}
+    .cal,.rapor{left:max(10px,calc(50% - 360px));right:max(10px,calc(50% - 360px))}
+  }
+  @media (min-width:700px) and (min-aspect-ratio:1/1){
+    .story{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr auto auto 1fr;gap:18px 24px;align-items:center;padding:12px 24px}
+    .story .pic.hasScn{grid-row:1/5;height:100%}.story .txt{grid-row:2;grid-column:2}.story .nav{grid-row:3;grid-column:2}
+    .story .txt{align-self:end}.story .nav{align-self:start;justify-self:center;margin:0}
+    .adv{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr auto auto 1fr;gap:16px 24px;align-items:center}
+    .adv .apic{grid-row:1/5;align-self:stretch}.adv .atxt{grid-row:2;grid-column:2}.adv .achs{grid-row:3;grid-column:2}.adv .apic.hasScn{max-height:none}
+    .adv .achs{align-self:start}
+    .sing{display:grid;grid-template-columns:1fr 1.2fr;grid-template-rows:1fr auto;gap:12px;left:12px;right:12px}
+    .sgstage{height:auto;grid-row:1/3;align-items:center}.sgbar{grid-column:2}
+    .cam{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto auto 1fr;justify-items:center;gap:10px 24px;align-content:center}
+    .camv{grid-row:1/6;width:min(42vw,70vh,420px)}
+  }
 </style>
 </head>
 <body>
@@ -3640,7 +3712,7 @@
   const cap=document.createElement('div'); cap.id='cap'; document.body.appendChild(cap);
   let capT=null, capW=null;
   function capHide(){ cap.classList.remove('show'); }
-  function capSkip(){ const g=learn.classList.contains('show')?learn.dataset.g:''; return !S7.cap||['story','adv','journey','sing'].includes(g); }
+  function capSkip(){ const g=learn.classList.contains('show')?learn.dataset.g:''; return !S7.cap||!!document.querySelector('.panel.show')||['story','adv','journey','sing'].includes(g); }
   function capShow(text){ clearTimeout(capT); clearTimeout(capW); if(capSkip()||!text){ capHide(); return null; }
     cap.innerHTML=text.split(/\s+/).filter(Boolean).map(w=>`<span>${esc7(w)}</span>`).join(' '); cap.classList.add('show'); capT=setTimeout(capHide,2500+text.length*110); return cap.querySelectorAll('span'); }
   function capFor(u){ const text=u.text||''; const sp=capShow(text); if(!sp||!sp.length) return; const starts=[]; text.replace(/\S+/g,(m,i)=>{ starts.push(i); return m; });
@@ -3711,7 +3783,7 @@
   function mnote(a,f,t,d,type,v){ try{ const o=a.createOscillator(), g=a.createGain(); o.type=type; o.frequency.value=f; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(v,t+.03); g.gain.exponentialRampToValueAtTime(0.0001,t+d); o.connect(g); g.connect(musG); o.start(t); o.stop(t+d+.05); }catch(e){} }
   function musLevel(){ return S7.musVol*.12; }
   function talking7(){ try{ return speechSynthesis.speaking||(parentAudio&&!parentAudio.paused); }catch(e){ return false; } }
-  setInterval(()=>{ const sc=curScene(); const a=sc?ctx():ac; if(!a) return;
+  setInterval(()=>{ if(cap.classList.contains('show')&&document.querySelector('.panel.show')) capHide(); const sc=curScene(); const a=sc?ctx():ac; if(!a) return;
     if(!musG){ try{ musG=a.createGain(); musG.gain.value=0; musG.connect(a.destination); const r=getRev(a); if(r){ const s=a.createGain(); s.gain.value=.5; musG.connect(s); s.connect(r); } }catch(e){ return; } }
     const target=sc?(talking7()?musLevel()*.28:musLevel()):0; try{ musG.gain.setTargetAtTime(target,a.currentTime,.25); }catch(e){}
     if(!sc){ musScene=''; return; }
@@ -3847,6 +3919,42 @@
   { const _pv=pVoice; pVoice=function(body){ _pv(body); try{ const bo=body.querySelector('#bgmOn'); if(bo){ const d=bo.closest('div[style]'); if(d) d.remove(); }
       const list=body.querySelector('#vlist'), first=list&&list.children[5]; if(first){ const h=document.createElement('div'); h.innerHTML='<div style="font-weight:900;margin-top:14px">🗣️ Kalimat penting</div><div class="muted">Rekam kalimat pendek ini sekali saja. Setiap kali Kucing mengucapkan kalimat itu, yang terdengar suara @@DAD@@/@@MOM@@ — mis. setiap jawaban benar terdengar “Betul!” dari @@DAD@@/@@MOM@@.</div>'; list.insertBefore(h,first); } }catch(e){} }; }
   try{ ISLANDS[1][2].push('camhunt'); ISLANDS[5][2].push('sing'); }catch(e){}
+
+
+  /* ================= v18: tampilan ================= */
+  /* 1. judul game satu baris, emoji di depan, huruf menyesuaikan */
+  function fitHead(){ const h=lhead; if(!h||!learn.classList.contains('show')) return; h.style.fontSize=''; let fs=parseFloat(getComputedStyle(h).fontSize)||24, n=0; while(h.scrollWidth>h.clientWidth+1&&fs>13&&n<30){ fs-=1; n++; h.style.fontSize=fs+'px'; } }
+  try{ new MutationObserver(()=>requestAnimationFrame(fitHead)).observe(lhead,{childList:true,characterData:true,subtree:true}); addEventListener('resize',()=>requestAnimationFrame(fitHead)); }catch(e){}
+
+  /* 4. kartu perasaan jadi lembar dari bawah */
+  { const _mc=moodCard; moodCard=function(){ const r=_mc.apply(this,arguments); try{ document.querySelectorAll('.rcard').forEach(c=>{ if(c.querySelector('.moodrow')) c.classList.add('sheet'); }); }catch(e){} return r; }; }
+
+  /* 5. sampul kategori */
+  try{ document.querySelectorAll('#picker .pgrid').forEach((g,i)=>g.classList.add('pc'+i)); }catch(e){}
+
+  /* 6. transisi buka/tutup */
+  let tapX=innerWidth/2, tapY=innerHeight/2;
+  document.addEventListener('pointerdown',e=>{ tapX=e.clientX; tapY=e.clientY; },{capture:true,passive:true});
+  { const _ol=openLearn; openLearn=function(){ try{ const r=learn.getBoundingClientRect(); learn.style.setProperty('--ox',Math.round(tapX-r.left)+'px'); learn.style.setProperty('--oy',Math.round(tapY-r.top)+'px'); }catch(e){} return _ol.apply(this,arguments); }; }
+  { const _cl=closeLearn; closeLearn=function(){ const was=learn.classList.contains('show')&&L.alive; const r=_cl.apply(this,arguments);
+      try{ if(was&&!S7.lessMo){ const x=document.getElementById('learnX').getBoundingClientRect(), lr=learn.getBoundingClientRect(); const f=document.createElement('div'); f.className='leavefx'; f.style.cssText=`left:${lr.left}px;top:${lr.top}px;width:${lr.width}px;height:${lr.height}px;--ox:${x.left+x.width/2-lr.left}px;--oy:${x.top+x.height/2-lr.top}px`; document.body.appendChild(f); setTimeout(()=>f.remove(),480); } }catch(e){} return r; }; }
+
+  /* 7. cahaya kamar ikut waktu */
+  const light7=document.createElement('div'); light7.id='light7'; try{ document.getElementById('room').insertBefore(light7,document.getElementById('dark')); }catch(e){}
+  function applyLight(){ const h=new Date().getHours(); document.body.classList.toggle('tmorn',h>=5&&h<9); }
+  applyLight(); setInterval(applyLight,300000);
+
+  /* 8. reaksi kucing besar di dalam game */
+  const peek=document.createElement('div'); peek.id='peek'; learn.appendChild(peek);
+  const NOPEEK=['draw','coloring','trace','puzzle','camhunt','sing','calm','story'];
+  function bigReact(k){ if(!learn.classList.contains('show')||S7.lessMo&&k!=='ok') return; const g=learn.dataset.g; if(NOPEEK.includes(g)) return;
+    if(!peek.firstChild||peek._g!==g){ peek.innerHTML='<div class="pkcat">'+cloneCat()+'</div><b class="pkb"></b>'; peek._g=g; }
+    peek.querySelector('.pkb').textContent=k==='ok'?['🎉','⭐','💖','👏'][Math.random()*4|0]:'❓';
+    peek.className=''; void peek.offsetWidth; peek.className=k==='ok'?'pk-ok':'pk-hm'; clearTimeout(peek._t); peek._t=setTimeout(()=>{ peek.className=''; },1300); }
+  { const _st=sfx.star; sfx.star=function(){ const r=_st.apply(this,arguments); try{ if(learn.classList.contains('show')){ guideReact('ok'); bigReact('ok'); } }catch(e){} return r; }; }
+  try{ new MutationObserver(ms=>{ for(const m of ms){ if(m.target.classList&&m.target.classList.contains('nope')){ bigReact('hm'); break; } } }).observe(larea,{attributes:true,attributeFilter:['class'],subtree:true}); }catch(e){}
+  { const _fl=finishLearn; finishLearn=function(){ try{ bigReact('ok'); }catch(e){} return _fl.apply(this,arguments); }; }
+  { const _ol=openLearn; openLearn=function(){ const r=_ol.apply(this,arguments); try{ peek.className=''; peek._g=null; peek.innerHTML=''; }catch(e){} return r; }; }
 
 
   /* ===== versi umum ===== */
